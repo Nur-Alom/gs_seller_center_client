@@ -1,7 +1,10 @@
 import React from 'react';
-import user from '../../Images/Student.jpg';
+import useFirebase from '../../Hooks/useFirebase';
+import defaultUser from '../../Images/user.png';
 
 const Header = () => {
+    const { user } = useFirebase();
+    console.log(user)
     return (
         <div className='z-40 py-4 bg-white shadow-sm dark:bg-gray-800'>
             <div className="container flex items-center justify-end h-full px-6 mx-auto text-green-500 dark:text-green-500">
@@ -23,7 +26,7 @@ const Header = () => {
                     <li className="relative inline-block text-left">
                         <button className="rounded-full dark:bg-gray-500 bg-green-500 text-white h-8 w-8 font-medium mx-auto focus:outline-none">
                             <div className="relative rounded-full inline-block w-8 h-8 align-middle" aria-hidden="true">
-                                <img className="object-cover w-full h-full rounded-full" src={user} loading="lazy" alt='' />
+                                <img className="object-cover w-full h-full rounded-full" src={user.photoURL ? user.photoURL : defaultUser} loading="lazy" alt='' />
                             </div>
                         </button>
                     </li>
