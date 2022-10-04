@@ -4,7 +4,8 @@ import defaultUser from '../../Images/user.png';
 
 const Header = () => {
     const { user } = useFirebase();
-    console.log(user)
+
+
     return (
         <div className='z-40 py-4 bg-white shadow-sm dark:bg-gray-800'>
             <div className="container flex items-center justify-end h-full px-6 mx-auto text-green-500 dark:text-green-500">
