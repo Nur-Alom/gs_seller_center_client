@@ -10,6 +10,7 @@ import Login from './Components/UserAccount/Login/Login';
 import Register from './Components/UserAccount/Register/Register';
 import PrivateRoute from './Components/UserAccount/PrivateRoute/PrivateRoute';
 import NotFound from './Components/Pages/NotFound/NotFound';
+import Orders from './Components/Pages/Orders/Orders';
 
 function App() {
   return (
@@ -22,6 +23,10 @@ function App() {
               <Route path="products" element={<PrivateRoute><Products /></PrivateRoute>} />
               <Route path="category" element={<PrivateRoute><Category /></PrivateRoute>} />
               <Route path="customers" element={<PrivateRoute><Customers /></PrivateRoute>} />
+              <Route path="orders" element={<PrivateRoute><Orders /></PrivateRoute>} />
+              <Route path="coupons" element={<PrivateRoute><Customers /></PrivateRoute>} />
+              <Route path="staff" element={<PrivateRoute><Customers /></PrivateRoute>} />
+              <Route path="setting" element={<PrivateRoute><Customers /></PrivateRoute>} />
             </Route>
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
