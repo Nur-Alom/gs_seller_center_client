@@ -42,19 +42,19 @@ const Orders = () => {
                             <div>
                                 <select className='w-full focus:bg-white bg-gray-100 p-3 border border-gray-300 outline-0 text-sm rounded-md' name="" id="">
                                     <option value="" hidden>By Status</option>
-                                    <option value="">1</option>
-                                    <option value="">2</option>
-                                    <option value="">3</option>
-                                    <option value="">4</option>
+                                    <option value="">Pending</option>
+                                    <option value="">Processing</option>
+                                    <option value="">Delivered</option>
+                                    <option value="">Cancel</option>
                                 </select>
                             </div>
                             <div>
                                 <select className='w-full focus:bg-white bg-gray-100 p-3 border border-gray-300 outline-0 text-sm rounded-md' name="" id="">
                                     <option value="" hidden>By Time</option>
-                                    <option value="">1</option>
-                                    <option value="">2</option>
-                                    <option value="">3</option>
-                                    <option value="">4</option>
+                                    <option value="">Last 5 dyes orders</option>
+                                    <option value="">Last 7 dyes orders</option>
+                                    <option value="">Last 15 dyes orders</option>
+                                    <option value="">Last 30 dyes orders</option>
                                 </select>
                             </div>
                             <div>
@@ -74,7 +74,7 @@ const Orders = () => {
                                 <table className="w-full whitespace-no-wrap">
                                     <thead className="text-xs font-semibold tracking-wide text-gray-500 uppercase border-b border-gray-200 dark:border-gray-700 bg-gray-100 dark:text-gray-400 dark:bg-gray-800">
                                         <tr>
-                                            <td className="px-3 py-3">SR.NO</td>
+                                            <td className="px-3 py-3">ORDER ID</td>
                                             <td className="px-3 py-3">DATE</td>
                                             <td className="px-3 py-3">SHIPPING ADDRESS</td>
                                             <td className="px-3 py-3">PHONE</td>
@@ -95,8 +95,21 @@ const Orders = () => {
                                                 <td className='px-3 py-3 text-sm'>{order.city},{order.district}</td>
                                                 <td className='px-3 py-3 text-sm'>{order.phoneNumber}</td>
                                                 <td className='px-3 py-3 text-sm font-semibold'>{order.paymentMethod.type}</td>
-                                                <td className='px-2 py-3 text-sm font-semibold'>{order.grandTotal}</td>
-                                                <td className='px-2 py-3 text-sm'>{order.status}</td>
+                                                <td className='px-2 py-3 text-sm font-semibold'>${order.grandTotal.toFixed(2)}</td>
+                                                <td className='px-2 py-3 text-sm'>
+                                                    {order.status === "Pending" &&
+                                                        <span class="inline-flex px-2 text-xs font-medium leading-5 rounded-full text-yellow-600 bg-yellow-100 dark:text-white dark:bg-yellow-600">Pending</span>
+                                                    }
+                                                    {order.status === "Processing" &&
+                                                        <span class="inline-flex px-2 text-xs font-medium leading-5 rounded-full text-blue-500 bg-blue-100 dark:text-white dark:bg-blue-800">Processing</span>
+                                                    }
+                                                    {order.status === "Delivered" &&
+                                                        <span class="inline-flex px-2 text-xs font-medium leading-5 rounded-full text-green-500 bg-green-100 dark:bg-green-800 dark:text-green-100">Delivered</span>
+                                                    }
+                                                    {order.status === "Cancel" &&
+                                                        <span class="inline-flex px-2 text-xs font-medium leading-5 rounded-full text-red-600 bg-red-100 dark:text-white dark:bg-red-600">Cancel</span>
+                                                    }
+                                                </td>
                                                 <td className='px-2 py-3 text-sm'>
                                                     <select className='bg-gray-100 p-1 border border-gray-300 focus:border-gray-500 outline-0 text-sm rounded-md items-center' name="" id="">
                                                         <option value="" hidden>{order.status}</option>
