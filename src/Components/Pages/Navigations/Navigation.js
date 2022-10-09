@@ -55,7 +55,7 @@ const Navigation = () => {
                         </NavLink>
                     </li>
                     <li className=''>
-                        <NavLink className="px-6 py-4 inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-green-700 dark:hover:text-gray-200 text-gray-500 dark:text-gray-100" to="/staff">
+                        <NavLink className="px-6 py-4 inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-green-700 dark:hover:text-gray-200 text-gray-500 dark:text-gray-100" to="/our-staff">
                             <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5" aria-hidden="true" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                             <span className='px-3'>Our Staff</span>
                         </NavLink>

@@ -12,6 +12,8 @@ import PrivateRoute from './Components/UserAccount/PrivateRoute/PrivateRoute';
 import NotFound from './Components/Pages/NotFound/NotFound';
 import Orders from './Components/Pages/Orders/Orders';
 import Coupons from './Components/Pages/Coupons/Coupons';
+import OurStaff from './Components/Pages/OurStaff/OurStaff';
+import AddStaff from './Components/Pages/AddStaff/AddStaff';
 
 function App() {
   return (
@@ -26,8 +28,9 @@ function App() {
               <Route path="customers" element={<PrivateRoute><Customers /></PrivateRoute>} />
               <Route path="orders" element={<PrivateRoute><Orders /></PrivateRoute>} />
               <Route path="coupons" element={<PrivateRoute><Coupons /></PrivateRoute>} />
-              <Route path="staff" element={<PrivateRoute><Customers /></PrivateRoute>} />
+              <Route path="our-staff" element={<PrivateRoute><OurStaff /></PrivateRoute>} />
               <Route path="setting" element={<PrivateRoute><Customers /></PrivateRoute>} />
+              <Route path="add-staff" element={<PrivateRoute><AddStaff /></PrivateRoute>} />
             </Route>
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
