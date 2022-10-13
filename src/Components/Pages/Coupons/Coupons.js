@@ -12,12 +12,12 @@ const Coupons = () => {
 
     // Load coupons.
     useEffect(() => {
-        fetch(`http://localhost:5000/coupons`)
+        fetch(`https://quiet-fortress-45073.herokuapp.com/coupons`)
             .then(res => res.json())
             .then(data => setTotalCoupons(data.coupons))
 
 
-        fetch(`http://localhost:5000/coupons?page=${page}&&size=${size}`)
+        fetch(`https://quiet-fortress-45073.herokuapp.com/coupons?page=${page}&&size=${size}`)
             .then(res => res.json())
             .then(data => {
                 setCoupons(data.coupons);

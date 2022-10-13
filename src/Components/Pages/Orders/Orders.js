@@ -12,12 +12,12 @@ const Orders = () => {
 
     // Load Orders.
     useEffect(() => {
-        fetch(`http://localhost:5000/orders`)
+        fetch(`https://quiet-fortress-45073.herokuapp.com/orders`)
             .then(res => res.json())
             .then(data => setTotalOrders(data.orders))
 
 
-        fetch(`http://localhost:5000/orders?page=${page}&&size=${size}`)
+        fetch(`https://quiet-fortress-45073.herokuapp.com/orders?page=${page}&&size=${size}`)
             .then(res => res.json())
             .then(data => {
                 setOrders(data.orders);

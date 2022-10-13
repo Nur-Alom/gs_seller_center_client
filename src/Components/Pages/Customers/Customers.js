@@ -13,12 +13,12 @@ const Customers = () => {
 
     // Load User Info.
     useEffect(() => {
-        fetch(`http://localhost:5000/users`)
+        fetch(`https://quiet-fortress-45073.herokuapp.com/users`)
             .then(res => res.json())
             .then(data => setTotalUsers(data.users))
 
 
-        fetch(`http://localhost:5000/users?page=${page}&&size=${size}`)
+        fetch(`https://quiet-fortress-45073.herokuapp.com/users?page=${page}&&size=${size}`)
             .then(res => res.json())
             .then(data => {
                 setUsers(data.users);

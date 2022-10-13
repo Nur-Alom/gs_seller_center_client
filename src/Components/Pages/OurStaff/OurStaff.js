@@ -7,17 +7,17 @@ import Header from '../Header/Header';
 const OurStaff = () => {
     const [staffs, setStaffs] = useState([]);
     const [pageCount, setPageCount] = useState(0);
-    const [totalstaff, setTotalstaff] = useState([]);
+    const [totalStaff, setTotalStaff] = useState([]);
     const [page, setPage] = useState(0);
     const size = 8;
 
     // Load Staff Info.
     useEffect(() => {
-        fetch('http://localhost:5000/staffs')
+        fetch('https://quiet-fortress-45073.herokuapp.com/staffs')
             .then(res => res.json())
-            .then(data => setTotalstaff(data.staffs))
+            .then(data => setTotalStaff(data.staffs))
 
-        fetch(`http://localhost:5000/staffs?page=${page}&&size=${size}`)
+        fetch(`https://quiet-fortress-45073.herokuapp.com/staffs?page=${page}&&size=${size}`)
             .then(res => res.json())
             .then(data => {
                 setStaffs(data.staffs)
@@ -77,14 +77,18 @@ const OurStaff = () => {
                                             staffs.map(staff => <tr className='' key={staff.staffId}>
                                                 <td className='px-3 py-3 text-xs font-bold'>{staff.staffId.toUpperCase()}</td>
                                                 <td className='px-3 py-3 flex items-center justify-start text-sm'>
-                                                    <img className='w-8 shadow-inner rounded-full p-1 mr-2' src={staff.photoURL} alt="" />
+                                                    <img className='w-14 h-14 shadow-inner rounded-full p-1 mr-2' src={`data:image/*;base64,${staff.photoURL}`} alt="" />
                                                     {staff.displayName}
                                                 </td>
                                                 <td className='px-3 py-3 text-sm'>{staff.email}</td>
                                                 <td className='px-3 py-3 text-sm'>{staff.contact}</td>
                                                 <td className='px-3 py-3 text-sm'>
-                                                    {new Date(staff.createdAt).toDateString().slice(4, 10)},
-                                                    {new Date(staff.createdAt).toDateString().slice(10, 15)}
+                                                    {staff.joiningDate &&
+                                                        <span>
+                                                            {new Date(staff.joiningDate).toDateString().slice(4, 10)},
+                                                            {new Date(staff.joiningDate).toDateString().slice(10, 15)}
+                                                        </span>
+                                                    }
                                                 </td>
                                                 <td className='px-3 py-3 text-sm font-semibold'>
                                                     {staff.role}
@@ -109,7 +113,7 @@ const OurStaff = () => {
                             </div>
                             <div className='flex items-center justify-between p-4 mb-6 bg-white border border-gray-200 rounded-b-lg'>
                                 <div className='text-xs font-bold text-gray-600'>
-                                    SHOWING 1-8 OF {totalstaff.length}
+                                    SHOWING 1-8 OF {totalStaff.length}
                                 </div>
                                 <div className='text-xs font-bold bg-gray-100 rounded'>
                                     {
