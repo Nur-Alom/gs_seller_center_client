@@ -50,7 +50,7 @@ const Category = () => {
                                 </select>
                             </div>
                             <div>
-                                <button className='w-full bg-green-600 text-white p-3 rounded-md'>+ Add Categories</button>
+                                <button className='w-full bg-green-500 hover:bg-green-600 duration-500 text-white p-3 rounded-md'>+ Add Categories</button>
                             </div>
                         </div>
                     </div>

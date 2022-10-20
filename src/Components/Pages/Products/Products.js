@@ -21,10 +21,10 @@ const Products = () => {
         fetch(`https://quiet-fortress-45073.herokuapp.com/products?page=${page}&&size=${size}`)
             .then(res => res.json())
             .then(data => {
-                setProducts(data.products)
+                setProducts(data.products);
                 const count = data.count;
                 const pageNumber = Math.ceil(count / size);
-                setPageCount(pageNumber)
+                setPageCount(pageNumber);
             })
     }, [page]);
 
@@ -64,8 +64,8 @@ const Products = () => {
                                     </select>
                                 </div>
                                 <div>
-                                    <button className='bg-green-500 text-white w-full py-3 rounded-md' type="submit">
-                                        Add Product
+                                    <button className='bg-green-500 hover:bg-green-600 duration-500 text-white w-full py-3 rounded-md' type="submit">
+                                        +Add Product
                                     </button>
                                 </div>
                             </form>
@@ -75,14 +75,16 @@ const Products = () => {
                         <div className='bg-white '>
                             <form className='flex items-center justify-between' action="">
                                 <div className='w-3/4'>
-                                    <input className='hidden' type="file" accept="text/csv, .csv, application/vnd.ms-excel" name="" id="" />
-                                    <div className='text-center border border-dashed border-green-600 rounded p-3 cursor-pointer'>
-                                        <span className='text-sm text-gray-500'>Drop CSV File</span>
-                                    </div>
+                                    <label htmlFor="csv-file-input">
+                                        <input className='hidden csv-file-input' type="file" accept="text/csv, .csv, application/vnd.ms-excel" name="" id="csv-file-input" />
+                                        <div className='text-center border border-dashed border-green-600 rounded p-3 cursor-pointer'>
+                                            <span className='text-sm text-gray-500'>Drop CSV File</span>
+                                        </div>
+                                    </label>
                                 </div>
                                 <div className=''>
-                                    <button className='bg-gray-200 py-3 px-5 rounded mx-2'>Upload</button>
-                                    <button className='bg-green-500 text-white py-3 px-5 rounded mx-2'>Download</button>
+                                    <button className='bg-gray-200 hover:bg-gray-400 duration-500 py-3 px-5 rounded mx-2'>Upload</button>
+                                    <button className='bg-green-500 hover:bg-green-600 duration-500 text-white py-3  px-5 rounded mx-2'>Download</button>
                                 </div>
                             </form>
                         </div>
