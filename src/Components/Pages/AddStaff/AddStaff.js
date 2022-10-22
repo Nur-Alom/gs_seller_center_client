@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import Header from '../Header/Header';
 
 const AddStaff = () => {
     const navigate = useNavigate();
@@ -81,7 +80,6 @@ const AddStaff = () => {
 
     return (
         <div className='flex flex-col flex-1 w-full h-screen'>
-            <Header />
             <div className='h-full overflow-y-auto bg-slate-50'>
                 <div className='px-6 mx-auto'>
                     <div className='flex items-center justify-between border-b border-gray-300'>

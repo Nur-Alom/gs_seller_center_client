@@ -6,7 +6,7 @@ import useFirebase from '../../Hooks/useFirebase';
 import defaultUser from '../../Images/user.png';
 
 const Header = () => {
-    const { user } = useFirebase();
+    const { user, logout } = useFirebase();
     const [dropdown, setDropdown] = useState(false);
     const [staffs, setStaffs] = useState({});
 
@@ -54,7 +54,10 @@ const Header = () => {
                     <li className="relative inline-block text-left">
                         <button onClick={setDrop} className="rounded-full dark:bg-gray-500 bg-white text-white h-10 w-10 font-medium mx-auto focus:outline-none">
                             <div className="relative rounded-full inline-block w-10 h-10 align-middle" aria-hidden="true">
-                                <img className="object-cover w-10 h-10 rounded-full" src={staffs?.photoURL ? `data:image/*;base64,${staffs?.photoURL}` : defaultUser} loading="eager" alt='' />
+                                <img
+                                    className="object-cover w-10 h-10 rounded-full"
+                                    src={staffs?.photoURL ? `data:image/*;base64,${staffs?.photoURL}` : defaultUser} loading="eager" alt=''
+                                />
                             </div>
                         </button>
                         <ul className={dropdown ? "origin-top-right absolute right-0 mt-2 w-56 shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 focus:outline-none" : "origin-top-right absolute right-0 mt-2 w-56 shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 focus:outline-none hidden"}>
@@ -78,13 +81,15 @@ const Header = () => {
                                 </NavLink>
                             </li>
                             <li className="cursor-pointer justify-between font-serif font-medium py-2 pl-4 transition-colors duration-150 hover:bg-gray-100 text-gray-500 hover:text-green-500 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200">
-                                <span className="flex items-center text-sm">
-                                    <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 512 512" className="w-4 h-4 mr-3" aria-hidden="true" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="32" d="M304 336v40a40 40 0 01-40 40H104a40 40 0 01-40-40V136a40 40 0 0140-40h152c22.09 0 48 17.91 48 40v40m64 160l80-80-80-80m-192 80h256">
-                                        </path>
-                                    </svg>
-                                    <span className='text-sm font-bold font-sans'>Log out</span>
-                                </span>
+                                <button className='w-full' onClick={() => logout()}>
+                                    <span className="flex items-center text-sm">
+                                        <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 512 512" className="w-4 h-4 mr-3" aria-hidden="true" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="32" d="M304 336v40a40 40 0 01-40 40H104a40 40 0 01-40-40V136a40 40 0 0140-40h152c22.09 0 48 17.91 48 40v40m64 160l80-80-80-80m-192 80h256">
+                                            </path>
+                                        </svg>
+                                        <span className='text-sm font-bold font-sans'>Log out</span>
+                                    </span>
+                                </button>
                             </li>
                         </ul>
                     </li>
