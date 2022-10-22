@@ -23,7 +23,7 @@ const Header = () => {
 
     // Load Staffs Info.
     useEffect(() => {
-        fetch(`http://localhost:5000/staffs?email=${user?.email}`)
+        fetch(`https://quiet-fortress-45073.herokuapp.com/staffs?email=${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 const staffs = data?.staffs;
