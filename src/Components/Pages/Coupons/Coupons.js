@@ -32,12 +32,12 @@ const Coupons = () => {
         <div className='px-6 mx-auto'>
             <h2 className='my-4 font-bold text-lg'>Coupons</h2>
             <div className='bg-white border border-gray-200 rounded-md'>
-                <div className='lg:flex md:flex-row sm:flex-col px-4 py-6 items-center gap-4'>
+                <div className='lg:flex md:flex-row sm:flex-col px-4 py-6 items-center gap-6'>
                     <div className='w-4/5'>
                         <input className='w-full focus:bg-white bg-gray-100 p-3 border border-gray-300 outline-0 text-sm rounded-md' type="text" placeholder='Search by Coupon code/name' />
                     </div>
                     <div className=''>
-                        <NavLink to="/add-coupon" className='bg-green-600 hover:bg-green-700 text-white py-3 px-10 rounded-md'>
+                        <NavLink to="/add-coupon" className='bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-md'>
                             + Add Coupon
                         </NavLink>
                     </div>
@@ -63,7 +63,8 @@ const Coupons = () => {
                             <tbody className="bg-white divide-y divide-gray-100 dark:divide-gray-700 dark:bg-gray-800 text-gray-700 dark:text-gray-400">
                                 {
                                     coupons.map(coupon => <tr className='' key={coupon._id}>
-                                        <td className='px-3 py-3 text-xs font-bold'>{coupon._id.slice(18, 24).toUpperCase()}</td>
+                                        {/* <td className='px-3 py-3 text-xs font-bold'>{coupon._id.slice(18, 24).toUpperCase()}</td> */}
+                                        <td className='px-3 py-3 text-xs font-bold'>{coupon?.couponId ? coupon?.couponId?.toUpperCase() : coupon._id.slice(18, 24).toUpperCase()}</td>
                                         <td className='px-3 py-3 items-center text-sm'>
                                             {new Date(coupon.createdAt).toDateString().slice(4, 10)},
                                             {new Date(coupon.createdAt).toDateString().slice(10, 15)}
