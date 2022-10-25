@@ -1,6 +1,7 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 const Products = () => {
     const [categories, setCategories] = useState([]);
@@ -59,11 +60,9 @@ const Products = () => {
                                 <option value="">High To Low</option>
                             </select>
                         </div>
-                        <div>
-                            <button className='bg-green-500 hover:bg-green-600 duration-500 text-white w-full py-3 rounded-md' type="submit">
-                                +Add Product
-                            </button>
-                        </div>
+                        <NavLink to="/add-products" className='bg-green-500 hover:bg-green-600 duration-500 text-white text-center py-3 rounded-md'>
+                            +Add Product
+                        </NavLink>
                     </form>
                 </div>
             </div>

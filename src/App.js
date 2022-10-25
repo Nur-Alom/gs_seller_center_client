@@ -16,6 +16,7 @@ import OurStaff from './Components/Pages/OurStaff/OurStaff';
 import AddStaff from './Components/Pages/AddStaff/AddStaff';
 import { ToastContainer } from 'react-toastify';
 import AddCoupon from './Components/Pages/AddCoupon/AddCoupon';
+import AddProducts from './Components/Pages/AddProducts/AddProducts';
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
               <Route path="setting" element={<PrivateRoute><Customers /></PrivateRoute>} />
               <Route path="add-coupon" element={<PrivateRoute><AddCoupon /></PrivateRoute>} />
               <Route path="add-staff" element={<PrivateRoute><AddStaff /></PrivateRoute>} />
+              <Route path="add-products" element={<PrivateRoute><AddProducts /></PrivateRoute>} />
             </Route>
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />

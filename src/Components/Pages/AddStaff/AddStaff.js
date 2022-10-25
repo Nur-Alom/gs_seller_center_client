@@ -51,14 +51,14 @@ const AddStaff = () => {
 
 
 
-    // Update User Profile Information.
+    // Add New Staff Information.
     const onSubmit = data => {
         data.photoURL = upImg;
         data.joiningDate = new Date(data.joiningDate).toISOString();
         data.staffId = staffId;
         setInfoLoading(true);
         fetch('https://quiet-fortress-45073.herokuapp.com/add-staffs', {
-            method: 'PUT',
+            method: 'POST',
             headers: {
                 'content-type': 'application/json'
             },
@@ -66,7 +66,7 @@ const AddStaff = () => {
         })
             .then(res => res.json())
             .then(data => {
-                if (data.acknowledged === true && data.upsertedId) {
+                if (data.acknowledged === true && data.insertedId) {
                     toastSuccess();
                     navigate('/our-staff');
                 } else {
@@ -83,9 +83,9 @@ const AddStaff = () => {
             <div className='px-6 mx-auto'>
                 <div className='flex items-center justify-between border-b border-gray-300'>
                     <h2 className='my-4 font-bold text-lg'>Add New Staff</h2>
-                    <NavLink to="/our-staff" className="font-medium outline-0 px-4 py-2 text-sm rounded-lg border border-gray-200 text-red-500 hover:bg-red-200 hover:border-red-300 hover:text-red-600 transition-colors duration-500">
+                    <button onClick={() => window.history.back()} className="font-medium outline-0 px-4 py-2 text-sm rounded-lg border border-gray-200 text-red-500 hover:bg-red-200 hover:border-red-300 hover:text-red-600 transition-colors duration-500">
                         Cancel
-                    </NavLink>
+                    </button>
                 </div>
                 <div className="w-full overflow-x-auto rounded-xl border border-gray-200 bg-white mt-5 mb-8">
                     <div>
@@ -172,9 +172,9 @@ const AddStaff = () => {
                                     </div>
                                 </div>
                                 <div className="my-10 text-right">
-                                    <NavLink to="/our-staff" className="font-bold outline-0 px-4 py-2 text-sm rounded-lg border border-gray-200 text-red-500 hover:bg-red-200 hover:border-red-300 hover:text-red-600 transition-colors duration-500 ml-4">
+                                    <button onClick={() => window.history.back()} className="font-medium outline-0 px-4 py-2 text-sm rounded-lg border border-gray-200 text-red-500 hover:bg-red-200 hover:border-red-300 hover:text-red-600 transition-colors duration-500">
                                         Cancel
-                                    </NavLink>
+                                    </button>
                                     <button className="font-bold outline-0 px-4 py-2 text-sm rounded-lg border border-gray-200 text-green-500 hover:bg-green-200 hover:border-green-300 hover:text-green-600 transition-colors duration-500 ml-4" type="submit">
                                         Add Staff
                                     </button>
