@@ -64,7 +64,7 @@ const Products = () => {
 
     // Delete Product Function.
     const deleteProduct = (id) => {
-        fetch(`http://localhost:5000/delete-product/${id}`, {
+        fetch(`https://quiet-fortress-45073.herokuapp.com/delete-product/${id}`, {
             method: "DELETE",
         })
             .then(res => res.json())
