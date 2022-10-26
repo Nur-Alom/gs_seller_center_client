@@ -1,7 +1,9 @@
+import swal from '@sweetalert/with-react';
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Products = () => {
     const [categories, setCategories] = useState([]);
@@ -35,6 +37,51 @@ const Products = () => {
             .then(res => res.json())
             .then(data => setCategories(data.categories))
     }, []);
+
+
+    // Sweet Alert.
+    const sweetAlert = (product) => {
+        swal(<div>
+            <h2 className='text-xl font-medium'>Are You Sure! Want to Delete <span className='text-red-500'>{product.title}</span> Record?</h2>
+            <p className='mt-3 text-black text-md text-center'>Do you really want to delete these records? You can't view this in your list anymore if you delete!</p>
+            {/* <div className='text-center mt-2'>
+                <button className='bg-gray-400 hover:bg-gray-500 text-white text-sm font-medium px-4 py-2 mx-1 rounded-lg transition-colors duration-300 outline-0'>No, Keep it</button>
+                <button className='bg-green-500 hover:bg-green-600 text-white text-sm font-medium px-4 py-2 mx-1 rounded-lg transition-colors duration-300 outline-0' type='submit'>Yes, Delete it</button>
+            </div> */}
+        </div>,
+            {
+                icon: "warning",
+                buttons: true,
+                closeOnClickOutside: false,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    deleteProduct(product._id)
+                }
+            });
+    };
+
+
+    // Delete Product Function.
+    const deleteProduct = (id) => {
+        fetch(`http://localhost:5000/delete-product/${id}`, {
+            method: "DELETE",
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    toastSuccess();
+                }
+                else {
+                    toastError();
+                }
+            });
+    };
+
+
+    const toastSuccess = () => toast.success("Product Delete Successfully!!");
+    const toastError = () => toast.error("Somethings wants wrong!! please try again.");
+
 
     return (
         <div className='px-6 mx-auto'>
@@ -146,15 +193,15 @@ const Products = () => {
                                         </td>
                                         <td className='py-3 text-sm'>
                                             <div className="flex justify-center">
-                                                <div title='Edit' className="p-2 cursor-pointer text-gray-400 hover:text-green-600">
+                                                <button title='Edit' className="p-2 text-gray-400 hover:text-green-600">
                                                     <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="1.2em" width="1.2em" xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
                                                         <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
-                                                </div>
-                                                <div title='Delete' className="p-2 cursor-pointer text-gray-400 hover:text-red-600">
+                                                </button>
+                                                <button onClick={() => sweetAlert(product)} title='Delete' className="p-2 text-gray-400 hover:text-red-600">
                                                     <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="1.2em" width="1.2em" xmlns="http://www.w3.org/2000/svg"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line>
                                                     </svg>
-                                                </div>
+                                                </button>
                                             </div>
                                         </td>
                                     </tr>)
