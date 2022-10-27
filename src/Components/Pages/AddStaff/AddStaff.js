@@ -104,7 +104,7 @@ const AddStaff = () => {
                                                     </span>
                                                     <p className="text-sm mt-2">Drag your image here</p>
                                                     <em className="text-xs text-gray-400">(Only *.jpeg and *.png images will be accepted)</em>
-                                                    <input {...register("photoURL", { required: true })} onChange={e => PreviewImg(e)} className='image-upload-btn hidden' type="file" id='image-upload-btn' accept="image/*" />
+                                                    <input {...register("photoURL", { required: "* This field must have some value!!" })} onChange={e => PreviewImg(e)} className='image-upload-btn hidden' type="file" id='image-upload-btn' accept="image/*" />
                                                 </div>
                                             </label>
                                             {upImg &&
@@ -113,53 +113,49 @@ const AddStaff = () => {
                                                 </div>
                                             }
                                         </div>
+                                        {errors.photoURL && <span className='text-red-600 font-light text-sm mt-1 mb-0 mx-0 w-fit rounded-sm'>{errors.photoURL.message}</span>}
                                     </div>
                                 </div>
                                 <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
                                     <label className="block text-sm text-gray-700 dark:text-gray-400 col-span-4 sm:col-span-2 font-medium">2. Name</label>
                                     <div className="col-span-8 sm:col-span-4">
-                                        <input {...register("displayName", { required: true })} className="block w-full px-3 py-1 text-sm rounded-md border border-gray-200 h-12 bg-gray-100 focus:bg-white outline-0" type="text" placeholder='Staff Name' />
-                                        <br />
-                                        {errors.name && <span>{errors.name.message}</span>}
+                                        <input {...register("displayName", { required: "* This field must have some value!!" })} className="block w-full px-3 py-1 text-sm rounded-md border border-gray-200 h-12 bg-gray-100 focus:bg-white outline-0" type="text" placeholder='Staff Name' />
+                                        {errors.displayName && <span className='text-red-600 font-light text-sm mt-1 mb-0 mx-0 w-fit rounded-sm'>{errors.displayName.message}</span>}
                                     </div>
                                 </div>
                                 <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
                                     <label className="block text-sm text-gray-700 dark:text-gray-400 col-span-4 sm:col-span-2 font-medium">3. Email</label>
                                     <div className="col-span-8 sm:col-span-4">
-                                        <input {...register("email", { required: true })} className="block w-full px-3 py-1 text-sm rounded-md border border-gray-200 h-12 bg-gray-100 focus:bg-white outline-0" type="email" placeholder='Email' />
-                                        <br />
-                                        {errors.email && <span>{errors.email.message}</span>}
+                                        <input {...register("email", { required: "* This field must have some value!!" })} className="block w-full px-3 py-1 text-sm rounded-md border border-gray-200 h-12 bg-gray-100 focus:bg-white outline-0" type="email" placeholder='Email' />
+                                        {errors.email && <span className='text-red-600 font-light text-sm mt-1 mb-0 mx-0 w-fit rounded-sm'>{errors.email.message}</span>}
                                     </div>
                                 </div>
                                 <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
                                     <label className="block text-sm text-gray-700 dark:text-gray-400 col-span-4 sm:col-span-2 font-medium">4. Password</label>
                                     <div className="col-span-8 sm:col-span-4">
-                                        <input {...register("password", { required: true })} className="block w-full px-3 py-1 text-sm rounded-md border border-gray-200 h-12 bg-gray-100 focus:bg-white outline-0" type="password" placeholder="Password" />
-                                        <br />
-                                        {errors.password && <span>{errors.password.message}</span>}
+                                        <input {...register("password", { required: "* This field must have some value!!" })} className="block w-full px-3 py-1 text-sm rounded-md border border-gray-200 h-12 bg-gray-100 focus:bg-white outline-0" type="password" placeholder="Password" />
+                                        {errors.password && <span className='text-red-600 font-light text-sm mt-1 mb-0 mx-0 w-fit rounded-sm'>{errors.password.message}</span>}
                                     </div>
                                 </div>
                                 <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
                                     <label className="block text-sm text-gray-700 dark:text-gray-400 col-span-4 sm:col-span-2 font-medium">5. Contact Number</label>
                                     <div className="col-span-8 sm:col-span-4">
-                                        <input {...register("contact", { required: true })} className="block w-full px-3 py-1 text-sm rounded-md border border-gray-200 h-12 bg-gray-100 focus:bg-white outline-0" type="number" placeholder="Phone number" />
-                                        <br />
-                                        {errors.contact && <span>{errors.contact.message}</span>}
+                                        <input {...register("contact", { required: "* This field must have some value!!" })} className="block w-full px-3 py-1 text-sm rounded-md border border-gray-200 h-12 bg-gray-100 focus:bg-white outline-0" type="number" placeholder="Phone number" />
+                                        {errors.contact && <span className='text-red-600 font-light text-sm mt-1 mb-0 mx-0 w-fit rounded-sm'>{errors.contact.message}</span>}
                                     </div>
                                 </div>
                                 <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
                                     <label className="block text-sm text-gray-700 dark:text-gray-400 col-span-4 sm:col-span-2 font-medium">6. Joining Date</label>
                                     <div className="col-span-8 sm:col-span-4">
-                                        <input {...register("joiningDate", { required: true })} className="block w-full px-3 py-1 text-sm rounded-md border border-gray-200 h-12 bg-gray-100 focus:bg-white outline-0" type="date" label="Joining Date" placeholder="Staff Joining Date" />
-                                        <br />
-                                        {errors.joining_date && <span>{errors.joining_date.message}</span>}
+                                        <input {...register("joiningDate", { required: "* This field must have some value!!" })} className="block w-full px-3 py-1 text-sm rounded-md border border-gray-200 h-12 bg-gray-100 focus:bg-white outline-0" type="date" label="Joining Date" placeholder="Staff Joining Date" />
+                                        {errors.joiningDate && <span className='text-red-600 font-light text-sm mt-1 mb-0 mx-0 w-fit rounded-sm'>{errors.joiningDate.message}</span>}
                                     </div>
                                 </div>
                                 <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
                                     <label className="block text-sm text-gray-700 dark:text-gray-400 col-span-4 sm:col-span-2 font-medium">7. Staff Role</label>
                                     <div className="col-span-8 sm:col-span-4">
-                                        <select {...register("role", { required: true })} className="block w-full px-3 py-1 text-sm rounded-md border border-gray-200 h-12 bg-gray-100 focus:bg-white outline-0">
-                                            <option value="" hidden="">Staff role</option>
+                                        <select {...register("role", { required: "* This field must have some value!!" })} className="block w-full px-3 py-1 text-sm rounded-md border border-gray-200 h-12 bg-gray-100 focus:bg-white outline-0">
+                                            <option value="" hidden>Staff role</option>
                                             <option value="Admin">Admin</option>
                                             <option value="CEO">CEO</option>
                                             <option value="Manager">Manager</option>
@@ -168,8 +164,7 @@ const AddStaff = () => {
                                             <option value="Security Guard">Security Guard</option>
                                             <option value="Deliver Person">Delivery Person</option>
                                         </select>
-                                        <br />
-                                        {errors.role && <span>{errors.role.message}</span>}
+                                        {errors.role && <span className='text-red-600 font-light text-sm mt-1 mb-0 mx-0 w-fit rounded-sm'>{errors.role.message}</span>}
                                     </div>
                                 </div>
                                 <div className="my-10 text-right">

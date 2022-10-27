@@ -138,7 +138,7 @@ const AddProducts = () => {
                                     <label className="block text-gray-700 dark:text-gray-400 col-span-4 sm:col-span-2 font-medium text-sm">6. Parent Category</label>
                                     <div className="col-span-8 sm:col-span-4">
                                         <select {...register("parent", { required: "* This field must have some value!!" })} className="block w-full px-3 py-1 text-sm rounded-md border border-gray-200 h-12 bg-gray-100 focus:bg-white outline-0">
-                                            <option value="" hidden="">Select parent category</option>
+                                            <option value="" hidden>Select parent category</option>
                                             <option value="Fish &amp; Meat">Fish &amp; Meat</option>
                                             <option value="Fruits &amp; Vegetable">Fruits &amp; Vegetable</option>
                                             <option value="Fresh Seafood">Fresh Seafood</option>
@@ -165,7 +165,7 @@ const AddProducts = () => {
                                     <label className="block text-gray-700 dark:text-gray-400 col-span-4 sm:col-span-2 font-medium text-sm">7. Child Category</label>
                                     <div className="col-span-8 sm:col-span-4">
                                         <select {...register("children", { required: "* This field must have some value!!" })} className="block w-full px-3 py-1 text-sm rounded-md border border-gray-200 h-12 bg-gray-100 focus:bg-white outline-0">
-                                            <option value="" hidden="">Select child category</option>
+                                            <option value="" hidden>Select child category</option>
                                             <option value="Fish">Fish</option>
                                             <option value="Meat">Meat</option>
                                             <option value="Dry Fruits">Dry Fruits</option>
@@ -224,7 +224,7 @@ const AddProducts = () => {
                                     <label className="block text-gray-700 dark:text-gray-400 col-span-4 sm:col-span-2 font-medium text-sm">8. Product Type</label>
                                     <div className="col-span-8 sm:col-span-4">
                                         <select {...register("type", { required: "* This field must have some value!!" })} className="block w-full px-3 py-1 text-sm rounded-md border border-gray-200 h-12 bg-gray-100 focus:bg-white outline-0">
-                                            <option value="" hidden="">Select type</option>
+                                            <option value="" hidden>Select type</option>
                                             <option value="Grocery">Grocery</option>
                                             <option value="Foods">Foods</option>
                                             <option value="Cloths">Cloths</option>

@@ -101,7 +101,7 @@ const AddCoupon = () => {
                                                 </span>
                                                 <p className="text-sm mt-2">Drag your image here</p>
                                                 <em className="text-xs text-gray-400">(Only *.jpeg and *.png images will be accepted)</em>
-                                                <input {...register("logo", { required: true })} onChange={e => PreviewImg(e)} className='image-upload-btn hidden' type="file" id='image-upload-btn' accept="image/*" />
+                                                <input {...register("logo", { required: "* This field must have some value!!" })} onChange={e => PreviewImg(e)} className='image-upload-btn hidden' type="file" id='image-upload-btn' accept="image/*" />
                                             </div>
                                         </label>
                                         {upImg &&
@@ -110,42 +110,48 @@ const AddCoupon = () => {
                                             </div>
                                         }
                                     </div>
+                                    {errors.logo && <p className='text-red-600 font-light text-sm mt-1 mb-0 mx-0 w-fit rounded-sm'>{errors.logo.message}</p>}
                                 </div>
                             </div>
                             <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
                                 <label className="block text-sm text-gray-700 dark:text-gray-400 col-span-4 sm:col-span-2 font-medium">2. Campaign Name</label>
                                 <div className="col-span-8 sm:col-span-4">
-                                    <input {...register("title", { required: true })} className="block w-full px-3 py-1 text-sm rounded-md border border-gray-200 h-12 bg-gray-100 focus:bg-white outline-0" type="text" placeholder="Campaign Title" />
+                                    <input {...register("title", { required: "* This field must have some value!!" })} className="block w-full px-3 py-1 text-sm rounded-md border border-gray-200 h-12 bg-gray-100 focus:bg-white outline-0" type="text" placeholder="Campaign Title" />
+                                    {errors.title && <p className='text-red-600 font-light text-sm mt-1 mb-0 mx-0 w-fit rounded-sm'>{errors.title.message}</p>}
                                 </div>
                             </div>
                             <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
                                 <label className="block text-sm text-gray-700 dark:text-gray-400 col-span-4 sm:col-span-2 font-medium">3. Campaign Code</label>
                                 <div className="col-span-8 sm:col-span-4">
-                                    <input {...register("couponCode", { required: true })} className="block w-full px-3 py-1 text-sm rounded-md border border-gray-200 h-12 bg-gray-100 focus:bg-white outline-0" type="text" placeholder="Coupon code" />
+                                    <input {...register("couponCode", { required: "* This field must have some value!!" })} className="block w-full px-3 py-1 text-sm rounded-md border border-gray-200 h-12 bg-gray-100 focus:bg-white outline-0" type="text" placeholder="Coupon code" />
+                                    {errors.couponCode && <p className='text-red-600 font-light text-sm mt-1 mb-0 mx-0 w-fit rounded-sm'>{errors.couponCode.message}</p>}
                                 </div>
                             </div>
                             <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
                                 <label className="block text-sm text-gray-700 dark:text-gray-400 col-span-4 sm:col-span-2 font-medium">4. Coupon Validity Time</label>
                                 <div className="col-span-8 sm:col-span-4">
-                                    <input {...register("endTime", { required: true })} className="block w-full px-3 py-1 text-sm rounded-md border border-gray-200 h-12 bg-gray-100 focus:bg-white outline-0" type="datetime-local" placeholder="Coupon validation end time" />
+                                    <input {...register("endTime", { required: "* This field must have some value!!" })} className="block w-full px-3 py-1 text-sm rounded-md border border-gray-200 h-12 bg-gray-100 focus:bg-white outline-0" type="datetime-local" placeholder="Coupon validation end time" />
+                                    {errors.endTime && <p className='text-red-600 font-light text-sm mt-1 mb-0 mx-0 w-fit rounded-sm'>{errors.endTime.message}</p>}
                                 </div>
                             </div>
                             <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
                                 <label className="block text-sm text-gray-700 dark:text-gray-400 col-span-4 sm:col-span-2 font-medium">5. Discount Percentage</label>
                                 <div className="col-span-8 sm:col-span-4">
-                                    <input {...register("discountPercentage", { required: true })} className="block w-full px-3 py-1 text-sm rounded-md border border-gray-200 h-12 bg-gray-100 focus:bg-white outline-0" type="number" placeholder="Discount percentage" />
+                                    <input {...register("discountPercentage", { required: "* This field must have some value!!" })} className="block w-full px-3 py-1 text-sm rounded-md border border-gray-200 h-12 bg-gray-100 focus:bg-white outline-0" type="number" placeholder="Discount percentage" />
+                                    {errors.discountPercentage && <p className='text-red-600 font-light text-sm mt-1 mb-0 mx-0 w-fit rounded-sm'>{errors.discountPercentage.message}</p>}
                                 </div>
                             </div>
                             <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6"><label className="block text-sm text-gray-700 dark:text-gray-400 col-span-4 sm:col-span-2 font-medium">6. Minimum Amount</label>
                                 <div className="col-span-8 sm:col-span-4">
-                                    <input {...register("minimumAmount", { required: true })} className="block w-full px-3 py-1 text-sm rounded-md border border-gray-200 h-12 bg-gray-100 focus:bg-white outline-0" type="number" placeholder="Minimum amount required" />
+                                    <input {...register("minimumAmount", { required: "* This field must have some value!!" })} className="block w-full px-3 py-1 text-sm rounded-md border border-gray-200 h-12 bg-gray-100 focus:bg-white outline-0" type="number" placeholder="Minimum amount required" />
+                                    {errors.minimumAmount && <p className='text-red-600 font-light text-sm mt-1 mb-0 mx-0 w-fit rounded-sm'>{errors.minimumAmount.message}</p>}
                                 </div>
                             </div>
                             <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
                                 <label className="block text-gray-700 dark:text-gray-400 col-span-4 sm:col-span-2 font-medium text-sm">7. Product Type</label>
                                 <div className="col-span-8 sm:col-span-4">
-                                    <select {...register("productType", { required: true })} className="block w-full px-3 py-1 text-sm rounded-md border border-gray-200 h-12 bg-gray-100 focus:bg-white outline-0">
-                                        <option value="" hidden="">Select type</option>
+                                    <select {...register("productType", { required: "* This field must have some value!!" })} className="block w-full px-3 py-1 text-sm rounded-md border border-gray-200 h-12 bg-gray-100 focus:bg-white outline-0">
+                                        <option value="" hidden>Select type</option>
                                         <option value="Grocery">Grocery</option>
                                         <option value="Foods">Foods</option>
                                         <option value="Cloths">Cloths</option>
@@ -158,6 +164,7 @@ const AddCoupon = () => {
                                         <option value="Furniture">Furniture</option>
                                         <option value="Electronics">Electronics </option>
                                     </select>
+                                    {errors.productType && <p className='text-red-600 font-light text-sm mt-1 mb-0 mx-0 w-fit rounded-sm'>{errors.productType.message}</p>}
                                 </div>
                             </div>
                             <div className="my-10 text-right">
