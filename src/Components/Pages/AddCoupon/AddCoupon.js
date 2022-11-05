@@ -49,7 +49,7 @@ const AddCoupon = () => {
     }, [coupons]);
 
 
-    // Update User Profile Information.
+    // Add New Coupon Information.
     const onSubmit = data => {
         data.logo = upImg;
         data.couponId = couponId;

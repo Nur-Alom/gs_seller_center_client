@@ -2,6 +2,7 @@ import React from 'react';
 import './Category.css';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 const Category = () => {
     const [categories, setCategories] = useState([]);
@@ -30,11 +31,11 @@ const Category = () => {
         <div className='px-6 mx-auto'>
             <h2 className='my-4 font-bold text-lg'>Categories</h2>
             <div className='bg-white border border-gray-300 rounded-md'>
-                <div className='grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-1 gap-8 px-4 py-6 items-center'>
-                    <div>
+                <div className='grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-1 gap-6 px-8 py-6 items-center'>
+                    <div className='w-full'>
                         <input className='w-full focus:bg-white bg-gray-200 p-3 border border-gray-300 outline-0 rounded-md' type="text" placeholder='Search by category type' />
                     </div>
-                    <div>
+                    <div className='w-full'>
                         <select className='w-full focus:bg-white bg-gray-200 p-3 border border-gray-300 outline-0 rounded-md' name="" id="">
                             <option value="All" hidden>Categories</option>
                             {
@@ -45,8 +46,10 @@ const Category = () => {
                             }
                         </select>
                     </div>
-                    <div>
-                        <button className='w-full bg-green-500 hover:bg-green-600 duration-500 text-white p-3 rounded-md'>+ Add Categories</button>
+                    <div className='w-full'>
+                        <NavLink to="/add-category" className='bg-green-500 hover:bg-green-600 duration-500 text-white py-3 px-16 rounded-md'>
+                            + Add Categories
+                        </NavLink>
                     </div>
                 </div>
             </div>
