@@ -1,5 +1,5 @@
 import React from 'react';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -10,7 +10,7 @@ const AddCategory = () => {
     const navigate = useNavigate();
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [tags, setTags] = useState([]);
-    const [couponId, setCouponId] = useState("");
+    // const [couponId, setCouponId] = useState("");
     const [upImg, setUpImg] = useState("");
     const [infoLoading, setInfoLoading] = useState(false);
 
@@ -77,9 +77,15 @@ const AddCategory = () => {
         <div className='px-6 mx-auto'>
             <div className='flex items-center justify-between border-b border-gray-300'>
                 <h2 className='my-4 font-bold text-lg'>Coupons</h2>
-                <button onClick={() => window.history.back()} className="font-medium outline-0 px-4 py-2 text-sm rounded-lg border border-gray-200 text-red-500 hover:bg-red-200 hover:border-red-300 hover:text-red-600 transition-colors duration-500">
-                    Cancel
-                </button>
+                {infoLoading ?
+                    <button disabled onClick={() => window.history.back()} className="font-medium outline-0 px-4 py-2 text-sm rounded-lg border border-gray-200 text-red-500 hover:bg-red-200 hover:border-red-300 hover:text-red-600 transition-colors duration-500">
+                        Cancel
+                    </button>
+                    :
+                    <button onClick={() => window.history.back()} className="font-medium outline-0 px-4 py-2 text-sm rounded-lg border border-gray-200 text-red-500 hover:bg-red-200 hover:border-red-300 hover:text-red-600 transition-colors duration-500">
+                        Cancel
+                    </button>
+                }
             </div>
             <div className="w-full overflow-x-auto rounded-xl border border-gray-200 bg-white mt-5 mb-8">
                 <div>
@@ -106,7 +112,7 @@ const AddCategory = () => {
                                             </div>
                                         }
                                     </div>
-                                    {errors.icon && <p className='text-red-600 font-light text-sm mt-1 mb-0 mx-0 w-fit rounded-sm'>{toast.error("icon is required")}</p>}
+                                    {errors.icon && <p className='text-red-600 font-light text-sm mt-1 mb-0 mx-0 w-fit rounded-sm'>{errors.icon.message}</p>}
                                 </div>
                             </div>
                             <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
@@ -149,11 +155,17 @@ const AddCategory = () => {
                                 </div>
                             </div>
                             <div className="mt-6 text-right">
-                                <button onClick={() => window.history.back()} className="font-bold outline-0 px-4 py-2 text-sm rounded-lg border border-gray-200 text-red-500 hover:bg-red-200 hover:border-red-300 hover:text-red-600 transition-colors duration-500 ml-4">
-                                    Cancel
-                                </button>
                                 {infoLoading ?
-                                    <button className="inline-flex font-medium outline-0 px-4 py-2 text-sm rounded-lg border border-green-500 bg-green-500 text-white hover:bg-green-600 hover:border-green-600 transition-colors duration-500 ml-4" type="submit">
+                                    <button disabled onClick={() => window.history.back()} className="font-bold outline-0 px-4 py-2 text-sm rounded-lg border border-gray-200 text-red-500 hover:bg-red-200 hover:border-red-300 hover:text-red-600 transition-colors duration-500 ml-4">
+                                        Cancel
+                                    </button>
+                                    :
+                                    <button onClick={() => window.history.back()} className="font-medium outline-0 px-4 py-2 text-sm rounded-lg border border-gray-200 text-red-500 hover:bg-red-200 hover:border-red-300 hover:text-red-600 transition-colors duration-500">
+                                        Cancel
+                                    </button>
+                                }
+                                {infoLoading ?
+                                    <button disabled className="inline-flex font-medium outline-0 px-4 py-2 text-sm rounded-lg border border-green-500 bg-green-500 text-white hover:bg-green-600 hover:border-green-600 transition-colors duration-500 ml-4" type="submit">
                                         + Add
                                         <svg className="ml-2 h-5 w-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
