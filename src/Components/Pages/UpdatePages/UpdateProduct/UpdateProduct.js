@@ -58,6 +58,17 @@ const UpdateProduct = () => {
     // Add New Staff Information.
     const onSubmit = data => {
         data.image = upImg ? upImg : image;
+        data.sku = data.sku ? data.sku : sku;
+        data.title = data.title ? data.title : title;
+        data.slug = data.slug ? data.slug : slug;
+        data.description = data.description ? data.description : description;
+        data.parent = data.parent ? data.parent : parent;
+        data.children = data.children ? data.children : children;
+        data.type = data.type ? data.type : type;
+        data.unit = data.unit ? data.unit : unit;
+        data.quantity = data.quantity ? data.quantity : quantity;
+        data.originalPrice = data.originalPrice ? data.originalPrice : originalPrice;
+        data.price = data.price ? data.price : price;
         data.tag = tags;
         // console.log(data);
         setInfoLoading(true);
@@ -123,7 +134,7 @@ const UpdateProduct = () => {
                                             </div>
                                             :
                                             <div className="w-fit h-32 px-3 py-2 border border-gray-200 rounded-md">
-                                                <img className='w-28 h-28' src={image} alt="" id='ProfileImg' />
+                                                <img className='w-28 h-28' src={`data:image/*;base64,${image}`} alt="" id='ProfileImg' />
                                             </div>
                                         }
                                     </div>
