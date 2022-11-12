@@ -62,6 +62,27 @@ const Products = () => {
     };
 
 
+    // Update Product Status.
+    const upStatus = (product) => {
+        fetch(`https://quiet-fortress-45073.herokuapp.com/up-status/${product._id}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(product)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged === true) {
+                    toast.success("Status Update Successfully!!");
+                }
+                else {
+                    toastError();
+                }
+            })
+    };
+
+
     // Delete Product Function.
     const deleteProduct = (id) => {
         fetch(`https://quiet-fortress-45073.herokuapp.com/delete-product/${id}`, {
@@ -181,15 +202,15 @@ const Products = () => {
                                         </td>
                                         <td className='px-3 py-3 text-sm'>
                                             {product.status === "Show" ?
-                                                <span title='Showing' className="cursor-pointer text-xl flex justify-center text-center">
+                                                <button onClick={() => upStatus(product)} title='Showing' className="text-xl flex justify-center text-center m-auto">
                                                     <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" className="text-green-500" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M5 3a5 5 0 0 0 0 10h6a5 5 0 0 0 0-10H5zm6 9a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"></path>
                                                     </svg>
-                                                </span>
+                                                </button>
                                                 :
-                                                <span title='Not Showing' className="cursor-pointer text-xl flex justify-center text-center">
+                                                <button onClick={() => upStatus(product)} title='Not Showing' className="text-xl flex justify-center text-center m-auto">
                                                     <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" className="text-orange-500" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M11 4a4 4 0 0 1 0 8H8a4.992 4.992 0 0 0 2-4 4.992 4.992 0 0 0-2-4h3zm-6 8a4 4 0 1 1 0-8 4 4 0 0 1 0 8zM0 8a5 5 0 0 0 5 5h6a5 5 0 0 0 0-10H5a5 5 0 0 0-5 5z"></path>
                                                     </svg>
-                                                </span>}
+                                                </button>}
                                         </td>
                                         <td className='py-3 text-sm'>
                                             <div className="flex justify-center">
