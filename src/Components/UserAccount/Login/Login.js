@@ -1,11 +1,11 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import useFirebase from '../../Hooks/useFirebase';
 import logo from '../../Images/logo.jpg';
 
 const Login = () => {
-    const { loginUser } = useFirebase();
+    const { loginUser, loading } = useFirebase();
     const location = useLocation();
     const navigate = useNavigate();
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -17,7 +17,7 @@ const Login = () => {
 
 
     return (
-        <div className='text-center lg:my-16 md:my-64'>
+        <div className='text-center lg:my-12 md:my-64'>
             <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
                 <div className="w-full max-w-md space-y-8">
                     <div>
@@ -33,59 +33,54 @@ const Login = () => {
                             GS-SELLER-CENTER
                         </p>
                     </div>
-                    <form className="mt-8 space-y-6" onSubmit={handleSubmit(onSubmit)}>
-                        <div className="-space-y-px rounded-md shadow-sm">
-                            <div>
-                                <label htmlFor="email-address" className="sr-only">
+                    <form className="mt-4 space-y-4" onSubmit={handleSubmit(onSubmit)}>
+                        <div className="">
+                            <div className="text-left mb-2">
+                                <label htmlFor="" className="text-sm font-bold">
                                     Email address
                                 </label>
                                 <input
-                                    {...register("email")}
+                                    {...register("email", { required: "Enter Your Email Please*" })}
                                     type="email"
                                     autoComplete="email"
-                                    required
-                                    className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                                    className="relative block w-full appearance-none rounded-none rounded-t-sm border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                                     placeholder="Email address"
                                 />
+                                {errors.email && <span className='text-sm text-red-600 mt-1'>{errors.email.message}</span>}
                             </div>
-                            <div>
-                                <label htmlFor="password" className="sr-only">
+                            <div className="text-left mb-2">
+                                <label htmlFor="" className="text-sm font-bold">
                                     Password
                                 </label>
                                 <input
-                                    {...register("password")}
+                                    {...register("password", { required: "Enter Your Password Please*" })}
                                     type="password"
                                     autoComplete="current-password"
-                                    required
-                                    className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                                    className="relative block w-full appearance-none rounded-none rounded-b-sm border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                                     placeholder="Password"
                                 />
+                                {errors.password && <span className='text-sm text-red-600 mt-1'>{errors.password.message}</span>}
                             </div>
                         </div>
-                        <div className="flex items-center justify-between">
-                            <div className="flex items-center">
-                                <input
-                                    id="remember-me"
-                                    name="remember-me"
-                                    type="checkbox"
-                                    className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                                />
-                                <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
-                                    Remember me
-                                </label>
-                            </div>
-                            <div className="text-sm">
-                                <a href="/" className="font-medium text-indigo-600 hover:text-indigo-500">
-                                    Forgot your password?
-                                </a>
-                            </div>
+                        <div className="text-sm text-right">
+                            <NavLink to="/forgot_password" className="font-medium text-indigo-600 hover:text-indigo-500">
+                                Forgot your password?
+                            </NavLink>
                         </div>
                         <div>
-                            <button
-                                type="submit"
-                                className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-                                Sign in
-                            </button>
+                            {loading ?
+                                <button type="submit" className="w-full justify-center items-center inline-flex rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 outline-0">
+                                    Sign in
+                                    <svg class="ml-2 h-4 w-4 animate-spin text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                </button>
+                                :
+                                <button type="submit" className="w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 outline-0 ">
+                                    Sign in
+                                </button>
+                            }
                         </div>
                     </form>
                 </div>

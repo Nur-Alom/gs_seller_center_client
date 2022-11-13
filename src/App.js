@@ -19,6 +19,7 @@ import AddCoupon from './Components/Pages/AddCoupon/AddCoupon';
 import AddProducts from './Components/Pages/AddProducts/AddProducts';
 import AddCategory from './Components/Pages/AddCategory/AddCategory';
 import UpdateProduct from './Components/Pages/UpdatePages/UpdateProduct/UpdateProduct';
+import ForgotPassword from './Components/UserAccount/ForgotPassword/ForgotPassword';
 
 function App() {
   return (
@@ -54,6 +55,7 @@ function App() {
             </Route>
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
+            <Route path="forgot_password" element={<ForgotPassword />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Router>
