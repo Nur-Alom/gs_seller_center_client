@@ -11,12 +11,12 @@ const Orders = () => {
 
     // Load Orders.
     useEffect(() => {
-        fetch(`https://quiet-fortress-45073.herokuapp.com/orders`)
+        fetch(`https://gs-seller-center-server.up.railway.app/orders`)
             .then(res => res.json())
             .then(data => setTotalOrders(data.orders))
 
 
-        fetch(`https://quiet-fortress-45073.herokuapp.com/orders?page=${page}&&size=${size}`)
+        fetch(`https://gs-seller-center-server.up.railway.app/orders?page=${page}&&size=${size}`)
             .then(res => res.json())
             .then(data => {
                 setOrders(data.orders);

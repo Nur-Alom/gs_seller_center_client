@@ -49,7 +49,7 @@ const AddCategory = () => {
         data.children = tags;
         // data.couponId = couponId;
         setInfoLoading(true);
-        fetch('https://quiet-fortress-45073.herokuapp.com/add-category', {
+        fetch('https://gs-seller-center-server.up.railway.app/add-category', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

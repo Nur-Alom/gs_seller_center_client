@@ -15,7 +15,7 @@ const AddCoupon = () => {
 
     // Load Staffs Info.
     useEffect(() => {
-        fetch('https://quiet-fortress-45073.herokuapp.com/coupons')
+        fetch('https://gs-seller-center-server.up.railway.app/coupons')
             .then(res => res.json())
             .then(data => setCoupons(data))
     }, [])
@@ -54,7 +54,7 @@ const AddCoupon = () => {
         data.logo = upImg;
         data.couponId = couponId;
         setInfoLoading(true);
-        fetch('https://quiet-fortress-45073.herokuapp.com/add-coupons', {
+        fetch('https://gs-seller-center-server.up.railway.app/add-coupons', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

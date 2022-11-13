@@ -16,11 +16,11 @@ const Products = () => {
 
     // Load Products.
     useEffect(() => {
-        fetch('https://quiet-fortress-45073.herokuapp.com/products')
+        fetch('https://gs-seller-center-server.up.railway.app/products')
             .then(res => res.json())
             .then(data => setTotalProduct(data.products))
 
-        fetch(`https://quiet-fortress-45073.herokuapp.com/products?page=${page}&&size=${size}`)
+        fetch(`https://gs-seller-center-server.up.railway.app/products?page=${page}&&size=${size}`)
             .then(res => res.json())
             .then(data => {
                 setProducts(data.products);
@@ -33,7 +33,7 @@ const Products = () => {
 
     // Load categories.
     useEffect(() => {
-        fetch('https://quiet-fortress-45073.herokuapp.com/categories')
+        fetch('https://gs-seller-center-server.up.railway.app/categories')
             .then(res => res.json())
             .then(data => setCategories(data.categories))
     }, []);
@@ -64,7 +64,7 @@ const Products = () => {
 
     // Update Product Status.
     const upStatus = (product) => {
-        fetch(`https://quiet-fortress-45073.herokuapp.com/up-status/${product._id}`, {
+        fetch(`https://gs-seller-center-server.up.railway.app/up-status/${product._id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -85,7 +85,7 @@ const Products = () => {
 
     // Delete Product Function.
     const deleteProduct = (id) => {
-        fetch(`https://quiet-fortress-45073.herokuapp.com/delete-product/${id}`, {
+        fetch(`https://gs-seller-center-server.up.railway.app/delete-product/${id}`, {
             method: "DELETE",
         })
             .then(res => res.json())

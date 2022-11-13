@@ -45,7 +45,7 @@ const AddProducts = () => {
         data.tag = tags;
         data.image = upImg;
         setInfoLoading(true);
-        fetch('https://quiet-fortress-45073.herokuapp.com/add-product', {
+        fetch('https://gs-seller-center-server.up.railway.app/add-product', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

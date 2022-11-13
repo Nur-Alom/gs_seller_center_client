@@ -16,11 +16,11 @@ const Category = () => {
 
     // Load Category.
     useEffect(() => {
-        fetch('https://quiet-fortress-45073.herokuapp.com/categories')
+        fetch('https://gs-seller-center-server.up.railway.app/categories')
             .then(res => res.json())
             .then(data => setTotalCategory(data.categories))
 
-        fetch(`https://quiet-fortress-45073.herokuapp.com/categories?page=${page}&&size=${size}`)
+        fetch(`https://gs-seller-center-server.up.railway.app/categories?page=${page}&&size=${size}`)
             .then(res => res.json())
             .then(data => {
                 setCategories(data.categories);
@@ -58,7 +58,7 @@ const Category = () => {
 
     // Delete Category Function.
     const deleteCategory = (id) => {
-        fetch(`https://quiet-fortress-45073.herokuapp.com/delete-cat/${id}`, {
+        fetch(`https://gs-seller-center-server.up.railway.app/delete-cat/${id}`, {
             method: "DELETE",
         })
             .then(res => res.json())
@@ -169,7 +169,7 @@ const Category = () => {
                     </div>
                     <div className='flex items-center justify-between p-4 mb-6 bg-white border border-gray-200 rounded-b-lg'>
                         <div className='text-xs font-bold text-gray-600'>
-                            SHOWING 1-15 OF {totalCategory.length}
+                            SHOWING 1-8 OF {totalCategory.length}
                         </div>
                         <div className='text-xs font-bold bg-gray-100 rounded'>
                             {

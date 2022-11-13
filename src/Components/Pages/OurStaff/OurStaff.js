@@ -12,11 +12,11 @@ const OurStaff = () => {
 
     // Load Staff Info.
     useEffect(() => {
-        fetch('https://quiet-fortress-45073.herokuapp.com/staffs')
+        fetch('https://gs-seller-center-server.up.railway.app/staffs')
             .then(res => res.json())
             .then(data => setTotalStaff(data.staffs))
 
-        fetch(`https://quiet-fortress-45073.herokuapp.com/staffs?page=${page}&&size=${size}`)
+        fetch(`https://gs-seller-center-server.up.railway.app/staffs?page=${page}&&size=${size}`)
             .then(res => res.json())
             .then(data => {
                 setStaffs(data.staffs)

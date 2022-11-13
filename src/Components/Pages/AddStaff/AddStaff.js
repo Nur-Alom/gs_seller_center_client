@@ -16,7 +16,7 @@ const AddStaff = () => {
 
     // Load Staffs Info.
     useEffect(() => {
-        fetch('https://quiet-fortress-45073.herokuapp.com/staffs')
+        fetch('https://gs-seller-center-server.up.railway.app/staffs')
             .then(res => res.json())
             .then(data => setStaffs(data))
     }, [])
@@ -57,7 +57,7 @@ const AddStaff = () => {
         data.joiningDate = new Date(data.joiningDate).toISOString();
         data.staffId = staffId;
         setInfoLoading(true);
-        fetch('https://quiet-fortress-45073.herokuapp.com/add-staffs', {
+        fetch('https://gs-seller-center-server.up.railway.app/add-staffs', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

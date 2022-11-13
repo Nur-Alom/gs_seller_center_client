@@ -37,7 +37,7 @@ const UpdateProduct = () => {
 
     // Load Product Information.
     useEffect(() => {
-        fetch(`https://quiet-fortress-45073.herokuapp.com/product/${id}`)
+        fetch(`https://gs-seller-center-server.up.railway.app/product/${id}`)
             .then(res => res.json())
             .then(data => setProduct(data))
     }, [id]);
@@ -72,7 +72,7 @@ const UpdateProduct = () => {
         data.tag = tags;
         // console.log(data);
         setInfoLoading(true);
-        fetch(`https://quiet-fortress-45073.herokuapp.com/up-product/${_id}`, {
+        fetch(`https://gs-seller-center-server.up.railway.app/up-product/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

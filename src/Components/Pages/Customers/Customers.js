@@ -12,12 +12,12 @@ const Customers = () => {
 
     // Load User Info.
     useEffect(() => {
-        fetch(`https://quiet-fortress-45073.herokuapp.com/users`)
+        fetch(`https://gs-seller-center-server.up.railway.app/users`)
             .then(res => res.json())
             .then(data => setTotalUsers(data.users))
 
 
-        fetch(`https://quiet-fortress-45073.herokuapp.com/users?page=${page}&&size=${size}`)
+        fetch(`https://gs-seller-center-server.up.railway.app/users?page=${page}&&size=${size}`)
             .then(res => res.json())
             .then(data => {
                 setUsers(data.users);
