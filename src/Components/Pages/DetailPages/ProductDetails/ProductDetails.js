@@ -11,7 +11,7 @@ const ProductDetails = () => {
     // Load Products.
     useEffect(() => {
         setLoading(true);
-        fetch(`http://localhost:5000/product/${id}`)
+        fetch(`https://gs-seller-center-server.up.railway.app/product/${id}`)
             .then(res => res.json())
             .then(data => {
                 setProducts(data);

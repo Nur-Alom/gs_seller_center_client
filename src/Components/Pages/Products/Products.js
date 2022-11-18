@@ -22,7 +22,7 @@ const Products = () => {
             .then(res => res.json())
             .then(data => setTotalProduct(data.products))
 
-        fetch(`http://localhost:5000/products?page=${page}&&size=${size}&&category=${category}`)
+        fetch(`https://gs-seller-center-server.up.railway.app/products?page=${page}&&size=${size}&&category=${category}`)
             .then(res => res.json())
             .then(data => {
                 setProducts(data.products);
