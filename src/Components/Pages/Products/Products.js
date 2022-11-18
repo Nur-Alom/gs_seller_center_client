@@ -10,6 +10,8 @@ const Products = () => {
     const [products, setProducts] = useState([]);
     const [pageCount, setPageCount] = useState(0);
     const [totalProduct, setTotalProduct] = useState([]);
+    const [category, setCategory] = useState('');
+    const [price, setPrice] = useState('');
     const [page, setPage] = useState(0);
     const size = 15;
 
@@ -20,7 +22,7 @@ const Products = () => {
             .then(res => res.json())
             .then(data => setTotalProduct(data.products))
 
-        fetch(`https://gs-seller-center-server.up.railway.app/products?page=${page}&&size=${size}`)
+        fetch(`http://localhost:5000/products?page=${page}&&size=${size}&&category=${category}`)
             .then(res => res.json())
             .then(data => {
                 setProducts(data.products);
@@ -28,7 +30,7 @@ const Products = () => {
                 const pageNumber = Math.ceil(count / size);
                 setPageCount(pageNumber);
             })
-    }, [page]);
+    }, [page, category]);
 
 
     // Load categories.
@@ -114,7 +116,7 @@ const Products = () => {
                             <input className='w-full border border-gray-300 bg-gray-200 focus:bg-white px-3 py-3 rounded my-4 outline-0' type="text" placeholder='Search by Product Name' />
                         </div>
                         <div className='bg-gray-200 focus:bg-white rounded border border-gray-300 outline-0'>
-                            <select className='bg-gray-200 focus:bg-white px-2 py-3 rounded outline-0 w-full' name="" id="">
+                            <select onChange={(e) => setCategory(e.target.value)} className='bg-gray-200 focus:bg-white px-2 py-3 rounded outline-0 w-full' name="" id="">
                                 <option value="All" hidden>Category</option>
                                 {
                                     categories.map(category => <option key={category.parent}>{category.parent}</option>)
@@ -122,10 +124,10 @@ const Products = () => {
                             </select>
                         </div>
                         <div className='bg-gray-200 focus:bg-white rounded border border-gray-300 outline-0'>
-                            <select className='bg-gray-200 focus:bg-white px-2 py-3 rounded outline-0 w-full' name="" id="">
+                            <select onChange={(e) => setPrice(e.target.value)} className='bg-gray-200 focus:bg-white px-2 py-3 rounded outline-0 w-full' name="" id="">
                                 <option value="All" hidden>Price</option>
-                                <option value="">Low To High</option>
-                                <option value="">High To Low</option>
+                                <option value="Low">Low To High</option>
+                                <option value="High">High To Low</option>
                             </select>
                         </div>
                         <NavLink to="/add-products" className='bg-green-500 hover:bg-green-600 duration-500 text-white text-center py-3 rounded-md'>
@@ -195,10 +197,10 @@ const Products = () => {
                                             }
                                         </td>
                                         <td className='px-3 py-3 text-sm'>
-                                            <span title='Details' className="cursor-pointer text-lg flex justify-center text-center hover:text-green-500">
+                                            <NavLink to={`/product/${product._id}`} title='Details' className="text-md flex justify-center text-center hover:text-green-500 duration-300">
                                                 <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line>
                                                 </svg>
-                                            </span>
+                                            </NavLink>
                                         </td>
                                         <td className='px-3 py-3 text-sm'>
                                             {product.status === "Show" ?

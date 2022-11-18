@@ -20,6 +20,7 @@ import AddProducts from './Components/Pages/AddProducts/AddProducts';
 import AddCategory from './Components/Pages/AddCategory/AddCategory';
 import UpdateProduct from './Components/Pages/UpdatePages/UpdateProduct/UpdateProduct';
 import ForgotPassword from './Components/UserAccount/ForgotPassword/ForgotPassword';
+import ProductDetails from './Components/Pages/DetailPages/ProductDetails/ProductDetails';
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
               <Route path="add-products" element={<PrivateRoute><AddProducts /></PrivateRoute>} />
               <Route path="add-category" element={<PrivateRoute><AddCategory /></PrivateRoute>} />
               <Route path="up-product/:id" element={<PrivateRoute><UpdateProduct /></PrivateRoute>} />
+              <Route path="product/:id" element={<PrivateRoute><ProductDetails /></PrivateRoute>} />
             </Route>
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
