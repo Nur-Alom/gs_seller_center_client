@@ -80,7 +80,7 @@ const Category = () => {
         <div className='px-6 mx-auto'>
             <h2 className='my-4 font-bold text-lg'>Categories</h2>
             <div className='bg-white border border-gray-300 rounded-md'>
-                <div className='grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-1 gap-6 px-8 py-6 items-center'>
+                <div className='grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-1 gap-6 px-4 py-4 items-center'>
                     <div className='w-full'>
                         <input className='w-full focus:bg-white bg-gray-200 p-3 border border-gray-300 outline-0 rounded-md' type="text" placeholder='Search by category type' />
                     </div>
@@ -95,8 +95,8 @@ const Category = () => {
                             }
                         </select>
                     </div>
-                    <div className='w-full'>
-                        <NavLink to="/add-category" className='bg-green-500 hover:bg-green-600 duration-500 text-white py-3 px-16 rounded-md'>
+                    <div className='w-full py-3'>
+                        <NavLink to="/add-category" className='bg-green-500 hover:bg-green-600 duration-500 text-white py-3 px-16 rounded-md border border-green-500 hover:border-green-600'>
                             + Add Categories
                         </NavLink>
                     </div>
@@ -137,25 +137,26 @@ const Category = () => {
                                             }
                                         </td>
                                         <td className='px-3 py-3 text-sm'>{category.type}</td>
-                                        <td className='py-3 text-sm flex justify-center'>
+                                        <td className='py-3 px-3 text-sm'>
                                             {category.status === "Show" ?
-                                                <span title='Showing' className="cursor-pointer text-xl">
+                                                <button title='Showing' className="text-xl flex justify-center text-center m-auto">
                                                     <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" className="text-green-500" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M5 3a5 5 0 0 0 0 10h6a5 5 0 0 0 0-10H5zm6 9a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"></path>
                                                     </svg>
-                                                </span>
+                                                </button>
                                                 :
-                                                <span title='Not Showing' className="cursor-pointer text-xl">
+                                                <button title='Not Showing' className="text-xl flex justify-center text-center m-auto">
                                                     <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" className="text-orange-500" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M11 4a4 4 0 0 1 0 8H8a4.992 4.992 0 0 0 2-4 4.992 4.992 0 0 0-2-4h3zm-6 8a4 4 0 1 1 0-8 4 4 0 0 1 0 8zM0 8a5 5 0 0 0 5 5h6a5 5 0 0 0 0-10H5a5 5 0 0 0-5 5z"></path>
                                                     </svg>
-                                                </span>}
+                                                </button>
+                                            }
                                         </td>
                                         <td className='px-2 py-3 text-sm'>
                                             <div className="flex">
-                                                <div title='Edit' className="p-2 cursor-pointer text-gray-400 hover:text-green-600">
+                                                <NavLink to={`/up-category/${category._id}`} title='Edit' className="p-2 cursor-pointer text-gray-400 hover:text-green-600">
                                                     <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="1.2em" width="1.2em" xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
                                                         <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
-                                                </div>
+                                                </NavLink>
                                                 <div onClick={() => sweetAlert(category)} title='Delete' className="p-2 cursor-pointer text-gray-400 hover:text-red-600">
                                                     <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="1.2em" width="1.2em" xmlns="http://www.w3.org/2000/svg"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line>
                                                     </svg>

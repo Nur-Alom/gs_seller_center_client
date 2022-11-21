@@ -56,24 +56,24 @@ const ProductDetails = () => {
                             <h2 className='font-sans text-2xl font-bold mt-5'>${price}</h2>
                             <span className='flex mb-3 mt-2'>
                                 {quantity > 0 ?
-                                    <span class="font-sans inline-flex px-2 text-xs font-medium leading-5 rounded-full text-green-500 bg-green-100 dark:bg-green-800 dark:text-green-100">
-                                        <span class="font-bold">In Stock</span>
+                                    <span className="font-sans inline-flex px-2 text-xs font-medium leading-5 rounded-full text-green-500 bg-green-100 dark:bg-green-800 dark:text-green-100">
+                                        <span className="font-bold">In Stock</span>
                                     </span>
                                     :
-                                    <span class="font-sans inline-flex px-2 text-xs font-medium leading-5 rounded-full text-red-500 bg-red-100 dark:text-red-100 dark:bg-red-800">
-                                        <span class="font-bold">Stock Out</span>
+                                    <span className="font-sans inline-flex px-2 text-xs font-medium leading-5 rounded-full text-red-500 bg-red-100 dark:text-red-100 dark:bg-red-800">
+                                        <span className="font-bold">Stock Out</span>
                                     </span>
                                 }
                                 <span className='font-sans text-sm text-gray-500 dark:text-gray-400 font-medium pl-4'>Quantity: {quantity}</span>
                             </span>
                             <p className='font-sans text-sm leading-6 text-gray-500 dark:text-gray-400 md:leading-7'>{description}</p>
                             <div className='mt-4 mb-12'>
-                                <p class="font-sans font-semibold py-1 text-gray-500 text-sm">
-                                    <span class="text-gray-700 dark:text-gray-400">Category: </span>{type}
+                                <p className="font-sans font-semibold py-1 text-gray-500 text-sm">
+                                    <span className="text-gray-700 dark:text-gray-400">Category: </span>{type}
                                 </p>
                                 <span className='font-sans'>
                                     {
-                                        tag?.map(tg => <span class="bg-gray-200 mr-2 border-0 text-gray-500 rounded-full inline-flex items-center justify-center px-2 py-1 text-xs font-semibold mt-2 dark:bg-gray-700 dark:text-gray-300">
+                                        tag?.map(tg => <span className="bg-gray-200 mr-2 border-0 text-gray-500 rounded-full inline-flex items-center justify-center px-2 py-1 text-xs font-semibold mt-2 dark:bg-gray-700 dark:text-gray-300">
                                             {tg}
                                         </span>)
                                     }

@@ -21,6 +21,7 @@ import AddCategory from './Components/Pages/AddCategory/AddCategory';
 import UpdateProduct from './Components/Pages/UpdatePages/UpdateProduct/UpdateProduct';
 import ForgotPassword from './Components/UserAccount/ForgotPassword/ForgotPassword';
 import ProductDetails from './Components/Pages/DetailPages/ProductDetails/ProductDetails';
+import UpdateCategory from './Components/Pages/UpdatePages/UpdateCategory/UpdateCategory';
 
 function App() {
   return (
@@ -48,11 +49,12 @@ function App() {
               <Route path="coupons" element={<PrivateRoute><Coupons /></PrivateRoute>} />
               <Route path="our-staff" element={<PrivateRoute><OurStaff /></PrivateRoute>} />
               <Route path="setting" element={<PrivateRoute><Customers /></PrivateRoute>} />
-              <Route path="add-coupon" element={<PrivateRoute><AddCoupon /></PrivateRoute>} />
-              <Route path="add-staff" element={<PrivateRoute><AddStaff /></PrivateRoute>} />
               <Route path="add-products" element={<PrivateRoute><AddProducts /></PrivateRoute>} />
               <Route path="add-category" element={<PrivateRoute><AddCategory /></PrivateRoute>} />
+              <Route path="add-coupon" element={<PrivateRoute><AddCoupon /></PrivateRoute>} />
+              <Route path="add-staff" element={<PrivateRoute><AddStaff /></PrivateRoute>} />
               <Route path="up-product/:id" element={<PrivateRoute><UpdateProduct /></PrivateRoute>} />
+              <Route path="up-category/:id" element={<PrivateRoute><UpdateCategory /></PrivateRoute>} />
               <Route path="product/:id" element={<PrivateRoute><ProductDetails /></PrivateRoute>} />
             </Route>
             <Route path="login" element={<Login />} />

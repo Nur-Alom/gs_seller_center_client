@@ -3,10 +3,32 @@ import './Navigation.css';
 import logoImg from '../../Images/logo.jpg';
 import { NavLink } from 'react-router-dom';
 import useFirebase from '../../Hooks/useFirebase';
+import { useEffect } from 'react';
 
 const Navigation = () => {
     const { logout } = useFirebase();
     const [page, setPage] = useState("");
+
+    // Set Page Cooler.
+    useEffect(() => {
+        if (window.location.pathname === "/") {
+            setPage("/");
+        } else if (window.location.pathname === "/products") {
+            setPage("products");
+        } else if (window.location.pathname === "/category") {
+            setPage("category");
+        } else if (window.location.pathname === "/customers") {
+            setPage("customers");
+        } else if (window.location.pathname === "/orders") {
+            setPage("orders");
+        } else if (window.location.pathname === "/coupons") {
+            setPage("coupons");
+        } else if (window.location.pathname === "/our-staff") {
+            setPage("our-staff");
+        } else if (window.location.pathname === "/setting") {
+            setPage("setting");
+        }
+    }, [page]);
 
     return (
         <div className='w-64 shadow'>
@@ -27,8 +49,8 @@ const Navigation = () => {
                         </NavLink>
                     </li>
                     <li className='relative'>
-                        <NavLink onClick={() => setPage("product")} className={page === "product" ? "px-6 py-4 inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-green-700 dark:hover:text-gray-200 text-green-500 dark:text-gray-100" : "px-6 py-4 inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-green-700 dark:hover:text-gray-200 text-gray-500 dark:text-gray-100"} to="/products">
-                            {page === "product" && <span className="absolute inset-y-0 left-0 w-1 bg-green-500 rounded-tr-lg rounded-br-lg" aria-hidden="true">
+                        <NavLink onClick={() => setPage("products")} className={page === "product" ? "px-6 py-4 inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-green-700 dark:hover:text-gray-200 text-green-500 dark:text-gray-100" : "px-6 py-4 inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-green-700 dark:hover:text-gray-200 text-gray-500 dark:text-gray-100"} to="/products">
+                            {page === "products" && <span className="absolute inset-y-0 left-0 w-1 bg-green-500 rounded-tr-lg rounded-br-lg" aria-hidden="true">
                             </span>}
                             <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5" aria-hidden="true" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
                             <span className='px-3'>Products</span>
@@ -43,8 +65,8 @@ const Navigation = () => {
                         </NavLink>
                     </li>
                     <li className='relative'>
-                        <NavLink onClick={() => setPage("customer")} className={page === "customer" ? "px-6 py-4 inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-green-700 dark:hover:text-gray-200 text-green-500 dark:text-gray-100" : "px-6 py-4 inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-green-700 dark:hover:text-gray-200 text-gray-500 dark:text-gray-100"} to="/customers">
-                            {page === "customer" && <span className="absolute inset-y-0 left-0 w-1 bg-green-500 rounded-tr-lg rounded-br-lg" aria-hidden="true">
+                        <NavLink onClick={() => setPage("customers")} className={page === "customers" ? "px-6 py-4 inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-green-700 dark:hover:text-gray-200 text-green-500 dark:text-gray-100" : "px-6 py-4 inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-green-700 dark:hover:text-gray-200 text-gray-500 dark:text-gray-100"} to="/customers">
+                            {page === "customers" && <span className="absolute inset-y-0 left-0 w-1 bg-green-500 rounded-tr-lg rounded-br-lg" aria-hidden="true">
                             </span>}
                             <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5" aria-hidden="true" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                             <span className='px-3'>Customers</span>
@@ -59,16 +81,16 @@ const Navigation = () => {
                         </NavLink>
                     </li>
                     <li className='relative'>
-                        <NavLink onClick={() => setPage("coupon")} className={page === "coupon" ? "px-6 py-4 inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-green-700 dark:hover:text-gray-200 text-green-500 dark:text-gray-100" : "px-6 py-4 inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-green-700 dark:hover:text-gray-200 text-gray-500 dark:text-gray-100"} to="/coupons">
-                            {page === "coupon" && <span className="absolute inset-y-0 left-0 w-1 bg-green-500 rounded-tr-lg rounded-br-lg" aria-hidden="true">
+                        <NavLink onClick={() => setPage("coupons")} className={page === "coupon" ? "px-6 py-4 inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-green-700 dark:hover:text-gray-200 text-green-500 dark:text-gray-100" : "px-6 py-4 inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-green-700 dark:hover:text-gray-200 text-gray-500 dark:text-gray-100"} to="/coupons">
+                            {page === "coupons" && <span className="absolute inset-y-0 left-0 w-1 bg-green-500 rounded-tr-lg rounded-br-lg" aria-hidden="true">
                             </span>}
                             <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5" aria-hidden="true" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><polyline points="20 12 20 22 4 22 4 12"></polyline><rect x="2" y="7" width="20" height="5"></rect><line x1="12" y1="22" x2="12" y2="7"></line><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path></svg>
                             <span className='px-3'>Coupon</span>
                         </NavLink>
                     </li>
                     <li className='relative'>
-                        <NavLink onClick={() => setPage("staff")} className={page === "staff" ? "px-6 py-4 inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-green-700 dark:hover:text-gray-200 text-green-500 dark:text-gray-100" : "px-6 py-4 inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-green-700 dark:hover:text-gray-200 text-gray-500 dark:text-gray-100"} to="/our-staff">
-                            {page === "staff" && <span className="absolute inset-y-0 left-0 w-1 bg-green-500 rounded-tr-lg rounded-br-lg" aria-hidden="true">
+                        <NavLink onClick={() => setPage("our-staff")} className={page === "staff" ? "px-6 py-4 inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-green-700 dark:hover:text-gray-200 text-green-500 dark:text-gray-100" : "px-6 py-4 inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-green-700 dark:hover:text-gray-200 text-gray-500 dark:text-gray-100"} to="/our-staff">
+                            {page === "our-staff" && <span className="absolute inset-y-0 left-0 w-1 bg-green-500 rounded-tr-lg rounded-br-lg" aria-hidden="true">
                             </span>}
                             <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5" aria-hidden="true" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                             <span className='px-3'>Our Staff</span>
