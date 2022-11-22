@@ -122,7 +122,7 @@ const Category = () => {
                                     categories.map(category => <tr className='' key={category._id}>
                                         <td className='px-3 py-3 text-xs font-bold'>{category._id.slice(18, 24).toUpperCase()}</td>
                                         <td className='px-3 py-3 flex items-center justify-start text-sm'>
-                                            <img className='w-8 shadow-inner rounded-full p-1 mr-2' src={category.icon} alt="" />
+                                            <img className='w-8 shadow-inner rounded-full p-1 mr-2' src={`data:image/*;base64,${category.icon}`} alt="" />
                                             {category.title}
                                         </td>
                                         <td className='px-3 py-3 text-sm'>{category.parent}</td>
