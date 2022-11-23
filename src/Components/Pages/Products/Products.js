@@ -2,6 +2,7 @@ import swal from '@sweetalert/with-react';
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
+// import { CSVLink } from 'react-csv';
 import { NavLink } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
@@ -10,6 +11,7 @@ const Products = () => {
     const [products, setProducts] = useState([]);
     const [pageCount, setPageCount] = useState(0);
     const [totalProduct, setTotalProduct] = useState([]);
+    const [csvFile, setCSVFile] = useState({});
     const [category, setCategory] = useState('');
     const [price, setPrice] = useState('');
     const [page, setPage] = useState(0);
@@ -101,6 +103,13 @@ const Products = () => {
             });
     };
 
+    const formatFileSize = function (bytes) {
+        const sizes = ['B', 'kB', 'MB', 'GB', 'TB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(1024));
+        return `${(bytes / Math.pow(1024, i)).toFixed(2)} ${sizes[i]}`;
+    };
+
+
 
     const toastSuccess = () => toast.success("Product Delete Successfully!!");
     const toastError = () => toast.error("Somethings wants wrong!! please try again.");
@@ -140,16 +149,30 @@ const Products = () => {
                 <div className='bg-white '>
                     <form className='flex items-center justify-between' action="">
                         <div className='w-3/4'>
-                            <label htmlFor="csv-file-input">
-                                <input className='hidden csv-file-input' type="file" accept="text/csv, .csv, application/vnd.ms-excel" name="" id="csv-file-input" />
-                                <div className='text-center border border-dashed border-green-600 rounded p-3 cursor-pointer'>
-                                    <span className='text-sm text-gray-500'>Drop CSV File</span>
+                            {csvFile?.name ?
+                                <div className='flex items-start justify-center text-center border border-dashed border-green-600 rounded p-1 cursor-pointer'>
+                                    <span className='text-sm'>
+                                        <p className='bg-black text-white w-fit px-1 m-auto'>{formatFileSize(csvFile.size)}</p>
+                                        <p className='text-gray-500 font-medium'>{csvFile.name}</p>
+                                    </span>
+                                    <button className='' onClick={() => setCSVFile({})}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 512 512"><path fill="red" d="M504.1 256C504.1 119 393 7.9 256 7.9S7.9 119 7.9 256 119 504.1 256 504.1 504.1 393 504.1 256z"></path><path fill="#FFF" d="M285 256l72.5-84.2c7.9-9.2 6.9-23-2.3-31-9.2-7.9-23-6.9-30.9 2.3L256 222.4l-68.2-79.2c-7.9-9.2-21.8-10.2-31-2.3-9.2 7.9-10.2 21.8-2.3 31L227 256l-72.5 84.2c-7.9 9.2-6.9 23 2.3 31 4.1 3.6 9.2 5.3 14.3 5.3 6.2 0 12.3-2.6 16.6-7.6l68.2-79.2 68.2 79.2c4.3 5 10.5 7.6 16.6 7.6 5.1 0 10.2-1.7 14.3-5.3 9.2-7.9 10.2-21.8 2.3-31L285 256z"></path>
+                                        </svg>
+                                    </button>
                                 </div>
-                            </label>
+                                :
+                                <label htmlFor="csv-file-input">
+                                    <input onChange={(e) => setCSVFile(e.target.files[0])} className='hidden csv-file-input' type="file" accept="text/csv, .csv, application/vnd.ms-excel" name="" id="csv-file-input" />
+                                    <div className='text-center border border-dashed border-green-600 rounded p-3 cursor-pointer'>
+                                        <span className='text-sm text-gray-500'>Drop CSV File</span>
+                                    </div>
+                                </label>
+                            }
                         </div>
                         <div className=''>
-                            <button className='bg-gray-200 hover:bg-gray-400 duration-500 py-3 px-5 rounded mx-2'>Upload</button>
-                            <button className='bg-green-500 hover:bg-green-600 duration-500 text-white py-3  px-5 rounded mx-2'>Download</button>
+                            <button disabled className='bg-gray-200 hover:bg-gray-400 duration-500 py-3 px-5 rounded mx-2'>Upload</button>
+                            {/* <CSVLink className='bg-green-500 hover:bg-green-600 duration-500 text-white py-3  px-5 rounded mx-2' data={totalProduct}>Download</CSVLink>; */}
+                            <button disabled className='bg-green-500 hover:bg-green-600 duration-500 text-white py-3  px-5 rounded mx-2'>Download</button>
                         </div>
                     </form>
                 </div>
