@@ -68,7 +68,7 @@ const Products = () => {
 
     // Update Product Status.
     const upStatus = (product) => {
-        fetch(`https://gs-seller-center-server.up.railway.app/up-status/${product._id}`, {
+        fetch(`https://gs-seller-center-server.up.railway.app/up-product-status/${product._id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

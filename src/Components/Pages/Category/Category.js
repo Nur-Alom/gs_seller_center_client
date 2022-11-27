@@ -9,6 +9,7 @@ import swal from '@sweetalert/with-react';
 const Category = () => {
     const [categories, setCategories] = useState([]);
     const [totalCategory, setTotalCategory] = useState([]);
+    const [category, setCategory] = useState('');
     const [pageCount, setPageCount] = useState(0);
     const [page, setPage] = useState(0);
     const size = 8;
@@ -20,7 +21,7 @@ const Category = () => {
             .then(res => res.json())
             .then(data => setTotalCategory(data.categories))
 
-        fetch(`https://gs-seller-center-server.up.railway.app/categories?page=${page}&&size=${size}`)
+        fetch(`https://gs-seller-center-server.up.railway.app/categories?page=${page}&&size=${size}&&category=${category}`)
             .then(res => res.json())
             .then(data => {
                 setCategories(data.categories);
@@ -28,7 +29,7 @@ const Category = () => {
                 const pageNumber = Math.ceil(count / size);
                 setPageCount(pageNumber)
             })
-    }, [page]);
+    }, [page, category]);
 
 
 
@@ -54,6 +55,26 @@ const Category = () => {
             });
     };
 
+
+    // Update Product Status.
+    const upStatus = (category) => {
+        fetch(`https://gs-seller-center-server.up.railway.app/up-category-status/${category._id}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(category)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged === true) {
+                    toast.success("Status Update Successfully!!");
+                }
+                else {
+                    toastError();
+                }
+            })
+    };
 
 
     // Delete Category Function.
@@ -85,10 +106,10 @@ const Category = () => {
                         <input className='w-full focus:bg-white bg-gray-200 p-3 border border-gray-300 outline-0 rounded-md' type="text" placeholder='Search by category type' />
                     </div>
                     <div className='w-full'>
-                        <select className='w-full focus:bg-white bg-gray-200 p-3 border border-gray-300 outline-0 rounded-md' name="" id="">
+                        <select onChange={(e) => setCategory(e.target.value)} className='w-full focus:bg-white bg-gray-200 p-3 border border-gray-300 outline-0 rounded-md' name="" id="">
                             <option value="All" hidden>Categories</option>
                             {
-                                categories.map(category => <option key={category.parent}>
+                                totalCategory.map(category => <option key={category.parent}>
                                     {category.parent}
                                 </option>
                                 )
@@ -139,12 +160,12 @@ const Category = () => {
                                         <td className='px-3 py-3 text-sm'>{category.type}</td>
                                         <td className='py-3 px-3 text-sm'>
                                             {category.status === "Show" ?
-                                                <button title='Showing' className="text-xl flex justify-center text-center m-auto">
+                                                <button onClick={() => upStatus(category)} title='Showing' className="text-xl flex justify-center text-center m-auto">
                                                     <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" className="text-green-500" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M5 3a5 5 0 0 0 0 10h6a5 5 0 0 0 0-10H5zm6 9a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"></path>
                                                     </svg>
                                                 </button>
                                                 :
-                                                <button title='Not Showing' className="text-xl flex justify-center text-center m-auto">
+                                                <button onClick={() => upStatus(category)} title='Not Showing' className="text-xl flex justify-center text-center m-auto">
                                                     <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" className="text-orange-500" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M11 4a4 4 0 0 1 0 8H8a4.992 4.992 0 0 0 2-4 4.992 4.992 0 0 0-2-4h3zm-6 8a4 4 0 1 1 0-8 4 4 0 0 1 0 8zM0 8a5 5 0 0 0 5 5h6a5 5 0 0 0 0-10H5a5 5 0 0 0-5 5z"></path>
                                                     </svg>
                                                 </button>
