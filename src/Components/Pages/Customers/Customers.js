@@ -1,6 +1,7 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 const Customers = () => {
     const [users, setUsers] = useState([]);
@@ -44,34 +45,46 @@ const Customers = () => {
                             <thead className="text-xs font-semibold tracking-wide text-gray-500 uppercase border-b border-gray-200 dark:border-gray-700 bg-gray-100 dark:text-gray-400 dark:bg-gray-800">
                                 <tr>
                                     <td className="px-3 py-3">USER ID</td>
-                                    <td className="px-3 py-3">USER IMAGE</td>
-                                    <td className="px-3 py-3">USER NAME</td>
-                                    <td className="px-3 py-3">USER EMAIL</td>
-                                    <td className="px-3 py-3">USER PHONE</td>
+                                    <td className="px-3 py-3">IMAGE</td>
+                                    <td className="px-3 py-3">NAME</td>
+                                    <td className="px-3 py-3">EMAIL</td>
+                                    <td className="px-3 py-3">JOINING DATE</td>
+                                    <td className="px-3 py-3">PHONE</td>
                                     <td className="px-3 py-3">ACTIONS</td>
                                 </tr>
                             </thead>
                             <tbody className="bg-white divide-y divide-gray-100 dark:divide-gray-700 dark:bg-gray-800 text-gray-700 dark:text-gray-400">
                                 {
                                     users.map(user => <tr className='' key={user._id}>
-                                        <td className='px-3 py-3 text-xs font-bold'>{user._id.slice(6, 12).toUpperCase()}</td>
-                                        <td className='px-3 py-3 flex items-center text-sm'>
+                                        <td className='px-3 py-3 font-sans text-xs font-bold'>
+                                            {user._id.slice(6, 12).toUpperCase()}
+                                        </td>
+                                        <td className='px-3 py-3 font-sans flex items-center text-sm'>
                                             <img className='w-12 h-12 shadow-inner rounded-full p-1 mr-2' src={`data:image/png;base64,${user.photoURL}`} alt="" />
                                             {user.title}
                                         </td>
-                                        <td className='px-3 py-3 text-sm'>{user.displayName}</td>
-                                        <td className='px-3 py-3 text-sm'>{user.email}</td>
-                                        <td className='px-3 py-3 text-sm'>{user.phoneNumber}</td>
-                                        <td className='px-2 py-3 text-sm'>
+                                        <td className='px-3 py-3 font-sans text-sm'>
+                                            {user.displayName}
+                                        </td>
+                                        <td className='px-3 py-3 font-sans text-sm'>
+                                            {user.email}
+                                        </td>
+                                        <td className='px-3 py-3 font-sans text-sm'>
+                                            {user.created.slice(4, 10)}, {user.created.slice(11, 15)}
+                                        </td>
+                                        <td className='px-3 py-3 font-sans text-sm'>
+                                            {user.phoneNumber}
+                                        </td>
+                                        <td className='px-2 py-3 font-sans text-sm'>
                                             <div className="flex">
-                                                <div title='Details' className="p-2 cursor-pointer text-gray-400 hover:text-green-600">
+                                                <NavLink to={`/customer-order/${user._id}`} title='View Orders' className="py-2 px-1 mx-1 text-gray-400 hover:text-green-600">
                                                     <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="1.2em" width="1.2em" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line>
                                                     </svg>
-                                                </div>
-                                                <div title='Delete' className="p-2 cursor-pointer text-gray-400 hover:text-red-600">
+                                                </NavLink>
+                                                <button title='Delete' className="py-2 px-1 mx-1 text-gray-400 hover:text-red-600">
                                                     <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="1.2em" width="1.2em" xmlns="http://www.w3.org/2000/svg"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line>
                                                     </svg>
-                                                </div>
+                                                </button>
                                             </div>
                                         </td>
                                     </tr>)
