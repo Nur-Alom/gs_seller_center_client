@@ -20,10 +20,6 @@ const Products = () => {
 
     // Load Products.
     useEffect(() => {
-        fetch('https://gs-seller-center-server.up.railway.app/products')
-            .then(res => res.json())
-            .then(data => setTotalProduct(data.products))
-
         fetch(`https://gs-seller-center-server.up.railway.app/products?page=${page}&&size=${size}&&category=${category}`)
             .then(res => res.json())
             .then(data => {
@@ -31,6 +27,9 @@ const Products = () => {
                 const count = data.count;
                 const pageNumber = Math.ceil(count / size);
                 setPageCount(pageNumber);
+                fetch('https://gs-seller-center-server.up.railway.app/products')
+                    .then(res => res.json())
+                    .then(data => setTotalProduct(data.products))
             })
     }, [page, category]);
 
@@ -103,12 +102,13 @@ const Products = () => {
             });
     };
 
+
+    // Format The Uploaded File Size.
     const formatFileSize = function (bytes) {
         const sizes = ['B', 'kB', 'MB', 'GB', 'TB'];
         const i = Math.floor(Math.log(bytes) / Math.log(1024));
         return `${(bytes / Math.pow(1024, i)).toFixed(2)} ${sizes[i]}`;
     };
-
 
 
     const toastSuccess = () => toast.success("Product Delete Successfully!!");

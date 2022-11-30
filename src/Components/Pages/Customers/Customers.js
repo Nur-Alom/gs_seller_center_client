@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 
 const Customers = () => {
     const [users, setUsers] = useState([]);
-    const [totalUsers, setTotalUsers] = useState([]);
+    const [totalUsers, setTotalUsers] = useState(0);
     const [pageCount, setPageCount] = useState(0);
     const [page, setPage] = useState(0);
     const size = 5;
@@ -13,11 +13,6 @@ const Customers = () => {
 
     // Load User Info.
     useEffect(() => {
-        fetch(`https://gs-seller-center-server.up.railway.app/users`)
-            .then(res => res.json())
-            .then(data => setTotalUsers(data.users))
-
-
         fetch(`https://gs-seller-center-server.up.railway.app/users?page=${page}&&size=${size}`)
             .then(res => res.json())
             .then(data => {
@@ -25,6 +20,9 @@ const Customers = () => {
                 const count = data.count;
                 const pageNumber = Math.ceil(count / size);
                 setPageCount(pageNumber)
+                fetch(`https://gs-seller-center-server.up.railway.app/users`)
+                    .then(res => res.json())
+                    .then(data => setTotalUsers(data.count))
             })
     }, [page]);
 
@@ -94,7 +92,7 @@ const Customers = () => {
                     </div>
                     <div className='flex items-center justify-between p-4 mb-6 bg-white border border-gray-200 rounded-b-lg'>
                         <div className='text-xs font-bold text-gray-600'>
-                            SHOWING 1-5 OF {totalUsers.length}
+                            SHOWING 1-5 OF {totalUsers}
                         </div>
                         <div className='text-xs font-bold bg-gray-100 rounded'>
                             {
