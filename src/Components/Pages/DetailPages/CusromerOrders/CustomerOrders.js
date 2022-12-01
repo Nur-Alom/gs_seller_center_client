@@ -1,10 +1,12 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const CustomerOrders = () => {
     const { id } = useParams();
     const [infoLoading, setInfoLoading] = useState(true);
+    const [status, setStatus] = useState(false);
     const [orders, setOrders] = useState([]);
     const [totalOrders, setTotalOrders] = useState([]);
     const [pageCount, setPageCount] = useState(0);
@@ -26,7 +28,7 @@ const CustomerOrders = () => {
                         fetch(`https://gs-seller-center-server.up.railway.app/order/user?email=${email}`)
                             .then(res => res.json())
                             .then(data => {
-                                setTotalOrders(data.orders)
+                                setTotalOrders(data.orders);
                                 const count = data.orders.length;
                                 const pageNumber = Math.ceil(count / size);
                                 setPageCount(pageNumber);
@@ -34,8 +36,37 @@ const CustomerOrders = () => {
                             })
                     })
             })
-    }, [id, page]);
+    }, [id, page, status]);
 
+
+    // Update Order Status Function.
+    const updateOrderStatus = (value, id, order) => {
+        fetch(`https://gs-seller-center-server.up.railway.app/up-order/${id}?status=${value}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(order)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged === true && data.matchedCount === 1) {
+                    toastSuccess();
+                    if (status === true) {
+                        setStatus(false)
+                    } else {
+                        setStatus(true)
+                    }
+                }
+                else {
+                    toastError();
+                }
+            })
+    };
+
+
+    const toastSuccess = () => toast.success("Order Status Updated Successfully!!");
+    const toastError = () => toast.error("Somethings wants wrong!! please try again.");
 
 
     return (
@@ -115,12 +146,12 @@ const CustomerOrders = () => {
                                                     }
                                                 </td>
                                                 <td className='px-2 py-3 font-sans text-sm'>
-                                                    <select className='bg-gray-100 p-1 border border-gray-300 focus:border-gray-500 outline-0 text-sm rounded-md items-center' name="" id="">
-                                                        <option value="" hidden>{order.status}</option>
-                                                        <option value="">Pending</option>
-                                                        <option value="">Processing</option>
-                                                        <option value="">Delivered</option>
-                                                        <option value="">Cancel</option>
+                                                    <select onChange={(e) => updateOrderStatus(e.target.value, order._id, order)} className='bg-gray-100 p-1 border border-gray-300 focus:border-gray-500 outline-0 text-sm rounded-md items-center' name="" id="">
+                                                        <option value={order.status} hidden>{order.status}</option>
+                                                        <option value="Pending">Pending</option>
+                                                        <option value="Processing">Processing</option>
+                                                        <option value="Delivered">Delivered</option>
+                                                        <option value="Cancel">Cancel</option>
                                                     </select>
                                                 </td>
                                                 {/* <td className='px-2 py-3 text-sm'>
@@ -140,9 +171,9 @@ const CustomerOrders = () => {
                                     </tbody>
                                 </table>
                             </div>
-                            <div className='flex items-center justify-between p-4 mb-6 bg-white border border-gray-200 rounded-b-lg'>
+                            <div className='flex items-center justify-between font-sans p-4 mb-6 bg-white border border-gray-200 rounded-b-lg'>
                                 <div className='text-xs font-bold text-gray-600'>
-                                    SHOWING 1-10 OF {totalOrders.length}
+                                    SHOWING {(page * orders.length) + 1}-{(page + 1) * orders.length} OF {totalOrders.length}
                                 </div>
                                 <div className='text-xs font-bold bg-gray-100 rounded'>
                                     {
