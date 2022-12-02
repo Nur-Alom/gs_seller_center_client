@@ -35,11 +35,11 @@ const Navigation = () => {
             <div className='flex items-center px-6'>
                 <img className='w-8' src={logoImg} alt="" />
                 <span>
-                    <h4 className='text-xl font-bold py-5'>G-Shop Seller</h4>
+                    <h4 className='text-xl font-bold font-sans py-5'>G-Shop Seller</h4>
                 </span>
             </div>
             <div className=''>
-                <ul className=''>
+                <ul className='font-sans'>
                     <li className='relative'>
                         <NavLink onClick={() => setPage("/")} className={page === "/" ? "px-6 py-5 inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-green-700 dark:hover:text-gray-200 text-green-500 dark:text-gray-100" : "px-6 py-5 inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-green-700 dark:hover:text-gray-200 text-gray-500 dark:text-gray-100"} to="/">
                             {page === "/" && <span className="absolute inset-y-0 left-0 w-1 bg-green-500 rounded-tr-lg rounded-br-lg" aria-hidden="true">
@@ -106,7 +106,7 @@ const Navigation = () => {
                     </li>
                 </ul>
             </div>
-            <div className='fixed bottom-5 px-5'>
+            <div className='fixed bottom-5 px-5 font-sans'>
                 <button className='flex items-center bg-green-600 hover:bg-green-700 text-white rounded-md px-16 py-2' onClick={() => logout()}>
                     <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 512 512" className="mr-1 text-lg" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="32" d="M304 336v40a40 40 0 01-40 40H104a40 40 0 01-40-40V136a40 40 0 0140-40h152c22.09 0 48 17.91 48 40v40m64 160l80-80-80-80m-192 80h256"></path>
                     </svg>

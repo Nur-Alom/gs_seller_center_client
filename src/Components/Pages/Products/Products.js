@@ -11,6 +11,8 @@ const Products = () => {
     const [products, setProducts] = useState([]);
     const [pageCount, setPageCount] = useState(0);
     const [totalProduct, setTotalProduct] = useState([]);
+    const [status, setStatus] = useState(true);
+    const [deleteCount, setDeleteCount] = useState(true);
     const [csvFile, setCSVFile] = useState({});
     const [category, setCategory] = useState('');
     const [price, setPrice] = useState('');
@@ -31,7 +33,7 @@ const Products = () => {
                     .then(res => res.json())
                     .then(data => setTotalProduct(data.products))
             })
-    }, [page, category]);
+    }, [page, category, status, deleteCount]);
 
 
     // Load categories.
@@ -77,10 +79,15 @@ const Products = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.acknowledged === true) {
+                    if (status === true) {
+                        setStatus(false);
+                    } else {
+                        setStatus(true);
+                    }
                     toast.success("Status Update Successfully!!");
                 }
                 else {
-                    toastError();
+                    toast.error("Somethings wants wrong!! please try again.");
                 }
             })
     };
@@ -94,10 +101,15 @@ const Products = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.deletedCount > 0) {
-                    toastSuccess();
+                    if (deleteCount === true) {
+                        setDeleteCount(false);
+                    } else {
+                        setDeleteCount(true);
+                    }
+                    toast.success("Product Delete Successfully!!");
                 }
                 else {
-                    toastError();
+                    toast.error("Somethings wants wrong!! please try again.");
                 }
             });
     };
@@ -111,18 +123,14 @@ const Products = () => {
     };
 
 
-    const toastSuccess = () => toast.success("Product Delete Successfully!!");
-    const toastError = () => toast.error("Somethings wants wrong!! please try again.");
-
-
     return (
-        <div className='px-6 mx-auto'>
+        <div className='px-6 mx-auto font-sans'>
             <h2 className='my-4 font-bold text-lg'>Products</h2>
             <div className='mb-6'>
                 <div className='bg-white py-2 px-4 my-4 rounded-md border border-gray-200'>
                     <form className='items-center grid gap-4 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1'>
                         <div className='bg-white'>
-                            <input className='w-full border border-gray-300 bg-gray-200 focus:bg-white px-3 py-3 rounded my-4 outline-0' type="text" placeholder='Search by Product Name' />
+                            <input className='w-full border border-gray-300 bg-gray-200 focus:bg-white px-3 py-3 rounded my-4 outline-0' type="search" placeholder='Search by Product Name' />
                         </div>
                         <div className='bg-gray-200 focus:bg-white rounded border border-gray-300 outline-0'>
                             <select onChange={(e) => setCategory(e.target.value)} className='bg-gray-200 focus:bg-white px-2 py-3 rounded outline-0 w-full' name="" id="">
@@ -257,7 +265,7 @@ const Products = () => {
                     </div>
                     <div className='flex items-center justify-between p-4 mb-6 bg-white border border-gray-200 rounded-b-lg'>
                         <div className='text-xs font-bold text-gray-600'>
-                            SHOWING 1-15 OF {totalProduct.length}
+                            SHOWING {(page * products.length) + 1}-{(page + 1) * products.length} OF {totalProduct.length}
                         </div>
                         <div className='text-xs font-bold bg-gray-100 rounded'>
                             {
