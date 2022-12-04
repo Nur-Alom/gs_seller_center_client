@@ -2,20 +2,23 @@ import swal from '@sweetalert/with-react';
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 // import { CSVLink } from 'react-csv';
 import { NavLink } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const Products = () => {
+    const { register, handleSubmit } = useForm();
     const [categories, setCategories] = useState([]);
     const [products, setProducts] = useState([]);
     const [pageCount, setPageCount] = useState(0);
     const [totalProduct, setTotalProduct] = useState([]);
     const [status, setStatus] = useState(true);
     const [deleteCount, setDeleteCount] = useState(true);
+    const [search, setSearch] = useState(false);
     const [csvFile, setCSVFile] = useState({});
     const [category, setCategory] = useState('');
-    const [price, setPrice] = useState('');
+    // const [price, setPrice] = useState('');
     const [page, setPage] = useState(0);
     const size = 15;
 
@@ -43,6 +46,49 @@ const Products = () => {
             .then(data => setCategories(data.categories))
     }, []);
 
+
+    // Sort Product By Price.
+    const sortByPrice = (price) => {
+        if (price === "Low") {
+            const sortData = [...products].sort((a, b) => a.price - b.price);
+            setProducts(sortData);
+        } else if (price === "High") {
+            const sortData = [...products].sort((a, b) => b.price - a.price);
+            setProducts(sortData);
+        }
+    };
+
+
+    // Search Product By Name/Title.
+    const onSubmit = (value) => {
+        if (value.search !== "") {
+            setSearch(true);
+            fetch(`https://gs-seller-center-server.up.railway.app/products`)
+                .then(res => res.json())
+                .then(data => {
+                    const searchData = data.products.filter(data => data.title.toLowerCase().includes(value.search.toLowerCase()));
+                    if (searchData.length) {
+                        setProducts(searchData);
+                        setSearch(false);
+                    } else {
+                        setSearch(false);
+                        toast.error("Search info doesn't match any customer's profile!! please try again")
+                    }
+                })
+        } else if (value.search === "") {
+            fetch(`https://gs-seller-center-server.up.railway.app/products?page=${page}&&size=${size}&&category=${category}`)
+                .then(res => res.json())
+                .then(data => {
+                    setProducts(data.products);
+                    const count = data.count;
+                    const pageNumber = Math.ceil(count / size);
+                    setPageCount(pageNumber);
+                    fetch('https://gs-seller-center-server.up.railway.app/products')
+                        .then(res => res.json())
+                        .then(data => setTotalProduct(data.products))
+                })
+        }
+    };
 
     // Sweet Alert.
     const sweetAlert = (product) => {
@@ -128,10 +174,15 @@ const Products = () => {
             <h2 className='my-4 font-bold text-lg'>Products</h2>
             <div className='mb-6'>
                 <div className='bg-white py-2 px-4 my-4 rounded-md border border-gray-200'>
-                    <form className='items-center grid gap-4 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1'>
-                        <div className='bg-white'>
-                            <input className='w-full border border-gray-300 bg-gray-200 focus:bg-white px-3 py-3 rounded my-4 outline-0' type="search" placeholder='Search by Product Name' />
-                        </div>
+                    <div className='items-center grid gap-4 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1'>
+                        <form onSubmit={handleSubmit(onSubmit)} className='bg-white flex items-center justify-between'>
+                            <input {...register("search")} className='w-full border border-gray-300 bg-gray-200 focus:bg-white px-3 py-3 rounded my-4 outline-0' type="search" placeholder='Search by Product Name' />
+                            {search &&
+                                <svg className="ml-2 mr-4 h-6 w-6 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="green" strokeWidth="4"></circle>
+                                    <path className="opacity-75" fill="green" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                            }
+                        </form>
                         <div className='bg-gray-200 focus:bg-white rounded border border-gray-300 outline-0'>
                             <select onChange={(e) => setCategory(e.target.value)} className='bg-gray-200 focus:bg-white px-2 py-3 rounded outline-0 w-full' name="" id="">
                                 <option value="All" hidden>Category</option>
@@ -141,7 +192,7 @@ const Products = () => {
                             </select>
                         </div>
                         <div className='bg-gray-200 focus:bg-white rounded border border-gray-300 outline-0'>
-                            <select onChange={(e) => setPrice(e.target.value)} className='bg-gray-200 focus:bg-white px-2 py-3 rounded outline-0 w-full' name="" id="">
+                            <select onChange={(e) => sortByPrice(e.target.value)} className='bg-gray-200 focus:bg-white px-2 py-3 rounded outline-0 w-full' name="" id="">
                                 <option value="All" hidden>Price</option>
                                 <option value="Low">Low To High</option>
                                 <option value="High">High To Low</option>
@@ -150,7 +201,7 @@ const Products = () => {
                         <NavLink to="/add-products" className='bg-green-500 hover:bg-green-600 duration-500 text-white text-center py-3 rounded-md'>
                             +Add Product
                         </NavLink>
-                    </form>
+                    </div>
                 </div>
             </div>
             <div className='bg-white w-full px-4 py-4 rounded border border-gray-200'>
