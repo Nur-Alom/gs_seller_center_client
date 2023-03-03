@@ -66,7 +66,7 @@ function App() {
           </Routes>
         </Router>
       </AuthProvider>
-    </div>
+    </div>;
   );
 }
 

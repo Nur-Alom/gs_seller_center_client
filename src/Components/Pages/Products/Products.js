@@ -276,7 +276,7 @@ const Products = () => {
                                             products.map(product => <tr className='' key={product._id}>
                                                 <td className='px-3 py-3 text-xs font-bold'>{product._id.slice(18, 24).toUpperCase()}</td>
                                                 <td className='px-3 py-3 flex items-center justify-start text-sm'>
-                                                    <img className='w-8 shadow-inner rounded-full p-1 mr-2' src={`data:image/*;base64,${product.image}`} alt="" />
+                                                    {product.image && <img className='w-8 shadow-inner rounded-full p-1 mr-2' src={`data:image/*;base64,${product.image}`} alt="" />}
                                                     {product.title}
                                                 </td>
                                                 <td className='px-3 py-3 text-sm'>{product.parent}</td>

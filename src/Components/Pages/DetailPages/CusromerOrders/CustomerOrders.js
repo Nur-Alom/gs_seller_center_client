@@ -51,12 +51,12 @@ const CustomerOrders = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.acknowledged === true && data.matchedCount === 1) {
-                    toastSuccess();
                     if (status === true) {
                         setStatus(false)
                     } else {
                         setStatus(true)
                     }
+                    toastSuccess();
                 }
                 else {
                     toastError();
@@ -193,7 +193,7 @@ const CustomerOrders = () => {
                         <div class="w-full bg-white rounded-md dark:bg-gray-800">
                             <div class="p-8 text-center">
                                 <span class="flex justify-center my-30 text-red-500 font-semibold text-6xl">
-                                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M454.65 169.4A31.82 31.82 0 00432 160h-64v-16a112 112 0 00-224 0v16H80a32 32 0 00-32 32v216c0 39 33 72 72 72h272a72.22 72.22 0 0050.48-20.55 69.48 69.48 0 0021.52-50.2V192a31.75 31.75 0 00-9.35-22.6zM176 144a80 80 0 01160 0v16H176zm192 96a112 112 0 01-224 0v-16a16 16 0 0132 0v16a80 80 0 00160 0v-16a16 16 0 0132 0z"></path>
+                                    <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M454.65 169.4A31.82 31.82 0 00432 160h-64v-16a112 112 0 00-224 0v16H80a32 32 0 00-32 32v216c0 39 33 72 72 72h272a72.22 72.22 0 0050.48-20.55 69.48 69.48 0 0021.52-50.2V192a31.75 31.75 0 00-9.35-22.6zM176 144a80 80 0 01160 0v16H176zm192 96a112 112 0 01-224 0v-16a16 16 0 0132 0v16a80 80 0 00160 0v-16a16 16 0 0132 0z"></path>
                                     </svg>
                                 </span>
                                 <h2 class="font-medium text-base mt-4 text-gray-600">This Customer have no order Yet!</h2>
