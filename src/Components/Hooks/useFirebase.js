@@ -12,6 +12,7 @@ initializeAuthentication();
 
 const useFirebase = () => {
     const [user, setUser] = useState({});
+    const [admin, setAdmin] = useState(false);
     const [loading, setLoading] = useState(true);
     const [authError, setAuthError] = useState('');
 
@@ -36,6 +37,14 @@ const useFirebase = () => {
 
     // All Auth Providers.
     const auth = getAuth();
+
+    // Check Staff Profile Role.
+    useEffect(() => {
+        fetch(`http://localhost:5000/staff/${user.email}`)
+            .then(res => res.json())
+            .then(data => setAdmin(data.admin))
+    }, [user.email]);
+
 
     // Create an User/Register User.
     const registerNewUser = (name, email, password, navigate) => {
@@ -127,6 +136,7 @@ const useFirebase = () => {
         loginUser,
         registerNewUser,
         logout,
+        admin,
         user,
         loading,
         authError

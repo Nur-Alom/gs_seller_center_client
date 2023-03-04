@@ -7,8 +7,10 @@ import { useForm } from 'react-hook-form';
 // import { CSVLink } from 'react-csv';
 import { NavLink } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import useFirebase from '../../Hooks/useFirebase';
 
 const Products = () => {
+    const { admin } = useFirebase();
     const { register, handleSubmit } = useForm();
     const [categories, setCategories] = useState([]);
     const [products, setProducts] = useState([]);
@@ -111,8 +113,10 @@ const Products = () => {
                 closeOnClickOutside: false,
             })
             .then((willDelete) => {
-                if (willDelete) {
+                if (admin && willDelete) {
                     deleteProduct(product._id)
+                } else if (!admin && willDelete) {
+                    toast.info("CURD Operation Disabled for Demo Projects!!")
                 }
             });
     };

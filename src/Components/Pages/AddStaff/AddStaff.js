@@ -166,9 +166,10 @@ const AddStaff = () => {
                                             <option value="CEO">CEO</option>
                                             <option value="Manager">Manager</option>
                                             <option value="Accountant">Accountant</option>
-                                            <option value="Driver"> Driver </option>
+                                            <option value="Driver">Driver</option>
                                             <option value="Security Guard">Security Guard</option>
                                             <option value="Deliver Person">Delivery Person</option>
+                                            <option value="Test User">Test User</option>
                                         </select>
                                         {errors.role && <span className='text-red-600 font-light text-sm mt-1 mb-0 mx-0 w-fit rounded-sm'>{errors.role.message}</span>}
                                     </div>
