@@ -115,7 +115,7 @@ const Products = () => {
             .then((willDelete) => {
                 if (admin && willDelete) {
                     deleteProduct(product._id)
-                } else if (!admin && !willDelete) {
+                } else if (willDelete) {
                     toast.info("CURD Operation Disabled for Demo Projects!!")
                 }
             });

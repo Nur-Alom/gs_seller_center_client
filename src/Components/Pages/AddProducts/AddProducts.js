@@ -1,3 +1,4 @@
+import swal from '@sweetalert/with-react';
 import React from 'react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -40,26 +41,39 @@ const AddProducts = () => {
     // }, [staffs]);
 
 
-    // Add New Staff Information.
+    // Add New Product.
     const onSubmit = data => {
         data.tag = tags;
         data.image = upImg;
-        setInfoLoading(true);
-        fetch('https://gs-seller-center-server.up.railway.app/add-product', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.acknowledged === true && data.insertedId) {
-                    toastSuccess();
-                    setInfoLoading(false);
-                    navigate('/products');
-                } else {
-                    toastError();
+        swal(<div>
+            <h2 className='text-xl font-medium'>Are You Sure to Add This Product?</h2>
+            {/* <p className='mt-3 text-black text-md text-center'>Do you really want to delete these records? You can't view this in your list anymore if you delete!</p> */}
+        </div>,
+            {
+                icon: "warning",
+                buttons: true,
+                closeOnClickOutside: false,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    setInfoLoading(true);
+                    fetch('https://gs-seller-center-server.up.railway.app/add-product', {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.acknowledged === true && data.insertedId) {
+                                toastSuccess();
+                                setInfoLoading(false);
+                                navigate('/products');
+                            } else {
+                                toastError();
+                            }
+                        })
                 }
             })
     };

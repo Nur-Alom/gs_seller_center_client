@@ -102,7 +102,7 @@ const UpdateProduct = () => {
                                 toastError();
                             }
                         })
-                } else if (!admin && !willDelete) {
+                } else if (willDelete) {
                     toast.info("CURD Operation Disabled for Demo Projects!!")
                 }
             })
