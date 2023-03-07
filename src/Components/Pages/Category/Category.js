@@ -7,8 +7,10 @@ import { NavLink } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import swal from '@sweetalert/with-react';
 import { useForm } from 'react-hook-form';
+import useFirebase from '../../Hooks/useFirebase';
 
 const Category = () => {
+    const { admin } = useFirebase();
     const { register, handleSubmit } = useForm();
     const [infoLoading, setInfoLoading] = useState(true);
     const [status, setStatus] = useState(false);
@@ -92,8 +94,10 @@ const Category = () => {
                 closeOnClickOutside: false,
             })
             .then((willDelete) => {
-                if (willDelete) {
+                if (admin && willDelete) {
                     deleteCategory(category._id)
+                } else if (willDelete) {
+                    toast.info("CURD Operation Disabled for Demo Projects!!")
                 }
             });
     };

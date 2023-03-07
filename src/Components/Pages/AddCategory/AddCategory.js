@@ -1,3 +1,4 @@
+import swal from '@sweetalert/with-react';
 import React from 'react';
 // import { useEffect } from 'react';
 import { useState } from 'react';
@@ -5,8 +6,10 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { TagsInput } from 'react-tag-input-component';
 import { toast } from 'react-toastify';
+import useFirebase from '../../Hooks/useFirebase';
 
 const AddCategory = () => {
+    const { admin } = useFirebase();
     const navigate = useNavigate();
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [tags, setTags] = useState([]);
@@ -48,22 +51,37 @@ const AddCategory = () => {
         data.status = "Show";
         data.children = tags;
         // data.couponId = couponId;
-        setInfoLoading(true);
-        fetch('https://gs-seller-center-server.up.railway.app/add-category', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.acknowledged === true && data.insertedId) {
-                    toastSuccess();
-                    setInfoLoading(false)
-                    navigate('/category');
-                } else {
-                    toastError();
+        swal(<div>
+            <h2 className='text-xl font-medium'>Are You Sure to Add This Category?</h2>
+            {/* <p className='mt-3 text-black text-md text-center'>Do you really want to delete these records? You can't view this in your list anymore if you delete!</p> */}
+        </div>,
+            {
+                icon: "warning",
+                buttons: true,
+                closeOnClickOutside: false,
+            })
+            .then((willDelete) => {
+                if (admin && willDelete) {
+                    setInfoLoading(true);
+                    fetch('https://gs-seller-center-server.up.railway.app/add-category', {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.acknowledged === true && data.insertedId) {
+                                toastSuccess();
+                                setInfoLoading(false)
+                                navigate('/category');
+                            } else {
+                                toastError();
+                            }
+                        })
+                } else if (willDelete) {
+                    toast.info("CURD Operation Disabled for Demo Projects!!")
                 }
             })
     };
