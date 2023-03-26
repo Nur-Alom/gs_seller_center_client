@@ -42,10 +42,7 @@ const useFirebase = () => {
     useEffect(() => {
         fetch(`https://daily-bazar.onrender.com/staff/${user.email}`)
             .then(res => res.json())
-            .then(data => {
-                setAdmin(data.admin)
-                console.log(data)
-            })
+            .then(data => setAdmin(data.admin))
     }, [user.email]);
 
 
