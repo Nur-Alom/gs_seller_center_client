@@ -31,7 +31,7 @@ const UpdateCategory = () => {
     // Load Category Information.
     useEffect(() => {
         // setPageLoading(true)
-        fetch(`https://gs-seller-center-server.up.railway.app/category/${id}`)
+        fetch(`https://daily-bazar.onrender.com/category/${id}`)
             .then(res => res.json())
             .then(data => setCategory(data))
     }, [id]);
@@ -69,7 +69,7 @@ const UpdateCategory = () => {
             .then((willDelete) => {
                 if (admin && willDelete) {
                     setInfoLoading(true);
-                    fetch(`https://gs-seller-center-server.up.railway.app/up-category/${_id}`, {
+                    fetch(`https://daily-bazar.onrender.com/up-category/${_id}`, {
                         method: 'PUT',
                         headers: {
                             'content-type': 'application/json'

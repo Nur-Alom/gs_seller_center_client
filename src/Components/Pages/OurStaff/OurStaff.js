@@ -12,11 +12,11 @@ const OurStaff = () => {
 
     // Load Staff Info.
     useEffect(() => {
-        fetch('https://gs-seller-center-server.up.railway.app/staffs')
+        fetch('https://daily-bazar.onrender.com/staffs')
             .then(res => res.json())
             .then(data => setTotalStaff(data.staffs))
 
-        fetch(`https://gs-seller-center-server.up.railway.app/staffs?page=${page}&&size=${size}`)
+        fetch(`https://daily-bazar.onrender.com/staffs?page=${page}&&size=${size}`)
             .then(res => res.json())
             .then(data => {
                 setStaffs(data.staffs)

@@ -57,7 +57,7 @@ const AddProducts = () => {
             .then((willDelete) => {
                 if (willDelete) {
                     setInfoLoading(true);
-                    fetch('https://gs-seller-center-server.up.railway.app/add-product', {
+                    fetch('https://daily-bazar.onrender.com/add-product', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json'

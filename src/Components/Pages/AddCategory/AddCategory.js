@@ -63,7 +63,7 @@ const AddCategory = () => {
             .then((willDelete) => {
                 if (admin && willDelete) {
                     setInfoLoading(true);
-                    fetch('https://gs-seller-center-server.up.railway.app/add-category', {
+                    fetch('https://daily-bazar.onrender.com/add-category', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json'

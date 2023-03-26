@@ -40,9 +40,12 @@ const useFirebase = () => {
 
     // Check Staff Profile Role.
     useEffect(() => {
-        fetch(`https://gs-seller-center-server.up.railway.app/staff/${user.email}`)
+        fetch(`https://daily-bazar.onrender.com/staff/${user.email}`)
             .then(res => res.json())
-            .then(data => setAdmin(data.admin))
+            .then(data => {
+                setAdmin(data.admin)
+                console.log(data)
+            })
     }, [user.email]);
 
 

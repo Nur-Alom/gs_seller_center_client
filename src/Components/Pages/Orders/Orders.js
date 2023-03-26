@@ -11,12 +11,12 @@ const Orders = () => {
 
     // Load Orders.
     useEffect(() => {
-        fetch(`https://gs-seller-center-server.up.railway.app/orders`)
+        fetch(`https://daily-bazar.onrender.com/orders`)
             .then(res => res.json())
             .then(data => setTotalOrders(data.orders))
 
 
-        fetch(`https://gs-seller-center-server.up.railway.app/orders?page=${page}&&size=${size}`)
+        fetch(`https://daily-bazar.onrender.com/orders?page=${page}&&size=${size}`)
             .then(res => res.json())
             .then(data => {
                 setOrders(data.orders);

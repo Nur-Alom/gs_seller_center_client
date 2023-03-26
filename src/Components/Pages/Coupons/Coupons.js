@@ -12,12 +12,12 @@ const Coupons = () => {
 
     // Load coupons.
     useEffect(() => {
-        fetch(`https://gs-seller-center-server.up.railway.app/coupons`)
+        fetch(`https://daily-bazar.onrender.com/coupons`)
             .then(res => res.json())
             .then(data => setTotalCoupons(data.coupons))
 
 
-        fetch(`https://gs-seller-center-server.up.railway.app/coupons?page=${page}&&size=${size}`)
+        fetch(`https://daily-bazar.onrender.com/coupons?page=${page}&&size=${size}`)
             .then(res => res.json())
             .then(data => {
                 setCoupons(data.coupons);
