@@ -29,14 +29,14 @@ const Products = () => {
 
     // Load Products.
     useEffect(() => {
-        fetch(`https://daily-bazar.onrender.com/products?page=${page}&&size=${size}&&category=${category}`)
+        fetch(`https://daily-bazar-95aq.onrender.com/products?page=${page}&&size=${size}&&category=${category}`)
             .then(res => res.json())
             .then(data => {
                 setProducts(data.products);
                 const count = data.count;
                 const pageNumber = Math.ceil(count / size);
                 setPageCount(pageNumber);
-                fetch('https://daily-bazar.onrender.com/products')
+                fetch('https://daily-bazar-95aq.onrender.com/products')
                     .then(res => res.json())
                     .then(data => {
                         setTotalProduct(data.products);
@@ -48,7 +48,7 @@ const Products = () => {
 
     // Load categories.
     useEffect(() => {
-        fetch('https://daily-bazar.onrender.com/categories')
+        fetch('https://daily-bazar-95aq.onrender.com/categories')
             .then(res => res.json())
             .then(data => setCategories(data.categories))
     }, []);
@@ -70,7 +70,7 @@ const Products = () => {
     const onSubmit = (value) => {
         if (value.search !== "") {
             setSearch(true);
-            fetch(`https://daily-bazar.onrender.com/products`)
+            fetch(`https://daily-bazar-95aq.onrender.com/products`)
                 .then(res => res.json())
                 .then(data => {
                     const searchData = data.products.filter(data => data.title.toLowerCase().includes(value.search.toLowerCase()));
@@ -83,14 +83,14 @@ const Products = () => {
                     }
                 })
         } else if (value.search === "") {
-            fetch(`https://daily-bazar.onrender.com/products?page=${page}&&size=${size}&&category=${category}`)
+            fetch(`https://daily-bazar-95aq.onrender.com/products?page=${page}&&size=${size}&&category=${category}`)
                 .then(res => res.json())
                 .then(data => {
                     setProducts(data.products);
                     const count = data.count;
                     const pageNumber = Math.ceil(count / size);
                     setPageCount(pageNumber);
-                    fetch('https://daily-bazar.onrender.com/products')
+                    fetch('https://daily-bazar-95aq.onrender.com/products')
                         .then(res => res.json())
                         .then(data => setTotalProduct(data.products))
                 })
@@ -124,7 +124,7 @@ const Products = () => {
 
     // Update Product Status.
     const upStatus = (product) => {
-        fetch(`https://daily-bazar.onrender.com/up-product-status/${product._id}`, {
+        fetch(`https://daily-bazar-95aq.onrender.com/up-product-status/${product._id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -150,7 +150,7 @@ const Products = () => {
 
     // Delete Product Function.
     const deleteProduct = (id) => {
-        fetch(`https://daily-bazar.onrender.com/delete-product/${id}`, {
+        fetch(`https://daily-bazar-95aq.onrender.com/delete-product/${id}`, {
             method: "DELETE",
         })
             .then(res => res.json())

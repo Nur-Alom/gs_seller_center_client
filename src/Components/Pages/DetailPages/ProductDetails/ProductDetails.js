@@ -11,7 +11,7 @@ const ProductDetails = () => {
     // Load Products.
     useEffect(() => {
         setLoading(true);
-        fetch(`https://daily-bazar.onrender.com/product/${id}`)
+        fetch(`https://daily-bazar-95aq.onrender.com/product/${id}`)
             .then(res => res.json())
             .then(data => {
                 setProducts(data);

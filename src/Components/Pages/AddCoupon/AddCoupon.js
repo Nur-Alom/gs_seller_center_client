@@ -15,7 +15,7 @@ const AddCoupon = () => {
 
     // Load Staffs Info.
     useEffect(() => {
-        fetch('https://daily-bazar.onrender.com/coupons')
+        fetch('https://daily-bazar-95aq.onrender.com/coupons')
             .then(res => res.json())
             .then(data => setCoupons(data))
     }, [])
@@ -54,7 +54,7 @@ const AddCoupon = () => {
         data.logo = upImg;
         data.couponId = couponId;
         setInfoLoading(true);
-        fetch('https://daily-bazar.onrender.com/add-coupons', {
+        fetch('https://daily-bazar-95aq.onrender.com/add-coupons', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

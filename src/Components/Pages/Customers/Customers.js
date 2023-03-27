@@ -20,14 +20,14 @@ const Customers = () => {
 
     // Load User Info.
     useEffect(() => {
-        fetch(`https://daily-bazar.onrender.com/users?page=${page}&&size=${size}`)
+        fetch(`https://daily-bazar-95aq.onrender.com/users?page=${page}&&size=${size}`)
             .then(res => res.json())
             .then(data => {
                 setUsers(data.users);
                 const count = data.count;
                 const pageNumber = Math.ceil(count / size);
                 setPageCount(pageNumber)
-                fetch(`https://daily-bazar.onrender.com/users`)
+                fetch(`https://daily-bazar-95aq.onrender.com/users`)
                     .then(res => res.json())
                     .then(data => {
                         setTotalUsers(data.count);
@@ -41,7 +41,7 @@ const Customers = () => {
     const onSubmit = (value) => {
         if (value.search !== "") {
             setSearch(true);
-            fetch(`https://daily-bazar.onrender.com/users`)
+            fetch(`https://daily-bazar-95aq.onrender.com/users`)
                 .then(res => res.json())
                 .then(data => {
                     const searchData = data.users.filter(data => data.displayName.toLowerCase().includes(value.search.toLowerCase()) || data.email.toLowerCase().includes(value.search.toLowerCase()) || data.phoneNumber?.includes(value.search));
@@ -54,14 +54,14 @@ const Customers = () => {
                     }
                 })
         } else if (value.search === "") {
-            fetch(`https://daily-bazar.onrender.com/users?page=${page}&&size=${size}`)
+            fetch(`https://daily-bazar-95aq.onrender.com/users?page=${page}&&size=${size}`)
                 .then(res => res.json())
                 .then(data => {
                     setUsers(data.users);
                     const count = data.count;
                     const pageNumber = Math.ceil(count / size);
                     setPageCount(pageNumber)
-                    fetch(`https://daily-bazar.onrender.com/users`)
+                    fetch(`https://daily-bazar-95aq.onrender.com/users`)
                         .then(res => res.json())
                         .then(data => {
                             setTotalUsers(data.count);
@@ -98,7 +98,7 @@ const Customers = () => {
 
     // Delete Product Function.
     const deleteCustomer = (id) => {
-        fetch(`https://daily-bazar.onrender.com/delete-user/${id}`, {
+        fetch(`https://daily-bazar-95aq.onrender.com/delete-user/${id}`, {
             method: "DELETE",
         })
             .then(res => res.json())

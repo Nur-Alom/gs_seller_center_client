@@ -11,12 +11,12 @@ const Orders = () => {
 
     // Load Orders.
     useEffect(() => {
-        fetch(`https://daily-bazar.onrender.com/orders`)
+        fetch(`https://daily-bazar-95aq.onrender.com/orders`)
             .then(res => res.json())
             .then(data => setTotalOrders(data.orders))
 
 
-        fetch(`https://daily-bazar.onrender.com/orders?page=${page}&&size=${size}`)
+        fetch(`https://daily-bazar-95aq.onrender.com/orders?page=${page}&&size=${size}`)
             .then(res => res.json())
             .then(data => {
                 setOrders(data.orders);

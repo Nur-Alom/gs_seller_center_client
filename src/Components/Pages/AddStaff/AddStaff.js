@@ -16,7 +16,7 @@ const AddStaff = () => {
 
     // Load Staffs Info.
     useEffect(() => {
-        fetch('https://daily-bazar.onrender.com/staffs')
+        fetch('https://daily-bazar-95aq.onrender.com/staffs')
             .then(res => res.json())
             .then(data => setStaffs(data))
     }, [])
@@ -57,7 +57,7 @@ const AddStaff = () => {
         data.joiningDate = new Date(data.joiningDate).toISOString();
         data.staffId = staffId;
         setInfoLoading(true);
-        fetch('https://daily-bazar.onrender.com/add-staffs', {
+        fetch('https://daily-bazar-95aq.onrender.com/add-staffs', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

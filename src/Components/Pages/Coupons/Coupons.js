@@ -12,12 +12,12 @@ const Coupons = () => {
 
     // Load coupons.
     useEffect(() => {
-        fetch(`https://daily-bazar.onrender.com/coupons`)
+        fetch(`https://daily-bazar-95aq.onrender.com/coupons`)
             .then(res => res.json())
             .then(data => setTotalCoupons(data.coupons))
 
 
-        fetch(`https://daily-bazar.onrender.com/coupons?page=${page}&&size=${size}`)
+        fetch(`https://daily-bazar-95aq.onrender.com/coupons?page=${page}&&size=${size}`)
             .then(res => res.json())
             .then(data => {
                 setCoupons(data.coupons);

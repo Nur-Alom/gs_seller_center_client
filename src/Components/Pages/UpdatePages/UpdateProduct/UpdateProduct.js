@@ -40,7 +40,7 @@ const UpdateProduct = () => {
 
     // Load Product Information.
     useEffect(() => {
-        fetch(`https://daily-bazar.onrender.com/product/${id}`)
+        fetch(`https://daily-bazar-95aq.onrender.com/product/${id}`)
             .then(res => res.json())
             .then(data => setProduct(data))
     }, [id]);
@@ -85,7 +85,7 @@ const UpdateProduct = () => {
             .then((willDelete) => {
                 if (admin && willDelete) {
                     setInfoLoading(true);
-                    fetch(`https://daily-bazar.onrender.com/up-product/${_id}`, {
+                    fetch(`https://daily-bazar-95aq.onrender.com/up-product/${_id}`, {
                         method: 'PUT',
                         headers: {
                             'content-type': 'application/json'

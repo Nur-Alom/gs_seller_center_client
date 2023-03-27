@@ -17,15 +17,15 @@ const CustomerOrders = () => {
 
     // Load Orders.
     useEffect(() => {
-        fetch(`https://daily-bazar.onrender.com/users/${id}`)
+        fetch(`https://daily-bazar-95aq.onrender.com/users/${id}`)
             .then(res => res.json())
             .then(data => {
                 const email = data.email;
-                fetch(`https://daily-bazar.onrender.com/order/user?page=${page}&&size=${size}&&email=${email}`)
+                fetch(`https://daily-bazar-95aq.onrender.com/order/user?page=${page}&&size=${size}&&email=${email}`)
                     .then(res => res.json())
                     .then(data => {
                         setOrders(data.orders);
-                        fetch(`https://daily-bazar.onrender.com/order/user?email=${email}`)
+                        fetch(`https://daily-bazar-95aq.onrender.com/order/user?email=${email}`)
                             .then(res => res.json())
                             .then(data => {
                                 setTotalOrders(data.orders);
@@ -41,7 +41,7 @@ const CustomerOrders = () => {
 
     // Update Order Status Function.
     const updateOrderStatus = (value, id, order) => {
-        fetch(`https://daily-bazar.onrender.com/up-order/${id}?status=${value}`, {
+        fetch(`https://daily-bazar-95aq.onrender.com/up-order/${id}?status=${value}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

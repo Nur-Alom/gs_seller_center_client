@@ -23,7 +23,7 @@ const Header = () => {
 
     // Load Staffs Info.
     useEffect(() => {
-        fetch(`https://daily-bazar.onrender.com/staffs?email=${user?.email}`)
+        fetch(`https://daily-bazar-95aq.onrender.com/staffs?email=${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 const staffs = data?.staffs;

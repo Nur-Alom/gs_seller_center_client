@@ -26,14 +26,14 @@ const Category = () => {
 
     // Load Category.
     useEffect(() => {
-        fetch(`https://daily-bazar.onrender.com/categories?page=${page}&&size=${size}&&category=${category}`)
+        fetch(`https://daily-bazar-95aq.onrender.com/categories?page=${page}&&size=${size}&&category=${category}`)
             .then(res => res.json())
             .then(data => {
                 setCategories(data.categories);
                 const count = data.count;
                 const pageNumber = Math.ceil(count / size);
                 setPageCount(pageNumber);
-                fetch('https://daily-bazar.onrender.com/categories')
+                fetch('https://daily-bazar-95aq.onrender.com/categories')
                     .then(res => res.json())
                     .then(data => {
                         setTotalCategory(data.categories);
@@ -47,7 +47,7 @@ const Category = () => {
     const onSubmit = (value) => {
         if (value.search !== "") {
             setSearch(true);
-            fetch(`https://daily-bazar.onrender.com/categories`)
+            fetch(`https://daily-bazar-95aq.onrender.com/categories`)
                 .then(res => res.json())
                 .then(data => {
                     const searchData = data.categories.filter(data => data.type.toLowerCase().includes(value.search.toLowerCase()));
@@ -60,14 +60,14 @@ const Category = () => {
                     }
                 })
         } else if (value.search === "") {
-            fetch(`https://daily-bazar.onrender.com/categories?page=${page}&&size=${size}&&category=${category}`)
+            fetch(`https://daily-bazar-95aq.onrender.com/categories?page=${page}&&size=${size}&&category=${category}`)
                 .then(res => res.json())
                 .then(data => {
                     setCategories(data.categories);
                     const count = data.count;
                     const pageNumber = Math.ceil(count / size);
                     setPageCount(pageNumber);
-                    fetch('https://daily-bazar.onrender.com/categories')
+                    fetch('https://daily-bazar-95aq.onrender.com/categories')
                         .then(res => res.json())
                         .then(data => {
                             setTotalCategory(data.categories);

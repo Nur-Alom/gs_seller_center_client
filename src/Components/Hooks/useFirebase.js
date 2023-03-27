@@ -40,7 +40,7 @@ const useFirebase = () => {
 
     // Check Staff Profile Role.
     useEffect(() => {
-        fetch(`https://daily-bazar.onrender.com/staff/${user.email}`)
+        fetch(`https://daily-bazar-95aq.onrender.com/staff/${user.email}`)
             .then(res => res.json())
             .then(data => setAdmin(data.admin))
     }, [user.email]);

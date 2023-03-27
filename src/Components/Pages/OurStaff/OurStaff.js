@@ -12,11 +12,11 @@ const OurStaff = () => {
 
     // Load Staff Info.
     useEffect(() => {
-        fetch('https://daily-bazar.onrender.com/staffs')
+        fetch('https://daily-bazar-95aq.onrender.com/staffs')
             .then(res => res.json())
             .then(data => setTotalStaff(data.staffs))
 
-        fetch(`https://daily-bazar.onrender.com/staffs?page=${page}&&size=${size}`)
+        fetch(`https://daily-bazar-95aq.onrender.com/staffs?page=${page}&&size=${size}`)
             .then(res => res.json())
             .then(data => {
                 setStaffs(data.staffs)
