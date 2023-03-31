@@ -1,9 +1,11 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 const Orders = () => {
     const [orders, setOrders] = useState([]);
+    const [status, setStatus] = useState(false);
     const [totalOrders, setTotalOrders] = useState([]);
     const [pageCount, setPageCount] = useState(0);
     const [page, setPage] = useState(0);
@@ -24,7 +26,36 @@ const Orders = () => {
                 const pageNumber = Math.ceil(count / size);
                 setPageCount(pageNumber)
             })
-    }, [page]);
+    }, [page, status]);
+
+
+    // Update Order Status Function.
+    const updateOrderStatus = (value, id, order) => {
+        fetch(`https://daily-bazar-95aq.onrender.com/up-order/${id}?status=${value}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(order)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged === true && data.matchedCount === 1) {
+                    if (status === true) {
+                        setStatus(false)
+                    } else {
+                        setStatus(true)
+                    }
+                    toastSuccess();
+                }
+                else {
+                    toastError();
+                }
+            })
+    };
+
+    const toastSuccess = () => toast.success("Order Status Updated Successfully!!");
+    const toastError = () => toast.error("Somethings wants wrong!! please try again.");
 
 
     return (
@@ -107,12 +138,12 @@ const Orders = () => {
                                             }
                                         </td>
                                         <td className='px-2 py-3 text-sm'>
-                                            <select className='bg-gray-100 p-1 border border-gray-300 focus:border-gray-500 outline-0 text-sm rounded-md items-center' name="" id="">
-                                                <option value="" hidden>{order.status}</option>
-                                                <option value="">Pending</option>
-                                                <option value="">Processing</option>
-                                                <option value="">Delivered</option>
-                                                <option value="">Cancel</option>
+                                            <select onChange={(e) => updateOrderStatus(e.target.value, order._id, order)} className='bg-gray-100 p-1 border border-gray-300 focus:border-gray-500 outline-0 text-sm rounded-md items-center' name="" id="">
+                                                <option value={order.status} hidden>{order.status}</option>
+                                                <option value="Pending">Pending</option>
+                                                <option value="Processing">Processing</option>
+                                                <option value="Delivered">Delivered</option>
+                                                <option value="Cancel">Cancel</option>
                                             </select>
                                         </td>
                                         <td className='px-2 py-3 text-sm'>
@@ -128,7 +159,7 @@ const Orders = () => {
                     </div>
                     <div className='flex items-center justify-between p-4 mb-6 bg-white border border-gray-200 rounded-b-lg'>
                         <div className='text-xs font-bold text-gray-600'>
-                            SHOWING 1-10 OF {totalOrders.length}
+                            SHOWING {(page * orders.length) + 1}-{(page + 1) * orders.length} OF {totalOrders.length}
                         </div>
                         <div className='text-xs font-bold bg-gray-100 rounded'>
                             {

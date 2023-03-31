@@ -2,20 +2,18 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import useFirebase from '../../Hooks/useFirebase';
 
 const OurStaff = () => {
+    const { admin } = useFirebase();
     const [staffs, setStaffs] = useState([]);
     const [pageCount, setPageCount] = useState(0);
-    const [totalStaff, setTotalStaff] = useState([]);
+    const [totalStaff, setTotalStaff] = useState(0);
     const [page, setPage] = useState(0);
     const size = 8;
 
     // Load Staff Info.
     useEffect(() => {
-        fetch('https://daily-bazar-95aq.onrender.com/staffs')
-            .then(res => res.json())
-            .then(data => setTotalStaff(data.staffs))
-
         fetch(`https://daily-bazar-95aq.onrender.com/staffs?page=${page}&&size=${size}`)
             .then(res => res.json())
             .then(data => {
@@ -23,6 +21,9 @@ const OurStaff = () => {
                 const count = data.count;
                 const pageNumber = Math.ceil(count / size);
                 setPageCount(pageNumber)
+                fetch('https://daily-bazar-95aq.onrender.com/staffs')
+                    .then(res => res.json())
+                    .then(data => setTotalStaff(data.count))
             })
     }, [page]);
 
@@ -64,7 +65,7 @@ const OurStaff = () => {
                                     <td className="px-3 py-3">STAFF CONTACT</td>
                                     <td className="px-3 py-3">STAFF JOINING DATE</td>
                                     <td className="px-3 py-3">STAFF ROLE</td>
-                                    <td className="px-3 py-3">ACTIONS</td>
+                                    {admin === true && <td className="px-3 py-3">ACTIONS</td>}
                                 </tr>
                             </thead>
                             <tbody className="bg-white divide-y divide-gray-100 dark:divide-gray-700 dark:bg-gray-800 text-gray-700 dark:text-gray-400">
@@ -89,19 +90,19 @@ const OurStaff = () => {
                                         <td className='px-3 py-3 text-sm font-semibold'>
                                             {staff.role}
                                         </td>
-                                        <td className='py-3 text-sm'>
-                                            <div className="flex justify-center">
-                                                <div title='Edit' className="p-2 cursor-pointer text-gray-400 hover:text-green-600">
+                                        {admin === true && <td className='py-3 text-sm'>
+                                            <div className="flex pl-1">
+                                                <NavLink to="" title='Edit Information' className="p-2 cursor-pointer text-gray-400 hover:text-green-600">
                                                     <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="1.2em" width="1.2em" xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
                                                         <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
-                                                </div>
-                                                <div title='Delete' className="p-2 cursor-pointer text-gray-400 hover:text-red-600">
+                                                </NavLink>
+                                                <button title='Delete' className="p-2 cursor-pointer text-gray-400 hover:text-red-600">
                                                     <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="1.2em" width="1.2em" xmlns="http://www.w3.org/2000/svg"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line>
                                                     </svg>
-                                                </div>
+                                                </button>
                                             </div>
-                                        </td>
+                                        </td>}
                                     </tr>)
                                 }
                             </tbody>
@@ -109,7 +110,7 @@ const OurStaff = () => {
                     </div>
                     <div className='flex items-center justify-between p-4 mb-6 bg-white border border-gray-200 rounded-b-lg'>
                         <div className='text-xs font-bold text-gray-600'>
-                            SHOWING 1-8 OF {totalStaff.length}
+                            SHOWING {(page * staffs.length) + 1}-{(page + 1) * staffs.length} OF {totalStaff}
                         </div>
                         <div className='text-xs font-bold bg-gray-100 rounded'>
                             {

@@ -5,8 +5,10 @@ import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
+import useFirebase from '../../Hooks/useFirebase';
 
 const Customers = () => {
+    const { admin } = useFirebase();
     const { register, handleSubmit } = useForm();
     const [infoLoading, setInfoLoading] = useState(true);
     const [deleteCount, setDeleteCount] = useState(false);
@@ -88,8 +90,10 @@ const Customers = () => {
                 closeOnClickOutside: false,
             })
             .then((willDelete) => {
-                if (willDelete) {
+                if (admin && willDelete) {
                     deleteCustomer(user._id)
+                } else if (willDelete) {
+                    toast.info("CURD Operation Disabled for Demo Projects!!")
                 }
             });
     };
