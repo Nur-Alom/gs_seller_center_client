@@ -6,7 +6,7 @@ import './Dashboard.css';
 
 const Dashboard = () => {
     return (
-        <div className='w-full flex'>
+        <div className='w-full flex h-screen'>
             <Navigation />
             <div className='flex flex-col flex-1 w-full h-screen'>
                 <Header />

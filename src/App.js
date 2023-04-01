@@ -23,6 +23,7 @@ import ForgotPassword from './Components/UserAccount/ForgotPassword/ForgotPasswo
 import ProductDetails from './Components/Pages/DetailPages/ProductDetails/ProductDetails';
 import UpdateCategory from './Components/Pages/UpdatePages/UpdateCategory/UpdateCategory';
 import CustomerOrders from './Components/Pages/DetailPages/CusromerOrders/CustomerOrders';
+import UpdateCoupon from './Components/Pages/UpdatePages/UpdateCoupon/UpdateCoupon';
 
 function App() {
   return (
@@ -56,6 +57,7 @@ function App() {
               <Route path="add-staff" element={<PrivateRoute><AddStaff /></PrivateRoute>} />
               <Route path="up-product/:id" element={<PrivateRoute><UpdateProduct /></PrivateRoute>} />
               <Route path="up-category/:id" element={<PrivateRoute><UpdateCategory /></PrivateRoute>} />
+              <Route path="up-coupon/:id" element={<PrivateRoute><UpdateCoupon /></PrivateRoute>} />
               <Route path="product/:id" element={<PrivateRoute><ProductDetails /></PrivateRoute>} />
               <Route path="customer-order/:id" element={<PrivateRoute><CustomerOrders /></PrivateRoute>} />
             </Route>

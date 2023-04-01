@@ -105,7 +105,7 @@ const Category = () => {
 
     // Update Product Status.
     const upStatus = (category) => {
-        fetch(`https://daily-bazar.onrender.com/up-category-status/${category._id}`, {
+        fetch(`https://daily-bazar-95aq.onrender.com/up-category-status/${category._id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -131,7 +131,7 @@ const Category = () => {
 
     // Delete Category Function.
     const deleteCategory = (id) => {
-        fetch(`https://daily-bazar.onrender.com/delete-cat/${id}`, {
+        fetch(`https://daily-bazar-95aq.onrender.com/delete-cat/${id}`, {
             method: "DELETE",
         })
             .then(res => res.json())

@@ -12,11 +12,13 @@ const Coupons = () => {
     const [totalCoupons, setTotalCoupons] = useState(0);
     const [pageCount, setPageCount] = useState(0);
     const [deleteCount, setDeleteCount] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [page, setPage] = useState(0);
     const size = 5;
 
     // Load coupons.
     useEffect(() => {
+        setLoading(true);
         fetch(`https://daily-bazar-95aq.onrender.com/coupons?page=${page}&&size=${size}`)
             .then(res => res.json())
             .then(data => {
@@ -26,9 +28,12 @@ const Coupons = () => {
                 setPageCount(pageNumber)
                 fetch(`https://daily-bazar-95aq.onrender.com/coupons`)
                     .then(res => res.json())
-                    .then(data => setTotalCoupons(data.count))
+                    .then(data => {
+                        setTotalCoupons(data.count)
+                        setLoading(false);
+                    })
             })
-    }, [page]);
+    }, [page, deleteCount]);
 
 
     // Sweet Alert.
@@ -48,9 +53,9 @@ const Coupons = () => {
             })
             .then((willDelete) => {
                 if (admin && willDelete) {
-                    // deleteCustomer(coupon._id)
+                    deleteCoupon(coupon._id);
                 } else if (willDelete) {
-                    toast.info("CURD Operation Disabled for Demo Projects!!")
+                    toast.info("CURD Operation Disabled for Demo Projects!!");
                 }
             });
     };
@@ -58,29 +63,29 @@ const Coupons = () => {
 
 
     // Delete Product Function.
-    // const deleteCustomer = (id) => {
-    //     fetch(`https://daily-bazar-95aq.onrender.com/delete-user/${id}`, {
-    //         method: "DELETE",
-    //     })
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             if (data.deletedCount > 0) {
-    //                 toastSuccess();
-    //                 if (deleteCount === true) {
-    //                     setDeleteCount(false);
-    //                 } else {
-    //                     setDeleteCount(true);
-    //                 }
-    //             }
-    //             else {
-    //                 toastError();
-    //             }
-    //         });
-    // };
+    const deleteCoupon = (id) => {
+        fetch(`https://daily-bazar-95aq.onrender.com/delete-coupon/${id}`, {
+            method: "DELETE",
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    toastSuccess();
+                    if (deleteCount === true) {
+                        setDeleteCount(false);
+                    } else {
+                        setDeleteCount(true);
+                    }
+                }
+                else {
+                    toastError();
+                }
+            });
+    };
 
 
-    // const toastSuccess = () => toast.success("Coupons Information Delete Successfully!!");
-    // const toastError = () => toast.error("Somethings wants wrong!! please try again.");
+    const toastSuccess = () => toast.success("Coupons Information Delete Successfully!!");
+    const toastError = () => toast.error("Somethings wants wrong!! please try again.");
 
 
     return (
@@ -98,7 +103,7 @@ const Coupons = () => {
                     </div>
                 </div>
             </div>
-            {coupons.length ?
+            {!loading ?
                 <div>
                     <div className="w-full overflow-x-auto rounded-t-lg border border-gray-200 mt-4">
                         <table className="w-full whitespace-no-wrap">
@@ -149,7 +154,7 @@ const Coupons = () => {
                                         </td>
                                         <td className='px-2 py-3 text-sm'>
                                             <div className="flex">
-                                                <NavLink to={`/coupon-update/${coupon._id}`} title='Edit Information' className="p-2 cursor-pointer text-gray-400 hover:text-green-600">
+                                                <NavLink to={`/up-coupon/${coupon._id}`} title='Edit Information' className="p-2 cursor-pointer text-gray-400 hover:text-green-600">
                                                     <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="1.2em" width="1.2em" xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
                                                         <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
