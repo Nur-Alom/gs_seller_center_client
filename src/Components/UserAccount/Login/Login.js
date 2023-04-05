@@ -40,6 +40,7 @@ const Login = () => {
                                     Email address
                                 </label>
                                 <input
+                                    defaultValue="test@user.com"
                                     {...register("email", { required: "Enter Your Email Please*" })}
                                     type="email"
                                     autoComplete="email"
@@ -53,6 +54,7 @@ const Login = () => {
                                     Password
                                 </label>
                                 <input
+                                    defaultValue="testUser"
                                     {...register("password", { required: "Enter Your Password Please*" })}
                                     type="password"
                                     autoComplete="current-password"

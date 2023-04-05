@@ -24,6 +24,7 @@ import ProductDetails from './Components/Pages/DetailPages/ProductDetails/Produc
 import UpdateCategory from './Components/Pages/UpdatePages/UpdateCategory/UpdateCategory';
 import CustomerOrders from './Components/Pages/DetailPages/CusromerOrders/CustomerOrders';
 import UpdateCoupon from './Components/Pages/UpdatePages/UpdateCoupon/UpdateCoupon';
+import UserProfile from './Components/Pages/UserProfile/UserProfile';
 
 function App() {
   return (
@@ -50,7 +51,7 @@ function App() {
               <Route path="orders" element={<PrivateRoute><Orders /></PrivateRoute>} />
               <Route path="coupons" element={<PrivateRoute><Coupons /></PrivateRoute>} />
               <Route path="our-staff" element={<PrivateRoute><OurStaff /></PrivateRoute>} />
-              <Route path="setting" element={<PrivateRoute><Customers /></PrivateRoute>} />
+              <Route path="setting" element={<PrivateRoute><UserProfile /></PrivateRoute>} />
               <Route path="add-products" element={<PrivateRoute><AddProducts /></PrivateRoute>} />
               <Route path="add-category" element={<PrivateRoute><AddCategory /></PrivateRoute>} />
               <Route path="add-coupon" element={<PrivateRoute><AddCoupon /></PrivateRoute>} />

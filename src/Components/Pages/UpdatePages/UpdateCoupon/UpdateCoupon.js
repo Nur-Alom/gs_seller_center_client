@@ -6,8 +6,8 @@ import { toast } from 'react-toastify';
 import useFirebase from '../../../Hooks/useFirebase';
 
 const UpdateCoupon = () => {
-    const { id } = useParams();
     const navigate = useNavigate();
+    const { id } = useParams();
     const { admin } = useFirebase();
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [infoLoading, setInfoLoading] = useState(false);
