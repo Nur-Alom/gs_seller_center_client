@@ -20,7 +20,6 @@ const UserProfile = () => {
             .then(data => {
                 if (data) {
                     setStaff(data)
-                    console.log(data);
                 }
             })
     }, [user?.email]);
@@ -49,7 +48,6 @@ const UserProfile = () => {
         data.createdAt = staff.createdAt;
         data.password = staff.password;
         data.updatedAt = new Date().toISOString();
-        console.log(data);
         swal(<div>
             <h2 className='text-xl font-medium'>Are You Sure! Want to Update Your Information?</h2>
         </div>,
