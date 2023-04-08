@@ -215,8 +215,8 @@ const Products = () => {
             </div>
             <div className='bg-white w-full px-4 py-4 rounded border border-gray-200'>
                 <div className='bg-white '>
-                    <form className='flex items-center justify-between' action="">
-                        <div className='w-3/4'>
+                    <form className='flex flex-col md:flex-row items-center justify-between md:space-x-3' action="">
+                        <div className='w-full md:w-3/4'>
                             {csvFile?.name ?
                                 <div className='flex items-start justify-center text-center border border-dashed border-green-600 rounded p-1 cursor-pointer'>
                                     <span className='text-sm'>
@@ -237,10 +237,10 @@ const Products = () => {
                                 </label>
                             }
                         </div>
-                        <div className=''>
-                            <button disabled className='bg-gray-200 hover:bg-gray-400 duration-500 py-3 px-5 rounded mx-2'>Upload</button>
+                        <div className='w-full mt-2 md:mt-0 flex space-x-3'>
+                            <button disabled className='w-2/4 bg-gray-200 hover:bg-gray-400 duration-500 py-3 px-5 rounded md:mx-2'>Upload</button>
                             {/* <CSVLink className='bg-green-500 hover:bg-green-600 duration-500 text-white py-3  px-5 rounded mx-2' data={totalProduct}>Download</CSVLink>; */}
-                            <button disabled className='bg-green-500 hover:bg-green-600 duration-500 text-white py-3  px-5 rounded mx-2'>Download</button>
+                            <button disabled className='w-2/4 bg-green-500 hover:bg-green-600 duration-500 text-white py-3 px-5 rounded md:mx-2'>Download</button>
                         </div>
                     </form>
                 </div>
@@ -280,7 +280,7 @@ const Products = () => {
                                             products.map(product => <tr className='' key={product._id}>
                                                 <td className='px-3 py-3 text-xs font-bold'>{product._id.slice(18, 24).toUpperCase()}</td>
                                                 <td className='px-3 py-3 flex items-center justify-start text-sm'>
-                                                    {product.image && <img className='w-8 shadow-inner rounded-full p-1 mr-2' src={`data:image/*;base64,${product.image}`} alt="" />}
+                                                    {product.image && <img className='w-8 hidden sm:block shadow-inner rounded-full p-1 mr-2' src={`data:image/*;base64,${product.image}`} alt="" />}
                                                     {product.title}
                                                 </td>
                                                 <td className='px-3 py-3 text-sm'>{product.parent}</td>

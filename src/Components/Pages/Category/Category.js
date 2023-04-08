@@ -159,7 +159,7 @@ const Category = () => {
         <div className='px-6 mx-auto'>
             <h2 className='my-4 font-bold font-sans text-lg'>Categories</h2>
             <div className='bg-white border border-gray-300 rounded-md font-sans'>
-                <div className='grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-1 gap-6 px-4 py-4 items-center'>
+                <div className='grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-6 px-4 py-4 items-center'>
                     <form onSubmit={handleSubmit(onSubmit)} className='w-full flex justify-between items-center'>
                         <input {...register("search")} className='w-full focus:bg-white bg-gray-200 p-3 border border-gray-300 outline-0 rounded-md' type="search" placeholder='Search by category type' />
                         {search &&
@@ -179,8 +179,8 @@ const Category = () => {
                             }
                         </select>
                     </div>
-                    <div className='w-full py-3'>
-                        <NavLink to="/add-category" className='bg-green-500 hover:bg-green-600 duration-500 text-white py-3 px-16 rounded-md border border-green-500 hover:border-green-600'>
+                    <div className='w-full md:py-3'>
+                        <NavLink type='button' to="/add-category" className='w-full bg-green-500 hover:bg-green-600 duration-500 text-white py-3 rounded-md border border-green-500 hover:border-green-600 text-center'>
                             + Add Categories
                         </NavLink>
                     </div>
@@ -217,7 +217,7 @@ const Category = () => {
                                             categories.map(category => <tr className='' key={category._id}>
                                                 <td className='px-3 py-3 text-xs font-bold'>{category._id.slice(18, 24).toUpperCase()}</td>
                                                 <td className='px-3 py-3 flex items-center justify-start text-sm'>
-                                                    <img className='w-8 shadow-inner rounded-full p-1 mr-2' src={`data:image/*;base64,${category.icon}`} alt="" />
+                                                    <img className='w-8 hidden sm:block shadow-inner rounded-full p-1 mr-2' src={`data:image/*;base64,${category.icon}`} alt="" />
                                                     {category.title}
                                                 </td>
                                                 <td className='px-3 py-3 text-sm'>{category.parent}</td>

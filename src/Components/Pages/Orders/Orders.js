@@ -62,7 +62,7 @@ const Orders = () => {
         <div className='px-6 mx-auto'>
             <h2 className='my-4 font-bold text-lg'>Orders</h2>
             <div className='bg-white border border-gray-200 rounded-md'>
-                <div className='grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-4 px-4 py-6 items-center'>
+                <div className='grid md:grid-cols-4 sm:grid-cols-1 gap-3 px-4 py-6 items-center'>
                     <div>
                         <input className='w-full focus:bg-white bg-gray-100 p-3 border border-gray-300 outline-0 text-sm rounded-md' type="text" placeholder='Search by phone' />
                     </div>

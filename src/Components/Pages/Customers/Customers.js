@@ -161,7 +161,7 @@ const Customers = () => {
                                             {user._id.slice(6, 12).toUpperCase()}
                                         </td>
                                         <td className='px-3 py-3 font-sans flex items-center text-sm'>
-                                            <img className='w-12 h-12 shadow-inner rounded-full p-1 mr-2' src={`data:image/png;base64,${user.photoURL}`} alt="" />
+                                            <img className='w-12 h-12 shadow-inner rounded-full p-1 mr-2 hidden sm:block' src={`data:image/png;base64,${user.photoURL}`} alt="" />
                                             {user.title}
                                         </td>
                                         <td className='px-3 py-3 font-sans text-sm'>

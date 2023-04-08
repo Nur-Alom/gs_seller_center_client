@@ -32,8 +32,8 @@ const OurStaff = () => {
         <div className='px-6 mx-auto'>
             <h2 className='my-4 font-bold text-lg'>Our Staffs</h2>
             <div className='bg-white border border-gray-200 rounded-md'>
-                <div className='lg:flex md:flex-row sm:flex-col px-4 py-6 items-center gap-4'>
-                    <div className='w-4/5 md:flex items-center justify-between gap-4'>
+                <div className='flex flex-col md:flex-row px-4 py-6 gap-4'>
+                    <div className='w-full md:w-4/5 md:flex items-center justify-between grid grid-cols-1 gap-4'>
                         <input className='w-full focus:bg-white bg-gray-100 p-3 border border-gray-300 outline-0 text-sm rounded-md' type="text" placeholder='Search by Coupon code/name' />
                         <select className='bg-gray-100 focus:bg-white px-2 py-3 rounded outline-0 w-full border border-gray-300 text-sm' name="" id="">
                             <option value="" hidden>Staff Role</option>
@@ -46,8 +46,8 @@ const OurStaff = () => {
                             <option value="">DELIVERY MAN</option>
                         </select>
                     </div>
-                    <div className='w-1/5'>
-                        <NavLink to="/add-staff" className='w-full flex justify-center items-center bg-green-600 hover:bg-green-700 text-white p-3 rounded-md text-sm'>
+                    <div className='w-full md:w-1/5'>
+                        <NavLink type='button' to="/add-staff" className='w-full flex justify-center items-center bg-green-600 hover:bg-green-700 text-white p-3 rounded-md text-sm'>
                             + Add Staff
                         </NavLink>
                     </div>

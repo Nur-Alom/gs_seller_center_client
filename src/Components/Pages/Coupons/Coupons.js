@@ -92,12 +92,12 @@ const Coupons = () => {
         <div className='px-6 mx-auto'>
             <h2 className='my-4 font-bold text-lg'>Coupons</h2>
             <div className='bg-white border border-gray-200 rounded-md'>
-                <div className='lg:flex md:flex-row sm:flex-col px-4 py-6 items-center gap-6'>
-                    <div className='w-4/5'>
+                <div className='flex flex-col md:flex-row px-4 py-6 items-center gap-4'>
+                    <div className='w-full md:w-4/5'>
                         <input className='w-full focus:bg-white bg-gray-100 p-3 border border-gray-300 outline-0 text-sm rounded-md' type="text" placeholder='Search by Coupon code/name' />
                     </div>
-                    <div className=''>
-                        <NavLink to="/add-coupon" className='bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-md'>
+                    <div className='w-full md:w-1/5'>
+                        <NavLink type='button' to="/add-coupon" className='w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-md text-center'>
                             + Add Coupon
                         </NavLink>
                     </div>
