@@ -107,7 +107,7 @@ const AddProducts = () => {
                                     <div className="col-span-8 sm:col-span-4">
                                         <div className="w-full grid md:grid-cols-2 sm:grid-cols-1 gap-4 items-center text-center">
                                             <label title='Upload Image' htmlFor="image-upload-btn" className='img-upload-btn'>
-                                                <div className="h-32 px-6 py-6 border-2 border-gray-300 dark:border-gray-600 border-dashed rounded-md cursor-pointer" role="button" tabIndex="0">
+                                                <div className="h-32 px-2 lg:px-4 py-2 lg:py-4 border-2 border-gray-300 dark:border-gray-600 border-dashed rounded-md cursor-pointer" role="button" tabIndex="0">
                                                     <span className="mx-auto flex justify-center">
                                                         <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" className="text-3xl text-green-500" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><polyline points="16 16 12 12 8 16"></polyline><line x1="12" y1="12" x2="12" y2="21"></line><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path><polyline points="16 16 12 12 8 16"></polyline>
                                                         </svg>
@@ -300,7 +300,7 @@ const AddProducts = () => {
                                         />
                                     </div>
                                 </div>
-                                <div className="my-10 text-right">
+                                <div className="my-5 md:my-10 sm:text-right">
                                     {/* {infoLoading ?
                                         <button disabled onClick={() => window.history.back()} className="font-medium outline-0 px-4 py-2 text-sm rounded-lg border border-gray-200 text-red-500 hover:bg-red-200 hover:border-red-300 hover:text-red-600 transition-colors duration-500">
                                             Cancel
@@ -319,7 +319,7 @@ const AddProducts = () => {
                                             </svg>
                                         </button>
                                         :
-                                        <button className="font-medium outline-0 px-4 py-2 text-sm rounded-lg border border-green-500 bg-green-500 text-white hover:bg-green-600 hover:border-green-600 transition-colors duration-500 ml-4" type="submit">
+                                        <button className="w-full sm:w-fit items-center font-medium outline-0 px-4 sm:py-2 py-3 text-sm rounded-md md:rounded-lg border border-green-500 bg-green-500 text-white hover:bg-green-600 hover:border-green-600 transition-colors duration-500 md:ml-4" type="submit">
                                             + Add
                                         </button>
                                     }

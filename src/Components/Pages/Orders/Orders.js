@@ -64,7 +64,7 @@ const Orders = () => {
             <div className='bg-white border border-gray-200 rounded-md'>
                 <div className='grid md:grid-cols-4 sm:grid-cols-1 gap-3 px-4 py-6 items-center'>
                     <div>
-                        <input className='w-full focus:bg-white bg-gray-100 p-3 border border-gray-300 outline-0 text-sm rounded-md' type="text" placeholder='Search by phone' />
+                        <input className='w-full focus:bg-white bg-gray-100 p-3 border border-gray-300 outline-0 text-sm rounded-md' type="number" placeholder='Search by phone' />
                     </div>
                     <div>
                         <select className='w-full focus:bg-white bg-gray-100 p-3 border border-gray-300 outline-0 text-sm rounded-md' name="" id="">

@@ -35,7 +35,7 @@ const ProductDetails = () => {
                         </div>
                     </div>
                     :
-                    <div className='flex items-start justify-start rounded-md'>
+                    <div className='flex flex-col md:flex-row items-start justify-start rounded-md'>
                         <div className='w-full'>
                             <img className='rounded-lg' src={`data:image/*;base64,${image}`} alt="" />
                         </div>
