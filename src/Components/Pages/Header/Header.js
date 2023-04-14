@@ -34,7 +34,7 @@ const Header = ({ changeSideBar }) => {
 
 
     return (
-        <div className='z-40 py-3 bg-white shadow-sm dark:bg-gray-800'>
+        <div className='display-invoice z-40 py-3 bg-white shadow-sm dark:bg-gray-800'>
             <div className="container flex items-center justify-between md:justify-between lg:justify-end h-full px-6 mx-auto text-green-500 dark:text-green-500">
                 <div className='mt-1 items-center lg:hidden'>
                     <button title='Close' onClick={() => changeSideBar()} className='text-green-500 p-1 rounded-md focus:outline-none'>

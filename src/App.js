@@ -25,6 +25,7 @@ import UpdateCategory from './Components/Pages/UpdatePages/UpdateCategory/Update
 import CustomerOrders from './Components/Pages/DetailPages/CusromerOrders/CustomerOrders';
 import UpdateCoupon from './Components/Pages/UpdatePages/UpdateCoupon/UpdateCoupon';
 import UserProfile from './Components/Pages/UserProfile/UserProfile';
+import Invoice from './Components/Pages/Invoce/Invoice';
 
 function App() {
   return (
@@ -61,6 +62,7 @@ function App() {
               <Route path="up-coupon/:id" element={<PrivateRoute><UpdateCoupon /></PrivateRoute>} />
               <Route path="product/:id" element={<PrivateRoute><ProductDetails /></PrivateRoute>} />
               <Route path="customer-order/:id" element={<PrivateRoute><CustomerOrders /></PrivateRoute>} />
+              <Route path="order/:id" element={<PrivateRoute><Invoice /></PrivateRoute>} />
             </Route>
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />

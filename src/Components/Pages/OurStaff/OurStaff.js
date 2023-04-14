@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import useFirebase from '../../Hooks/useFirebase';
 
 const OurStaff = () => {
-    const { admin } = useFirebase();
+    const { user, admin } = useFirebase();
     const [staffs, setStaffs] = useState([]);
     const [pageCount, setPageCount] = useState(0);
     const [totalStaff, setTotalStaff] = useState(0);
@@ -17,7 +17,8 @@ const OurStaff = () => {
         fetch(`https://daily-bazar-95aq.onrender.com/staffs?page=${page}&&size=${size}`)
             .then(res => res.json())
             .then(data => {
-                setStaffs(data.staffs)
+                const filterData = data.staffs.filter(dt => dt.email !== user?.email);
+                setStaffs(filterData);
                 const count = data.count;
                 const pageNumber = Math.ceil(count / size);
                 setPageCount(pageNumber)
@@ -25,7 +26,7 @@ const OurStaff = () => {
                     .then(res => res.json())
                     .then(data => setTotalStaff(data.count))
             })
-    }, [page]);
+    }, [page, user.email]);
 
 
     return (
@@ -69,7 +70,6 @@ const OurStaff = () => {
                                 </tr>
                             </thead>
                             <tbody className="bg-white divide-y divide-gray-100 dark:divide-gray-700 dark:bg-gray-800 text-gray-700 dark:text-gray-400">
-
                                 {
                                     staffs.map(staff => <tr className='' key={staff.staffId}>
                                         <td className='px-3 py-3 text-xs font-bold'>{staff.staffId.toUpperCase()}</td>
