@@ -8,7 +8,7 @@ const OurStaff = () => {
     const { user, admin } = useFirebase();
     const [staffs, setStaffs] = useState([]);
     const [pageCount, setPageCount] = useState(0);
-    const [totalStaff, setTotalStaff] = useState(0);
+    // const [totalStaff, setTotalStaff] = useState(0);
     const [page, setPage] = useState(0);
     const size = 8;
 
@@ -17,16 +17,15 @@ const OurStaff = () => {
         fetch(`https://daily-bazar-95aq.onrender.com/staffs?page=${page}&&size=${size}`)
             .then(res => res.json())
             .then(data => {
-                const filterData = data.staffs.filter(dt => dt.email !== user?.email);
-                setStaffs(filterData);
+                setStaffs(data.staffs);
                 const count = data.count;
                 const pageNumber = Math.ceil(count / size);
                 setPageCount(pageNumber)
-                fetch('https://daily-bazar-95aq.onrender.com/staffs')
-                    .then(res => res.json())
-                    .then(data => setTotalStaff(data.count))
+                // fetch('https://daily-bazar-95aq.onrender.com/staffs')
+                //     .then(res => res.json())
+                //     .then(data => setTotalStaff(data.count))
             })
-    }, [page, user.email]);
+    }, [page]);
 
 
     return (
@@ -71,7 +70,7 @@ const OurStaff = () => {
                             </thead>
                             <tbody className="bg-white divide-y divide-gray-100 dark:divide-gray-700 dark:bg-gray-800 text-gray-700 dark:text-gray-400">
                                 {
-                                    staffs.map(staff => <tr className='' key={staff.staffId}>
+                                    staffs.map(staff => staff.email !== user.email && <tr className='' key={staff.staffId}>
                                         <td className='px-3 py-3 text-xs font-bold'>{staff.staffId.toUpperCase()}</td>
                                         <td className='px-3 py-3 flex items-center justify-start text-sm'>
                                             <img className='w-14 h-14 shadow-inner rounded-full p-1 mr-2' src={`data:image/*;base64,${staff.photoURL}`} alt="" />
@@ -110,7 +109,7 @@ const OurStaff = () => {
                     </div>
                     <div className='flex items-center justify-between p-4 mb-6 bg-white border border-gray-200 rounded-b-lg'>
                         <div className='text-xs font-bold text-gray-600'>
-                            SHOWING {(page * staffs.length) + 1}-{(page + 1) * staffs.length} OF {totalStaff}
+                            SHOWING {(page * staffs.length) + 1}-{(page + 1) * staffs.length} OF {staffs.length}
                         </div>
                         <div className='text-xs font-bold bg-gray-100 rounded'>
                             {
