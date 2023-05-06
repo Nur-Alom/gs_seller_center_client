@@ -20,6 +20,7 @@ const Dashboard = () => {
         <div className='w-full flex h-screen'>
             <Navigation
                 sidebar={sidebar}
+                changeSideBar={changeSideBar}
             />
             <div className='flex flex-col flex-1 w-full h-screen'>
                 <Header
