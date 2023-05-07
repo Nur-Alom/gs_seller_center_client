@@ -157,11 +157,11 @@ const Category = () => {
 
     return (
         <div className='px-6 mx-auto'>
-            <h2 className='my-4 font-bold font-sans text-lg'>Categories</h2>
-            <div className='bg-white border border-gray-300 rounded-md font-sans'>
+            <h2 className='my-4 font-bold font-sans text-lg dark:text-white'>Categories</h2>
+            <div className='bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-800 rounded-md font-sans'>
                 <div className='grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-6 px-4 py-4 items-center'>
                     <form onSubmit={handleSubmit(onSubmit)} className='w-full flex justify-between items-center'>
-                        <input {...register("search")} className='w-full focus:bg-white bg-gray-200 p-3 border border-gray-300 outline-0 rounded-md' type="search" placeholder='Search by category type' />
+                        <input {...register("search")} className='w-full focus:bg-white dark:focus:border-gray-100 bg-gray-200 dark:bg-gray-800 p-3 border border-gray-300 dark:border-gray-500 dark:text-white outline-0 rounded-md' type="search" placeholder='Search by category type' />
                         {search &&
                             <svg className="ml-2 mr-4 h-6 w-6 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="green" strokeWidth="4"></circle>
                                 <path className="opacity-75" fill="green" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
@@ -169,7 +169,7 @@ const Category = () => {
                         }
                     </form>
                     <div className='w-full'>
-                        <select onChange={(e) => setCategory(e.target.value)} className='w-full focus:bg-white bg-gray-200 p-3 border border-gray-300 outline-0 rounded-md' name="" id="">
+                        <select onChange={(e) => setCategory(e.target.value)} className='w-full focus:bg-white bg-gray-200 dark:bg-gray-800 dark:text-white p-3 border border-gray-300 dark:border-gray-500 dark:focus:border-gray-100 outline-0 rounded-md' name="" id="">
                             <option value="All" hidden>Categories</option>
                             {
                                 totalCategory.map(category => <option key={category.parent}>
@@ -199,7 +199,7 @@ const Category = () => {
                 <div className='font-sans'>
                     {categories.length ?
                         <div>
-                            <div className="w-full overflow-x-auto rounded-t-lg border border-gray-200 mt-4">
+                            <div className="w-full overflow-x-auto rounded-t-lg border border-gray-200 dark:border-gray-600 mt-4">
                                 <table className="w-full whitespace-no-wrap">
                                     <thead className="text-xs font-semibold tracking-wide text-gray-500 uppercase border-b border-gray-200 dark:border-gray-700 bg-gray-100 dark:text-gray-400 dark:bg-gray-800">
                                         <tr>
@@ -263,17 +263,17 @@ const Category = () => {
                                     </tbody>
                                 </table>
                             </div>
-                            <div className='flex items-center justify-between p-4 mb-6 bg-white border border-gray-200 rounded-b-lg'>
-                                <div className='text-xs font-bold text-gray-600'>
+                            <div className='flex items-center justify-between p-4 mb-6 bg-white dark:bg-gray-700  border border-gray-200 dark:border-gray-600 rounded-b-lg'>
+                                <div className='text-xs font-bold text-gray-600 dark:text-gray-300'>
                                     SHOWING {(page * categories.length) + 1}-{(page + 1) * categories.length} OF {totalCategory.length}
                                 </div>
-                                <div className='text-xs font-bold bg-gray-100 rounded'>
+                                <div className='text-xs font-bold bg-gray-100 dark:bg-gray-800 rounded'>
                                     {
                                         [...Array(pageCount).keys()]
                                             .map(number => <button
                                                 key={number}
                                                 onClick={() => setPage(number)}
-                                                className={number === page ? 'px-3 py-2 bg-green-400 text-white border-gray-200 rounded outline-0' : 'px-3 py-2 border-gray-200 rounded outline-0'}>
+                                                className={number === page ? 'px-3 py-2 bg-green-400 text-white border-gray-200 rounded outline-0' : 'px-3 py-2 border-gray-200 dark:text-gray-200 rounded outline-0'}>
                                                 {number + 1}
                                             </button>)
                                     }

@@ -6,7 +6,7 @@ const DashboardHome = () => {
     return (
         <div>
             <div className='px-6 mx-auto'>
-                <p className='my-6 font-bold text-lg'>Dashboard Overview</p>
+                <p className='my-6 font-bold text-lg dark:text-white'>Dashboard Overview</p>
                 <div className='grid gap-4 mb-8 md:grid-cols-3 xl:grid-cols-3'>
                     <div className='rounded-lg text-white text-center bg-teal-500 px-4 py-8'>
                         <svg className='m-auto text-3xl' stroke="currentColor" fill="currentColor" strokeWidth="0" version="1.1" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M16 5l-8-4-8 4 8 4 8-4zM8 2.328l5.345 2.672-5.345 2.672-5.345-2.672 5.345-2.672zM14.398 7.199l1.602 0.801-8 4-8-4 1.602-0.801 6.398 3.199zM14.398 10.199l1.602 0.801-8 4-8-4 1.602-0.801 6.398 3.199z"></path>

@@ -17,16 +17,16 @@ const Dashboard = () => {
 
 
     return (
-        <div className='w-full flex h-screen'>
+        <div className='w-full flex h-screen dark:bg-gray-800'>
             <Navigation
                 sidebar={sidebar}
                 changeSideBar={changeSideBar}
             />
-            <div className='flex flex-col flex-1 w-full h-screen'>
+            <div className='flex flex-col flex-1 w-full h-screen dark:bg-gray-800'>
                 <Header
                     changeSideBar={changeSideBar}
                 />
-                <div className='h-full overflow-y-auto bg-slate-50'>
+                <div className='h-full overflow-y-auto bg-slate-50 dark:bg-gray-900'>
                     <Outlet />
                 </div>
             </div>

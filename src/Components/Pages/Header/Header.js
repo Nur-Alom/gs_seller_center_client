@@ -9,6 +9,40 @@ const Header = ({ changeSideBar }) => {
     const { user, logout } = useFirebase();
     const [dropdown, setDropdown] = useState(false);
     const [staffs, setStaffs] = useState({});
+    const [theme, setTheme] = useState(localStorage.getItem('theme'));
+
+    const light = 'light';
+    const dark = 'dark';
+
+    // Set Dark Mode.
+    const changeDarkMode = () => {
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme === 'dark') {
+            localStorage.setItem('theme', light);
+            setTheme('light');
+        } else {
+            localStorage.setItem('theme', dark);
+            setTheme('dark');
+        }
+    }
+
+    // Monitor Dark Mode.
+    useEffect(() => {
+        // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark')
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
+        // // Whenever the user explicitly chooses light mode
+        // localStorage.theme = 'light'
+
+        // // Whenever the user explicitly chooses dark mode
+        // localStorage.theme = 'dark'
+
+        // // Whenever the user explicitly chooses to respect the OS preference
+        // localStorage.removeItem('theme')
+    }, [theme]);
 
 
     // Set Dropdown.
@@ -45,9 +79,9 @@ const Header = ({ changeSideBar }) => {
                 <ul className="flex justify-end items-center flex-shrink-0 space-x-6">
                     <li title='User Mail' className="flex">{user?.email}</li>
                     <li title='Theme' className="flex">
-                        <button className="rounded-md focus:outline-none" aria-label="Toggle color mode">
-                            <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 512 512" className="w-5 h-5" aria-hidden="true" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M152.62 126.77c0-33 4.85-66.35 17.23-94.77C87.54 67.83 32 151.89 32 247.38 32 375.85 136.15 480 264.62 480c95.49 0 179.55-55.54 215.38-137.85-28.42 12.38-61.8 17.23-94.77 17.23-128.47 0-232.61-104.14-232.61-232.61z"></path>
-                            </svg>
+                        <button onClick={() => changeDarkMode()} className="rounded-md focus:outline-none" aria-label="Toggle color mode">
+                            {theme === 'light' ? <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 512 512" className="w-5 h-5" aria-hidden="true" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M152.62 126.77c0-33 4.85-66.35 17.23-94.77C87.54 67.83 32 151.89 32 247.38 32 375.85 136.15 480 264.62 480c95.49 0 179.55-55.54 215.38-137.85-28.42 12.38-61.8 17.23-94.77 17.23-128.47 0-232.61-104.14-232.61-232.61z"></path>
+                            </svg> : <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 512 512" className="w-5 h-5" aria-hidden="true" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M256 118a22 22 0 01-22-22V48a22 22 0 0144 0v48a22 22 0 01-22 22zm0 368a22 22 0 01-22-22v-48a22 22 0 0144 0v48a22 22 0 01-22 22zm113.14-321.14a22 22 0 01-15.56-37.55l33.94-33.94a22 22 0 0131.11 31.11l-33.94 33.94a21.93 21.93 0 01-15.55 6.44zM108.92 425.08a22 22 0 01-15.55-37.56l33.94-33.94a22 22 0 1131.11 31.11l-33.94 33.94a21.94 21.94 0 01-15.56 6.45zM464 278h-48a22 22 0 010-44h48a22 22 0 010 44zm-368 0H48a22 22 0 010-44h48a22 22 0 010 44zm307.08 147.08a21.94 21.94 0 01-15.56-6.45l-33.94-33.94a22 22 0 0131.11-31.11l33.94 33.94a22 22 0 01-15.55 37.56zM142.86 164.86a21.89 21.89 0 01-15.55-6.44l-33.94-33.94a22 22 0 0131.11-31.11l33.94 33.94a22 22 0 01-15.56 37.55zM256 358a102 102 0 11102-102 102.12 102.12 0 01-102 102z"></path></svg>}
                         </button>
                     </li>
                     <li title='Notification' className="relative inline-block text-left">
