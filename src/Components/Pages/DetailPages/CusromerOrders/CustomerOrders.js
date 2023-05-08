@@ -71,14 +71,14 @@ const CustomerOrders = () => {
 
     return (
         <div className='px-6 mx-auto'>
-            <div className='flex items-center justify-between border-b border-gray-300'>
-                <h2 className='my-4 font-bold text-lg'>Customers Order List</h2>
+            <div className='flex items-center justify-between border-b border-gray-300 dark:border-gray-500'>
+                <h2 className='my-4 font-bold text-lg dark:text-white'>Customers Order List</h2>
                 {/* {infoLoading ?
                     <button disabled onClick={() => window.history.back()} className="font-medium outline-0 px-4 py-2 text-sm rounded-lg border border-gray-200 text-red-500 hover:bg-red-200 hover:border-red-300 hover:text-red-600 transition-colors duration-500">
                         Cancel
                     </button>
                     : */}
-                <button onClick={() => window.history.back()} className="font-medium outline-0 px-4 py-2 text-sm rounded-lg border border-green-500 bg-white text-green-500 hover:bg-green-700 hover:border-green-700 hover:text-white font-sans transition-colors duration-500">
+                <button onClick={() => window.history.back()} className="font-medium outline-0 px-4 py-2 text-sm rounded-lg border border-green-500 bg-white dark:bg-gray-900 text-green-500 hover:bg-green-700 dark:hover:bg-green-700 hover:border-green-700 hover:text-white font-sans transition-colors duration-500">
                     Go Back
                 </button>
                 {/* } */}
@@ -96,7 +96,7 @@ const CustomerOrders = () => {
                 <div>
                     {orders.length ?
                         <div>
-                            <div className="w-full overflow-x-auto rounded-t-lg border border-gray-200 mt-4">
+                            <div className="w-full overflow-x-auto rounded-t-lg border border-gray-200 dark:border-gray-600 mt-4">
                                 <table className="w-full whitespace-no-wrap">
                                     <thead className="text-xs font-semibold tracking-wide text-gray-500 uppercase border-b border-gray-200 dark:border-gray-700 bg-gray-100 dark:text-gray-400 dark:bg-gray-800">
                                         <tr>
@@ -110,7 +110,7 @@ const CustomerOrders = () => {
                                             <td className="px-3 py-3">ACTIONS</td>
                                         </tr>
                                     </thead>
-                                    <tbody className="bg-white divide-y divide-gray-100 dark:divide-gray-700 dark:bg-gray-800 text-gray-700 dark:text-gray-400">
+                                    <tbody className="bg-white dark:bg-gray-900 divide-y divide-gray-100 dark:divide-gray-700 text-gray-700 dark:text-gray-300">
                                         {
                                             orders.map(order => <tr className='' key={order._id}>
                                                 <td className='px-3 py-3 font-sans text-xs font-bold'>
@@ -146,7 +146,7 @@ const CustomerOrders = () => {
                                                     }
                                                 </td>
                                                 <td className='px-2 py-3 font-sans text-sm'>
-                                                    <select onChange={(e) => updateOrderStatus(e.target.value, order._id, order)} className='bg-gray-100 p-1 border border-gray-300 focus:border-gray-500 outline-0 text-sm rounded-md items-center' name="" id="">
+                                                    <select onChange={(e) => updateOrderStatus(e.target.value, order._id, order)} className='bg-gray-100 dark:bg-gray-900 p-1 border border-gray-300 dark:border-gray-500 dark:focus:border-gray-100 focus:border-gray-500 outline-0 text-sm rounded-md items-center' name="" id="">
                                                         <option value={order.status} hidden>{order.status}</option>
                                                         <option value="Pending">Pending</option>
                                                         <option value="Processing">Processing</option>
@@ -171,17 +171,17 @@ const CustomerOrders = () => {
                                     </tbody>
                                 </table>
                             </div>
-                            <div className='flex items-center justify-between font-sans p-4 mb-6 bg-white border border-gray-200 rounded-b-lg'>
-                                <div className='text-xs font-bold text-gray-600'>
+                            <div className='flex items-center justify-between font-sans p-4 mb-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-b-lg'>
+                                <div className='text-xs font-bold text-gray-600 dark:text-gray-200'>
                                     SHOWING {(page * orders.length) + 1}-{(page + 1) * orders.length} OF {totalOrders.length}
                                 </div>
-                                <div className='text-xs font-bold bg-gray-100 rounded'>
+                                <div className='text-xs font-bold bg-gray-100 dark:bg-gray-900 rounded'>
                                     {
                                         [...Array(pageCount).keys()]
                                             .map(number => <button
                                                 key={number}
                                                 onClick={() => setPage(number)}
-                                                className={number === page ? 'px-3 py-2 bg-green-400 text-white border-gray-200 rounded outline-0' : 'px-3 py-2 border-gray-200 rounded outline-0'}>
+                                                className={number === page ? 'px-3 py-2 bg-green-400 text-white border-gray-200 rounded outline-0' : 'px-3 py-2 border-gray-200 dark:text-gray-200 rounded outline-0'}>
                                                 {number + 1}
                                             </button>
                                             )

@@ -97,8 +97,8 @@ const UpdateCategory = () => {
 
     return (
         <div className='px-6 mx-auto'>
-            <div className='flex items-center justify-between border-b border-gray-300'>
-                <h2 className='my-4 font-bold text-lg'>Update Category Information</h2>
+            <div className='flex items-center justify-between border-b border-gray-300 dark:border-gray-500'>
+                <h2 className='my-4 font-bold text-lg dark:text-white'>Update Category Information</h2>
                 {infoLoading ?
                     <button disabled onClick={() => window.history.back()} className="font-medium outline-0 px-4 py-2 text-sm rounded-lg border border-gray-200 text-red-500 hover:bg-red-200 hover:border-red-300 hover:text-red-600 transition-colors duration-500">
                         Cancel
@@ -109,7 +109,7 @@ const UpdateCategory = () => {
                     </button>
                 }
             </div>
-            <div className="w-full overflow-x-auto rounded-xl border border-gray-200 bg-white mt-5 mb-8">
+            <div className="w-full overflow-x-auto rounded-xl border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-900 mt-5 mb-8">
                 <div>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="px-6 pt-8 flex-grow w-full h-full max-h-full">
@@ -123,8 +123,8 @@ const UpdateCategory = () => {
                                                     <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" className="text-3xl text-green-500" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><polyline points="16 16 12 12 8 16"></polyline><line x1="12" y1="12" x2="12" y2="21"></line><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path><polyline points="16 16 12 12 8 16"></polyline>
                                                     </svg>
                                                 </span>
-                                                <p className="text-sm mt-2">Drag your image here</p>
-                                                <em className="text-xs text-gray-400">(Only *.jpeg and *.png images will be accepted)</em>
+                                                <p className="text-sm mt-2 dark:text-gray-200">Drag your image here</p>
+                                                <em className="text-xs text-gray-400 dark:text-gray-400">(Only *.jpeg and *.png images will be accepted)</em>
                                                 <input {...register("icon")} onChange={e => PreviewImg(e)} className='image-upload-btn hidden' type="file" id='image-upload-btn' accept="image/*" />
                                             </div>
                                         </label>
@@ -144,7 +144,7 @@ const UpdateCategory = () => {
                             <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
                                 <label className="block text-gray-700 dark:text-gray-400 col-span-4 sm:col-span-2 font-medium text-sm">2. Category Type</label>
                                 <div className="col-span-8 sm:col-span-4">
-                                    <select {...register("type")} className="block w-full px-3 py-1 text-sm rounded-md border border-gray-200 h-12 bg-gray-100 focus:bg-white outline-0">
+                                    <select {...register("type")} className="block w-full px-3 py-1 text-sm rounded-md border border-gray-200 dark:border-gray-500 dark:focus:border-gray-100 h-12 bg-gray-100 dark:bg-gray-900 dark:text-white focus:bg-white outline-0">
                                         <option value="">{type}</option>
                                         <option value="Grocery">Grocery</option>
                                         <option value="Foods">Foods</option>
@@ -163,7 +163,7 @@ const UpdateCategory = () => {
                             <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
                                 <label className="block text-gray-700 dark:text-gray-400 col-span-4 sm:col-span-2 font-medium text-sm">3. Parent Category</label>
                                 <div className="col-span-8 sm:col-span-4">
-                                    <input defaultValue={parent} {...register("parent")} className="block w-full px-3 py-1 text-sm rounded-md border border-gray-200 h-12 bg-gray-100 focus:bg-white outline-0" type="text" placeholder="Category title" />
+                                    <input defaultValue={parent} {...register("parent")} className="block w-full px-3 py-1 text-sm rounded-md border border-gray-200 dark:border-gray-500 dark:focus:border-gray-100 h-12 bg-gray-100 dark:bg-gray-900 dark:text-white focus:bg-white outline-0" type="text" placeholder="Category title" />
                                     {errors.parent && <p className='text-red-600 font-light text-sm mt-1 mb-0 mx-0 w-fit rounded-sm'>{errors.parent.message}</p>}
                                 </div>
                             </div>
@@ -173,7 +173,7 @@ const UpdateCategory = () => {
                                     <TagsInput
                                         value={tags ? tags : []}
                                         onChange={setTags}
-                                        className="block w-full px-3 py-1 text-sm rounded-md border border-gray-200 h-12 bg-gray-100 focus:bg-white outline-0"
+                                        className="block w-full px-3 py-1 text-sm rounded-md border border-gray-200 dark:border-gray-500 dark:focus:border-gray-100 h-12 bg-gray-100 dark:bg-gray-900 dark:text-white focus:bg-white outline-0"
                                         placeholder="Child category  (Write then press enter to add new child category )"
                                     />
                                 </div>

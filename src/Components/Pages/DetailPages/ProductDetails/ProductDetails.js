@@ -23,7 +23,7 @@ const ProductDetails = () => {
     const { _id, image, title, status, sku, price, quantity, description, type, tag } = products;
     return (
         <div className='px-6 mx-auto'>
-            <h2 className='my-4 font-bold text-lg'>Product Details</h2>
+            <h2 className='my-4 font-bold text-lg dark:text-white'>Product Details</h2>
             <div className='my-4'>
                 {loading ?
                     <div className="text-center">
@@ -48,12 +48,12 @@ const ProductDetails = () => {
                                     <span className='text-red-500'> This product Hidden</span>
                                 }
                             </p>
-                            <h2 className='font-sans text-heading text-lg md:text-xl lg:text-2xl font-semibold dark:text-gray-400 mt-4'>{title}</h2>
-                            <p className='font-sans uppercase font-bold text-gray-500 dark:text-gray-400 text-sm mt-1'>
+                            <h2 className='font-sans text-heading text-lg md:text-xl lg:text-2xl font-semibold dark:text-gray-200 mt-4'>{title}</h2>
+                            <p className='font-sans uppercase font-bold text-gray-500 dark:text-gray-200 text-sm mt-1'>
                                 SKU:
-                                <span className='font-sans font-bold text-gray-500 dark:text-gray-500'> {sku}</span>
+                                <span className='font-sans font-bold text-gray-500 dark:text-gray-300'> {sku}</span>
                             </p>
-                            <h2 className='font-sans text-2xl font-bold mt-5'>${price}</h2>
+                            <h2 className='font-sans text-2xl font-bold mt-5 dark:text-white'>${price}</h2>
                             <span className='flex mb-3 mt-2'>
                                 {quantity > 0 ?
                                     <span className="font-sans inline-flex px-2 text-xs font-medium leading-5 rounded-full text-green-500 bg-green-100 dark:bg-green-800 dark:text-green-100">
@@ -64,12 +64,13 @@ const ProductDetails = () => {
                                         <span className="font-bold">Stock Out</span>
                                     </span>
                                 }
-                                <span className='font-sans text-sm text-gray-500 dark:text-gray-400 font-medium pl-4'>Quantity: {quantity}</span>
+                                <span className='font-sans text-sm text-gray-500 dark:text-gray-300 font-medium pl-4'>Quantity: {quantity}</span>
                             </span>
-                            <p className='font-sans text-sm leading-6 text-gray-500 dark:text-gray-400 md:leading-7'>{description}</p>
+                            <p className='font-sans text-sm leading-6 text-gray-500 dark:text-gray-300 md:leading-7'>{description}</p>
                             <div className='mt-4 mb-12'>
-                                <p className="font-sans font-semibold py-1 text-gray-500 text-sm">
-                                    <span className="text-gray-700 dark:text-gray-400">Category: </span>{type}
+                                <p className="font-sans font-semibold py-1 text-gray-500 dark:text-gray-500 text-sm">
+                                    <span className="text-gray-700 dark:text-white">Category: </span>
+                                    {type}
                                 </p>
                                 <span className='font-sans'>
                                     {
