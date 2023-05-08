@@ -13,6 +13,7 @@ const UserProfile = () => {
     const [staff, setStaff] = useState({});
     const [upImg, setUpImg] = useState("");
 
+
     // Load Coupon
     useEffect(() => {
         fetch(`https://daily-bazar-95aq.onrender.com/staff?email=${user?.email}`)
@@ -90,8 +91,8 @@ const UserProfile = () => {
 
     return (
         <div className='px-6 mx-auto'>
-            <div className='flex items-center justify-between border-b border-gray-300'>
-                <h2 className='my-4 font-bold text-lg'>Update Profile Information</h2>
+            <div className='flex items-center justify-between border-b border-gray-300 dark:border-gray-600'>
+                <h2 className='my-4 font-bold text-lg dark:text-white'>Update Profile Information</h2>
                 {/* {infoLoading ?
                     <button disabled onClick={() => window.history.back()} className="font-medium outline-0 px-4 py-2 text-sm rounded-lg border border-gray-200 text-red-500 hover:bg-red-200 hover:border-red-300 hover:text-red-600 transition-colors duration-500">
                         Cancel
@@ -102,7 +103,7 @@ const UserProfile = () => {
                     </button>
                 } */}
             </div>
-            <div className="w-full overflow-x-auto rounded-xl border border-gray-200 bg-white mt-5 mb-8">
+            <div className="w-full overflow-x-auto rounded-xl border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-900 mt-5 mb-8">
                 <div>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="px-6 pt-8 flex-grow w-full h-full max-h-full">
@@ -116,8 +117,8 @@ const UserProfile = () => {
                                                     <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" className="text-3xl text-green-500" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><polyline points="16 16 12 12 8 16"></polyline><line x1="12" y1="12" x2="12" y2="21"></line><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path><polyline points="16 16 12 12 8 16"></polyline>
                                                     </svg>
                                                 </span>
-                                                <p className="text-sm mt-2">Drag your image here</p>
-                                                <em className="text-xs text-gray-400">(Only *.jpeg and *.png images will be accepted)</em>
+                                                <p className="text-sm mt-2 dark:text-gray-100">Drag your image here</p>
+                                                <em className="text-xs text-gray-400 dark:text-gray-300">(Only *.jpeg and *.png images will be accepted)</em>
                                                 <input {...register("photoURL")} onChange={e => PreviewImg(e)} className='image-upload-btn hidden' type="file" id='image-upload-btn' accept="image/*" />
                                             </div>
                                         </label>
@@ -137,28 +138,28 @@ const UserProfile = () => {
                             <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
                                 <label className="block text-gray-700 dark:text-gray-400 col-span-4 sm:col-span-2 font-medium text-sm">2. Name</label>
                                 <div className="col-span-8 sm:col-span-4">
-                                    <input defaultValue={staff.displayName}  {...register("displayName")} className="block w-full px-3 py-1 text-sm rounded-md border border-gray-200 h-12 bg-gray-100 focus:bg-white outline-0" type="text" placeholder="Name" />
+                                    <input defaultValue={staff.displayName}  {...register("displayName")} className="block w-full px-3 py-1 text-sm rounded-md border border-gray-200 dark:border-gray-500 dark:focus:border-gray-100 h-12 bg-gray-100 dark:bg-gray-800 dark:text-white focus:bg-white outline-0" type="text" placeholder="Name" />
                                     {errors.displayName && <p className='text-red-600 font-light text-sm mt-1 mb-0 mx-0 w-fit rounded-sm'>{errors.displayName.message}</p>}
                                 </div>
                             </div>
                             <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
                                 <label className="block text-gray-700 dark:text-gray-400 col-span-4 sm:col-span-2 font-medium text-sm">3. Email</label>
                                 <div className="col-span-8 sm:col-span-4">
-                                    <input defaultValue={staff.email} {...register("email")} className="block w-full px-3 py-1 text-sm rounded-md border border-gray-200 h-12 bg-gray-100 focus:bg-white outline-0" type="text" placeholder="Email" />
+                                    <input defaultValue={staff.email} {...register("email")} className="block w-full px-3 py-1 text-sm rounded-md border border-gray-200 dark:border-gray-500 dark:focus:border-gray-100 h-12 bg-gray-100 dark:bg-gray-800 dark:text-white focus:bg-white outline-0" type="text" placeholder="Email" />
                                     {errors.email && <p className='text-red-600 font-light text-sm mt-1 mb-0 mx-0 w-fit rounded-sm'>{errors.email.message}</p>}
                                 </div>
                             </div>
                             <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
                                 <label className="block text-gray-700 dark:text-gray-400 col-span-4 sm:col-span-2 font-medium text-sm">4. Contact Number</label>
                                 <div className="col-span-8 sm:col-span-4">
-                                    <input defaultValue={staff.contact} {...register("contact")} className="block w-full px-3 py-1 text-sm rounded-md border border-gray-200 h-12 bg-gray-100 focus:bg-white outline-0" type="number" placeholder="Contact" />
+                                    <input defaultValue={staff.contact} {...register("contact")} className="block w-full px-3 py-1 text-sm rounded-md border border-gray-200 dark:border-gray-500 dark:focus:border-gray-100 h-12 bg-gray-100 dark:bg-gray-800 dark:text-white focus:bg-white outline-0" type="number" placeholder="Contact" />
                                     {errors.contact && <p className='text-red-600 font-light text-sm mt-1 mb-0 mx-0 w-fit rounded-sm'>{errors.contact.message}</p>}
                                 </div>
                             </div>
                             <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
                                 <label className="block text-gray-700 dark:text-gray-400 col-span-4 sm:col-span-2 font-medium text-sm">5. Role</label>
                                 <div className="col-span-8 sm:col-span-4">
-                                    <select {...register("role")} className="block w-full px-3 py-1 text-sm rounded-md border border-gray-200 h-12 bg-gray-100 focus:bg-white outline-0">
+                                    <select {...register("role")} className="w-full focus:bg-white bg-gray-200 dark:bg-gray-800 dark:text-white p-3 border border-gray-300 dark:border-gray-500 dark:focus:border-gray-100 outline-0 rounded-md">
                                         <option value={staff.role} hidden>{staff.role}</option>
                                         <option value="Admin">Admin</option>
                                         <option value="CEO">CEO</option>

@@ -30,12 +30,12 @@ const OurStaff = () => {
 
     return (
         <div className='px-6 mx-auto'>
-            <h2 className='my-4 font-bold text-lg'>Our Staffs</h2>
-            <div className='bg-white border border-gray-200 rounded-md'>
+            <h2 className='my-4 font-bold text-lg dark:text-white'>Our Staffs</h2>
+            <div className='bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-800 rounded-md'>
                 <div className='flex flex-col md:flex-row px-4 py-6 gap-4'>
                     <div className='w-full md:w-4/5 md:flex items-center justify-between grid grid-cols-1 gap-4'>
-                        <input className='w-full focus:bg-white bg-gray-100 p-3 border border-gray-300 outline-0 text-sm rounded-md' type="text" placeholder='Search by Coupon code/name' />
-                        <select className='bg-gray-100 focus:bg-white px-2 py-3 rounded outline-0 w-full border border-gray-300 text-sm' name="" id="">
+                        <input className='w-full focus:bg-white dark:focus:border-gray-100 bg-gray-200 dark:bg-gray-800 p-3 border border-gray-300 dark:border-gray-500 dark:text-white outline-0 rounded-md' type="search" placeholder='Search by Coupon code/name' />
+                        <select className='w-full focus:bg-white bg-gray-200 dark:bg-gray-800 dark:text-white p-3 border border-gray-300 dark:border-gray-500 dark:focus:border-gray-100 outline-0 rounded-md' name="" id="">
                             <option value="" hidden>Staff Role</option>
                             <option value="">CEO</option>
                             <option value="">ADMIN</option>
@@ -55,7 +55,7 @@ const OurStaff = () => {
             </div>
             {staffs.length ?
                 <div>
-                    <div className="w-full overflow-x-auto rounded-t-lg border border-gray-200">
+                    <div className="w-full overflow-x-auto rounded-t-lg border border-gray-200 dark:border-gray-600">
                         <table className="w-full whitespace-no-wrap">
                             <thead className="text-xs font-semibold tracking-wide text-gray-500 uppercase border-b border-gray-200 dark:border-gray-700 bg-gray-100 dark:text-gray-400 dark:bg-gray-800">
                                 <tr>
@@ -68,7 +68,7 @@ const OurStaff = () => {
                                     {admin === true && <td className="px-3 py-3">ACTIONS</td>}
                                 </tr>
                             </thead>
-                            <tbody className="bg-white divide-y divide-gray-100 dark:divide-gray-700 dark:bg-gray-800 text-gray-700 dark:text-gray-400">
+                            <tbody className="bg-white divide-y divide-gray-100 dark:divide-gray-700 dark:bg-gray-900 text-gray-700 dark:text-gray-300">
                                 {
                                     staffs.map(staff => staff.email !== user.email && <tr className='' key={staff.staffId}>
                                         <td className='px-3 py-3 text-xs font-bold'>{staff.staffId.toUpperCase()}</td>
@@ -107,17 +107,17 @@ const OurStaff = () => {
                             </tbody>
                         </table>
                     </div>
-                    <div className='flex items-center justify-between p-4 mb-6 bg-white border border-gray-200 rounded-b-lg'>
-                        <div className='text-xs font-bold text-gray-600'>
+                    <div className='flex items-center justify-between p-4 mb-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-b-lg'>
+                        <div className='text-xs font-bold text-gray-600 dark:text-gray-300'>
                             SHOWING {(page * staffs.length) + 1}-{(page + 1) * staffs.length} OF {staffs.length}
                         </div>
-                        <div className='text-xs font-bold bg-gray-100 rounded'>
+                        <div className='text-xs font-bold bg-gray-100 dark:bg-gray-800 rounded'>
                             {
                                 [...Array(pageCount).keys()]
                                     .map(number => <button
                                         key={number}
                                         onClick={() => setPage(number)}
-                                        className={number === page ? 'px-3 py-2 bg-green-400 text-white border-gray-200 rounded' : 'px-3 py-2 border-gray-200 rounded'}>
+                                        className={number === page ? 'px-3 py-2 bg-green-400 text-white border-gray-200 rounded outline-0' : 'px-3 py-2 border-gray-200 dark:text-gray-200 rounded outline-0'}>
                                         {number + 1}
                                     </button>)
                             }

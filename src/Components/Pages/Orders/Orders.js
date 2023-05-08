@@ -61,14 +61,14 @@ const Orders = () => {
 
     return (
         <div className='px-6 mx-auto'>
-            <h2 className='my-4 font-bold text-lg'>Orders</h2>
-            <div className='bg-white border border-gray-200 rounded-md'>
+            <h2 className='my-4 font-bold text-lg dark:text-white'>Orders</h2>
+            <div className='bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-800 rounded-md'>
                 <div className='grid md:grid-cols-4 sm:grid-cols-1 gap-3 px-4 py-6 items-center'>
                     <div>
-                        <input className='w-full focus:bg-white bg-gray-100 p-3 border border-gray-300 outline-0 text-sm rounded-md' type="number" placeholder='Search by phone' />
+                        <input className='w-full focus:bg-white bg-gray-100 dark:bg-gray-800 p-3 border border-gray-300 dark:focus:border-gray-100 dark:border-gray-500 dark:text-white outline-0 text-sm rounded-md' type="number" placeholder='Search by phone' />
                     </div>
                     <div>
-                        <select className='w-full focus:bg-white bg-gray-100 p-3 border border-gray-300 outline-0 text-sm rounded-md' name="" id="">
+                        <select className='w-full focus:bg-white bg-gray-100 dark:bg-gray-800 p-3 border border-gray-300 dark:focus:border-gray-100 dark:border-gray-500 dark:text-white outline-0 text-sm rounded-md' name="" id="">
                             <option value="" hidden>By Status</option>
                             <option value="">Pending</option>
                             <option value="">Processing</option>
@@ -77,7 +77,7 @@ const Orders = () => {
                         </select>
                     </div>
                     <div>
-                        <select className='w-full focus:bg-white bg-gray-100 p-3 border border-gray-300 outline-0 text-sm rounded-md' name="" id="">
+                        <select className='w-full focus:bg-white bg-gray-100 dark:bg-gray-800 p-3 border border-gray-300 dark:focus:border-gray-100 dark:border-gray-500 dark:text-white outline-0 text-sm rounded-md' name="" id="">
                             <option value="" hidden>By Time</option>
                             <option value="">Last 5 dyes orders</option>
                             <option value="">Last 7 dyes orders</option>
@@ -98,7 +98,7 @@ const Orders = () => {
             </div>
             {orders.length ?
                 <div>
-                    <div className="w-full overflow-x-auto rounded-t-lg border border-gray-200 mt-4">
+                    <div className="w-full overflow-x-auto rounded-t-lg border border-gray-200 dark:border-gray-600 mt-4">
                         <table className="w-full whitespace-no-wrap">
                             <thead className="text-xs font-semibold tracking-wide text-gray-500 uppercase border-b border-gray-200 dark:border-gray-700 bg-gray-100 dark:text-gray-400 dark:bg-gray-800">
                                 <tr>
@@ -113,7 +113,7 @@ const Orders = () => {
                                     <td className="px-3 py-3">INVOICE</td>
                                 </tr>
                             </thead>
-                            <tbody className="bg-white divide-y divide-gray-100 dark:divide-gray-700 dark:bg-gray-800 text-gray-700 dark:text-gray-400">
+                            <tbody className="bg-white divide-y divide-gray-100 dark:divide-gray-700 dark:bg-gray-900 text-gray-700 dark:text-gray-300">
                                 {
                                     orders.map(order => <tr className='' key={order._id}>
                                         <td className='px-3 py-3 text-xs font-bold'>{order.orderId.toUpperCase()}</td>
@@ -139,7 +139,7 @@ const Orders = () => {
                                             }
                                         </td>
                                         <td className='px-2 py-3 text-sm'>
-                                            <select onChange={(e) => updateOrderStatus(e.target.value, order._id, order)} className='bg-gray-100 p-1 border border-gray-300 focus:border-gray-500 outline-0 text-sm rounded-md items-center' name="" id="">
+                                            <select onChange={(e) => updateOrderStatus(e.target.value, order._id, order)} className='bg-gray-100 dark:bg-gray-800 p-1 border border-gray-300 dark:border-gray-500 dark:focus:border-gray-100 focus:border-gray-500 outline-0 text-sm rounded-md items-center' name="" id="">
                                                 <option value={order.status} hidden>{order.status}</option>
                                                 <option value="Pending">Pending</option>
                                                 <option value="Processing">Processing</option>
@@ -158,17 +158,17 @@ const Orders = () => {
                             </tbody>
                         </table>
                     </div>
-                    <div className='flex items-center justify-between p-4 mb-6 bg-white border border-gray-200 rounded-b-lg'>
-                        <div className='text-xs font-bold text-gray-600'>
+                    <div className='flex items-center justify-between p-4 mb-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-b-lg'>
+                        <div className='text-xs font-bold text-gray-600 dark:text-gray-300'>
                             SHOWING {(page * orders.length) + 1}-{(page + 1) * orders.length} OF {totalOrders.length}
                         </div>
-                        <div className='text-xs font-bold bg-gray-100 rounded'>
+                        <div className='text-xs font-bold bg-gray-100 dark:bg-gray-800 rounded'>
                             {
                                 [...Array(pageCount).keys()]
                                     .map(number => <button
                                         key={number}
                                         onClick={() => setPage(number)}
-                                        className={number === page ? 'px-3 py-2 bg-green-400 text-white border-gray-200 rounded outline-0' : 'px-3 py-2 border-gray-200 rounded outline-0'}>
+                                        className={number === page ? 'px-3 py-2 bg-green-400 text-white border-gray-200 rounded outline-0' : 'px-3 py-2 border-gray-200 dark:text-gray-200 rounded outline-0'}>
                                         {number + 1}
                                     </button>)
                             }

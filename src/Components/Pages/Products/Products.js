@@ -185,23 +185,23 @@ const Products = () => {
                 <div className='bg-white dark:bg-gray-800 py-2 px-4 my-4 rounded-md border border-gray-200 dark:border-gray-800'>
                     <div className='items-center grid gap-4 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1'>
                         <form onSubmit={handleSubmit(onSubmit)} className='bg-white dark:bg-gray-800 flex items-center justify-between'>
-                            <input {...register("search")} className='w-full border border-gray-300 dark:border-gray-500 bg-gray-200 dark:bg-gray-800 dark:text-white focus:bg-white px-3 py-3 rounded my-4 outline-0' type="search" placeholder='Search by Product Name' />
+                            <input {...register("search")} className='w-full border border-gray-300 dark:border-gray-500 dark:focus:border-gray-100 bg-gray-200 dark:bg-gray-800 dark:text-white focus:bg-white px-3 py-3 rounded my-4 outline-0' type="search" placeholder='Search by Product Name' />
                             {search &&
                                 <svg className="ml-2 mr-4 h-6 w-6 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="green" strokeWidth="4"></circle>
                                     <path className="opacity-75" fill="green" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                 </svg>
                             }
                         </form>
-                        <div className='bg-gray-200 focus:bg-white rounded border border-gray-300 outline-0'>
-                            <select onChange={(e) => setCategory(e.target.value)} className='bg-gray-200 dark:bg-gray-800 dark:border-gray-600 dark:text-white focus:bg-white px-2 py-3 rounded outline-0 w-full' name="" id="">
+                        <div className=''>
+                            <select onChange={(e) => setCategory(e.target.value)} className='w-full focus:bg-white bg-gray-200 dark:bg-gray-800 dark:text-white p-3 border border-gray-300 dark:border-gray-500 dark:focus:border-gray-100 outline-0 rounded-md' name="" id="">
                                 <option value="All" hidden>Category</option>
                                 {
                                     categories.map(category => <option key={category.parent}>{category.parent}</option>)
                                 }
                             </select>
                         </div>
-                        <div className='bg-gray-200 focus:bg-white rounded border border-gray-300 outline-0'>
-                            <select onChange={(e) => sortByPrice(e.target.value)} className='bg-gray-200 dark:bg-gray-800 dark:border-gray-600 dark:text-white focus:bg-white px-2 py-3 rounded outline-0 w-full' name="" id="">
+                        <div className=''>
+                            <select onChange={(e) => sortByPrice(e.target.value)} className='w-full focus:bg-white bg-gray-200 dark:bg-gray-800 dark:text-white p-3 border border-gray-300 dark:border-gray-500 dark:focus:border-gray-100 outline-0 rounded-md' name="" id="">
                                 <option value="All" hidden>Price</option>
                                 <option value="Low">Low To High</option>
                                 <option value="High">High To Low</option>
@@ -274,7 +274,7 @@ const Products = () => {
                                             <td className="px-3 py-3">ACTIONS</td>
                                         </tr>
                                     </thead>
-                                    <tbody className="bg-white divide-y divide-gray-100 dark:divide-gray-700 dark:bg-gray-800 text-gray-700 dark:text-gray-400">
+                                    <tbody className="bg-white divide-y divide-gray-100 dark:divide-gray-700 dark:bg-gray-900 text-gray-700 dark:text-gray-300">
 
                                         {
                                             products.map(product => <tr className='' key={product._id}>

@@ -128,10 +128,10 @@ const Customers = () => {
 
     return (
         <div className='px-6 mx-auto'>
-            <h2 className='my-4 font-bold font-sans text-lg'>Customers</h2>
-            <div className='bg-white border border-gray-300 rounded-md'>
+            <h2 className='my-4 font-bold font-sans text-lg dark:text-white'>Customers</h2>
+            <div className='bg-white dark:bg-gray-800 border border-gray-300  dark:border-gray-800 rounded-md'>
                 <form onSubmit={handleSubmit(onSubmit)} className='flex justify-between items-center px-4 py-6'>
-                    <input {...register("search")} className='w-full focus:bg-white bg-gray-100 p-3 border border-gray-300 outline-0 rounded-md text-sm font-sans font-semibold' type="search" placeholder='Search by name/email/phone' />
+                    <input {...register("search")} className='w-full focus:bg-white dark:focus:border-gray-100 bg-gray-200 dark:bg-gray-800 p-3 border border-gray-300 dark:border-gray-500 dark:text-white outline-0 rounded-md text-sm font-sans font-semibold' type="search" placeholder='Search by name/email/phone' />
                     {search &&
                         <svg className="ml-2 mr-4 h-6 w-6 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="green" strokeWidth="4"></circle>
                             <path className="opacity-75" fill="green" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
@@ -141,7 +141,7 @@ const Customers = () => {
             </div>
             {!infoLoading ?
                 <div>
-                    <div className="w-full overflow-x-auto rounded-t-lg border border-gray-200 mt-4">
+                    <div className="w-full overflow-x-auto rounded-t-lg border border-gray-200 dark:border-gray-600 mt-4">
                         <table className="w-full whitespace-no-wrap">
                             <thead className="text-xs font-semibold tracking-wide text-gray-500 uppercase border-b border-gray-200 dark:border-gray-700 bg-gray-100 dark:text-gray-400 dark:bg-gray-800">
                                 <tr>
@@ -154,7 +154,7 @@ const Customers = () => {
                                     <td className="px-3 py-3">ACTIONS</td>
                                 </tr>
                             </thead>
-                            <tbody className="bg-white divide-y divide-gray-100 dark:divide-gray-700 dark:bg-gray-800 text-gray-700 dark:text-gray-400">
+                            <tbody className="bg-white divide-y divide-gray-100 dark:divide-gray-700 dark:bg-gray-900 text-gray-700 dark:text-gray-300">
                                 {
                                     users.map(user => <tr className='' key={user._id}>
                                         <td className='px-3 py-3 font-sans text-xs font-bold'>
@@ -193,17 +193,17 @@ const Customers = () => {
                             </tbody>
                         </table>
                     </div>
-                    <div className='flex items-center justify-between p-4 mb-6 bg-white border border-gray-200 rounded-b-lg'>
-                        <div className='text-xs font-bold text-gray-600'>
+                    <div className='flex items-center justify-between p-4 mb-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-b-lg'>
+                        <div className='text-xs font-bold text-gray-600 dark:text-gray-300'>
                             SHOWING {(page * users.length) + 1}-{(page + 1) * users.length} OF {totalUsers}
                         </div>
-                        <div className='text-xs font-bold bg-gray-100 rounded'>
+                        <div className='text-xs font-bold bg-gray-100 dark:bg-gray-800 rounded'>
                             {
                                 [...Array(pageCount).keys()]
                                     .map(number => <button
                                         key={number}
                                         onClick={() => setPage(number)}
-                                        className={number === page ? 'px-3 py-2 bg-green-400 text-white border-gray-200 rounded outline-0' : 'px-3 py-2 border-gray-200 rounded outline-0'}>
+                                        className={number === page ? 'px-3 py-2 bg-green-400 text-white border-gray-200 rounded outline-0' : 'px-3 py-2 border-gray-200 dark:text-gray-200 rounded outline-0'}>
                                         {number + 1}
                                     </button>
                                     )

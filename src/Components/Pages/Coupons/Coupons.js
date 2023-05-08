@@ -90,11 +90,11 @@ const Coupons = () => {
 
     return (
         <div className='px-6 mx-auto'>
-            <h2 className='my-4 font-bold text-lg'>Coupons</h2>
-            <div className='bg-white border border-gray-200 rounded-md'>
+            <h2 className='my-4 font-bold text-lg dark:text-white'>Coupons</h2>
+            <div className='bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-800 rounded-md'>
                 <div className='flex flex-col md:flex-row px-4 py-6 items-center gap-4'>
                     <div className='w-full md:w-4/5'>
-                        <input className='w-full focus:bg-white bg-gray-100 p-3 border border-gray-300 outline-0 text-sm rounded-md' type="text" placeholder='Search by Coupon code/name' />
+                        <input className='w-full focus:bg-white bg-gray-100 dark:bg-gray-800 p-3 border border-gray-300 dark:border-gray-500 dark:focus:border-gray-100 dark:text-white outline-0 text-sm rounded-md' type="search" placeholder='Search by Coupon code/name' />
                     </div>
                     <div className='w-full md:w-1/5'>
                         <NavLink type='button' to="/add-coupon" className='w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-md text-center'>
@@ -105,7 +105,7 @@ const Coupons = () => {
             </div>
             {!loading ?
                 <div>
-                    <div className="w-full overflow-x-auto rounded-t-lg border border-gray-200 mt-4">
+                    <div className="w-full overflow-x-auto rounded-t-lg border border-gray-200 dark:border-gray-600 mt-4">
                         <table className="w-full whitespace-no-wrap">
                             <thead className="text-xs font-semibold tracking-wide text-gray-500 uppercase border-b border-gray-200 dark:border-gray-700 bg-gray-100 dark:text-gray-400 dark:bg-gray-800">
                                 <tr>
@@ -120,7 +120,7 @@ const Coupons = () => {
                                     <td className="px-3 py-3">ACTION</td>
                                 </tr>
                             </thead>
-                            <tbody className="bg-white divide-y divide-gray-100 dark:divide-gray-700 dark:bg-gray-800 text-gray-700 dark:text-gray-400">
+                            <tbody className="bg-white divide-y divide-gray-100 dark:divide-gray-700 dark:bg-gray-900 text-gray-700 dark:text-gray-300">
                                 {
                                     coupons.map(coupon => <tr className='' key={coupon._id}>
                                         {/* <td className='px-3 py-3 text-xs font-bold'>{coupon._id.slice(18, 24).toUpperCase()}</td> */}
@@ -170,17 +170,17 @@ const Coupons = () => {
                             </tbody>
                         </table>
                     </div>
-                    <div className='flex items-center justify-between p-4 mb-6 bg-white border border-gray-200 rounded-b-lg font-sans'>
-                        <div className='text-xs font-bold text-gray-600'>
+                    <div className='flex items-center justify-between p-4 mb-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-b-lg font-sans'>
+                        <div className='text-xs font-bold text-gray-600 dark:text-gray-300'>
                             SHOWING {(page * coupons.length) + 1}-{(page + 1) * coupons.length} OF {totalCoupons}
                         </div>
-                        <div className='text-xs font-bold bg-gray-100 rounded'>
+                        <div className='text-xs font-bold bg-gray-100 dark:bg-gray-800 rounded'>
                             {
                                 [...Array(pageCount).keys()]
                                     .map(number => <button
                                         key={number}
                                         onClick={() => setPage(number)}
-                                        className={number === page ? 'px-3 py-2 bg-green-400 text-white border-gray-200 rounded outline-0' : 'px-3 py-2 border-gray-200 rounded outline-0'}>
+                                        className={number === page ? 'px-3 py-2 bg-green-400 text-white border-gray-200 rounded outline-0' : 'px-3 py-2 border-gray-200 dark:text-gray-200 rounded outline-0'}>
                                         {number + 1}
                                     </button>)
                             }

@@ -212,7 +212,7 @@ const Category = () => {
                                             <td className="px-3 py-3">ACTIONS</td>
                                         </tr>
                                     </thead>
-                                    <tbody className="bg-white divide-y divide-gray-100 dark:divide-gray-700 dark:bg-gray-800 text-gray-700 dark:text-gray-400">
+                                    <tbody className="bg-white divide-y divide-gray-100 dark:divide-gray-700 dark:bg-gray-900 text-gray-700 dark:text-gray-300">
                                         {
                                             categories.map(category => <tr className='' key={category._id}>
                                                 <td className='px-3 py-3 text-xs font-bold'>{category._id.slice(18, 24).toUpperCase()}</td>
@@ -225,7 +225,7 @@ const Category = () => {
                                                     {
                                                         category.children.map(ct => <span
                                                             key={ct}
-                                                            className="bg-gray-200 text-gray-500 text-xs font-bold px-2 py-1 mx-1 rounded-full"
+                                                            className="bg-gray-200 dark:bg-gray-900 text-gray-500 dark:text-gray-300 dark:border dark:border-gray-500 text-xs font-bold px-2 py-1 mx-1 rounded-full"
                                                         >
                                                             {ct}
                                                         </span>)
