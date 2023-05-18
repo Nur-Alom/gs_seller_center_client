@@ -19,6 +19,6 @@
 
     .print-invoice {
         display: block;
-        height: min-content;
+        height: 100vh;
     }
 }

@@ -147,9 +147,9 @@ const Coupons = () => {
                                         </td>
                                         <td className='px-2 py-3 text-sm font-sans'>
                                             {new Date(coupon.endTime) < Date.now() ?
-                                                <span className="inline-flex px-2 text-xs font-medium leading-5 rounded-full text-red-600 bg-red-100 dark:text-white dark:bg-yellow-600">Expired</span>
+                                                <span className="inline-flex px-2 text-xs font-medium leading-5 rounded-full text-red-600 bg-red-100">Expired</span>
                                                 :
-                                                <span className="inline-flex px-2 text-xs font-medium leading-5 rounded-full text-green-600 bg-green-100 dark:text-white dark:bg-yellow-600">Active</span>
+                                                <span className="inline-flex px-2 text-xs font-medium leading-5 rounded-full text-green-600 bg-green-100">Active</span>
                                             }
                                         </td>
                                         <td className='px-2 py-3 text-sm'>
